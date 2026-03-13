@@ -62,14 +62,14 @@ const WorkerProfile: React.FC = () => {
     );
   }
 
-  const displayName = worker.profile?.full_name || worker.username;
-  const profilePicture = worker.profile?.profile_picture;
-  const location = worker.profile?.location;
-  const hourlyRate = worker.profile?.hourly_rate;
-  const bio = worker.profile?.bio;
-  const skills = worker.profile?.skills || [];
-  const experience = worker.profile?.experience_years;
-  const availability = worker.profile?.availability;
+  const displayName = worker.full_name || worker.user?.username || 'Worker';
+  const profilePicture = worker.profile_picture;
+  const location = worker.address || worker.location?.city;
+  const hourlyRate = worker.hourly_rate;
+  const bio = worker.bio;
+  const skills = worker.skills || [];
+  const experience = worker.years_experience;
+  const availability = worker.availability;
 
   // Calculate average rating
   const avgRating = reviews.length > 0
@@ -105,7 +105,7 @@ const WorkerProfile: React.FC = () => {
             <div className="flex items-start justify-between">
               <div>
                 <h1 className="text-2xl font-bold text-charcoal mb-1">{displayName}</h1>
-                <p className="text-muted">@{worker.username}</p>
+                {worker.user?.username && <p className="text-muted">@{worker.user.username}</p>}
               </div>
               {worker.is_verified && (
                 <div className="flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
@@ -166,8 +166,8 @@ const WorkerProfile: React.FC = () => {
                   Message
                 </Button>
               </Link>
-              {worker.profile?.phone && (
-                <a href={`tel:${worker.profile.phone}`}>
+              {worker.phone && (
+                <a href={`tel:${worker.phone}`}>
                   <Button variant="secondary" leftIcon={<PhoneIcon className="w-4 h-4" />}>
                     Call
                   </Button>

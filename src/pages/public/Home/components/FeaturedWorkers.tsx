@@ -156,7 +156,7 @@ export const FeaturedWorkers: React.FC = () => {
           </>
         ) : (
           <div className="text-center py-12">
-            <UserCircleIcon className="h-16 w-16 mx-auto text-[#A3A3A3] mb-4" />
+            <User className="h-16 w-16 mx-auto text-[#A3A3A3] mb-4" />
             <p className="text-[#525252]">No workers available at the moment</p>
           </div>
         )}
