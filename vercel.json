@@ -1,5 +1,4 @@
 {
-  "name": "workforge",
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
@@ -38,15 +37,6 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=(self)"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot))",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
         }
       ]
     }
