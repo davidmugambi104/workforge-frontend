@@ -1,5 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { paymentService } from '@services/payment.service';
+import { apiClient } from '@lib/api-client';
+import { ENDPOINTS } from '@config/endpoints';
 import { toast } from 'react-toastify';
 import { PaymentCreateRequest, PaymentUpdateRequest, EscrowReleaseRequest } from '@types';
 
@@ -7,6 +9,13 @@ export const usePayments = (params?: { job_id?: number; status?: string; page?: 
   return useQuery({
     queryKey: ['payments', params],
     queryFn: () => paymentService.getPayments(params),
+  });
+};
+
+export const useAdminPayments = (params?: { status?: string; payment_type?: string; page?: number; limit?: number }) => {
+  return useQuery({
+    queryKey: ['admin', 'payments', params],
+    queryFn: () => apiClient.get<{ payments: any[]; total: number; pages: number }>(ENDPOINTS.ADMIN.PAYMENTS, { params }),
   });
 };
 

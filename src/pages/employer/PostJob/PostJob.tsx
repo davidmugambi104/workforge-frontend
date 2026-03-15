@@ -17,6 +17,8 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { useCreateJob } from '@hooks/useEmployerJobs';
 import { skillService } from '@services/job.service';
+import { Input } from '@components/ui/Input';
+import { Textarea } from '@components/ui/Textarea';
 
 // Steps Configuration
 const steps = [
@@ -37,7 +39,7 @@ interface FormFieldProps {
 
 const FormField: React.FC<FormFieldProps> = ({ label, required, error, children }) => (
   <div className="mb-5">
-    <label className="block text-sm font-medium text-charcoal mb-2">
+    <label className="block text-sm font-semibold text-charcoal mb-2">
       {label}
       {required && <span className="text-red-500 ml-1">*</span>}
     </label>
@@ -95,13 +97,17 @@ const BasicInfoStep: React.FC<{
     <h3 className="text-lg font-semibold text-charcoal mb-1">Basic Information</h3>
     <p className="text-sm text-muted mb-6">Start with the fundamentals of your job listing</p>
 
+    <div className="mb-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 text-sm text-slate-600">
+      Use a clear, searchable title and category so the right workers can find this job quickly.
+    </div>
+
     <FormField label="Job Title" required error={errors.title}>
-      <input
+      <Input
         type="text"
         value={formData.title}
         onChange={(e) => updateFormData({ title: e.target.value })}
-        className="input-field"
         placeholder="e.g. Senior Electrician"
+        hint="Avoid vague titles like 'Worker Needed'."
       />
     </FormField>
 
@@ -177,21 +183,23 @@ const DetailsStep: React.FC<{
     <p className="text-sm text-muted mb-6">Describe responsibilities and requirements</p>
 
     <FormField label="Job Description" required error={errors.description}>
-      <textarea
+      <Textarea
         value={formData.description}
         onChange={(e) => updateFormData({ description: e.target.value })}
-        className="input-field min-h-[160px] resize-none"
+        className="min-h-[180px] resize-none"
         placeholder="Describe the role, responsibilities, and what makes this opportunity great..."
+        hint="Include daily duties, work conditions, and the expected outcome."
       />
       <p className="text-xs text-muted mt-1">{formData.description.length}/5000 characters</p>
     </FormField>
 
     <FormField label="Requirements" required error={errors.requirements}>
-      <textarea
+      <Textarea
         value={formData.requirements}
         onChange={(e) => updateFormData({ requirements: e.target.value })}
-        className="input-field min-h-[120px] resize-none"
+        className="min-h-[140px] resize-none"
         placeholder="List the skills, certifications, and experience required..."
+        hint="Separate must-haves from nice-to-haves for better applications."
       />
     </FormField>
 
@@ -251,12 +259,13 @@ const CompensationStep: React.FC<{
       <FormField label="Minimum Pay" required error={errors.payMin}>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">$</span>
-          <input
+          <Input
             type="number"
             value={formData.payMin}
             onChange={(e) => updateFormData({ payMin: e.target.value })}
-            className="input-field pl-8"
+            className="pl-8"
             placeholder="25"
+            hint="Set the lowest amount you can confidently offer."
           />
         </div>
       </FormField>
@@ -264,12 +273,13 @@ const CompensationStep: React.FC<{
       <FormField label="Maximum Pay" required error={errors.payMax}>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">$</span>
-          <input
+          <Input
             type="number"
             value={formData.payMax}
             onChange={(e) => updateFormData({ payMax: e.target.value })}
-            className="input-field pl-8"
+            className="pl-8"
             placeholder="35"
+            hint="A clear range gets more qualified applicants."
           />
         </div>
       </FormField>
@@ -354,12 +364,12 @@ const LocationStep: React.FC<{
     </FormField>
 
     <FormField label="City" required error={errors.city}>
-      <input
+      <Input
         type="text"
         value={formData.city}
         onChange={(e) => updateFormData({ city: e.target.value })}
-        className="input-field"
         placeholder="e.g. Dallas"
+        hint="Use the main city workers will search for."
       />
     </FormField>
 
@@ -372,20 +382,66 @@ const LocationStep: React.FC<{
             className="input-field appearance-none pr-10"
           >
             <option value="">Select state</option>
-            <option value="TX">Texas</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
             <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
             <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
           </select>
           <ChevronDownIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted pointer-events-none" />
         </div>
       </FormField>
 
       <FormField label="ZIP Code" required error={errors.zip}>
-        <input
+        <Input
           type="text"
           value={formData.zip}
           onChange={(e) => updateFormData({ zip: e.target.value })}
-          className="input-field"
           placeholder="e.g. 75001"
         />
       </FormField>
@@ -510,6 +566,9 @@ const PostJob = () => {
       case 2:
         if (!formData.payMin) newErrors.payMin = 'Minimum pay is required';
         if (!formData.payMax) newErrors.payMax = 'Maximum pay is required';
+        if (Number(formData.payMin) > Number(formData.payMax)) {
+          newErrors.payMax = 'Maximum pay must be greater than or equal to minimum pay';
+        }
         break;
       case 3:
         if (!formData.city) newErrors.city = 'City is required';

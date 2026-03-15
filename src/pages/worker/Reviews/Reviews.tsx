@@ -35,21 +35,21 @@ export const WorkerReviews: React.FC = () => {
   const distribution = getRatingDistribution();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 lg:space-y-8 text-slate-900">
       {/* Header */}
       <div>
-        <h1 className="text-4xl font-bold text-gray-900">Reviews</h1>
-        <p className="mt-2 text-gray-600">See what employers say about you</p>
+        <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 title-display">Reviews</h1>
+        <p className="mt-1 text-slate-600">See what employers say about you</p>
       </div>
 
       {/* Rating Summary */}
       {reviews && reviews.length > 0 && (
-        <Card className="p-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <Card className="p-5 lg:p-8 bg-gradient-to-br from-slate-50 to-blue-50 border border-slate-200">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div>
-              <p className="text-sm text-gray-600 mb-2">Average Rating</p>
+              <p className="text-sm text-slate-600 mb-2">Average Rating</p>
               <div className="flex items-baseline gap-3">
-                <span className="text-5xl font-bold text-gray-900">{avgRating}</span>
+                <span className="text-5xl font-bold text-slate-900">{avgRating}</span>
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
                     <StarIcon
@@ -63,11 +63,11 @@ export const WorkerReviews: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mt-2">{reviews.length} reviews</p>
+              <p className="text-sm text-slate-600 mt-2">{reviews.length} reviews</p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-600 mb-4">Rating Breakdown</p>
+              <p className="text-sm text-slate-600 mb-4">Rating Breakdown</p>
               {[5, 4, 3, 2, 1].map((rating) => (
                 <div key={rating} className="flex items-center gap-3 mb-2">
                   <span className="text-sm font-medium w-8">{rating}★</span>
@@ -79,7 +79,7 @@ export const WorkerReviews: React.FC = () => {
                       }}
                     />
                   </div>
-                  <span className="text-sm text-gray-600 w-8 text-right">
+                  <span className="text-sm text-slate-600 w-8 text-right">
                     {distribution[rating as keyof typeof distribution]}
                   </span>
                 </div>
@@ -106,10 +106,10 @@ export const WorkerReviews: React.FC = () => {
                     <UserIcon className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">
+                    <h3 className="font-semibold text-slate-900">
                       {review.reviewer?.first_name} {review.reviewer?.last_name}
                     </h3>
-                    <p className="text-sm text-gray-600 flex items-center gap-2 mt-1">
+                    <p className="text-sm text-slate-600 flex items-center gap-2 mt-1">
                       <CalendarIcon className="w-4 h-4" />
                       {formatDate(review.created_at)}
                     </p>
@@ -143,8 +143,8 @@ export const WorkerReviews: React.FC = () => {
       ) : (
         <Card className="p-12 text-center">
           <StarIcon className="w-16 h-16 mx-auto text-slate-400 mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">No reviews yet</h2>
-          <p className="text-gray-600">
+          <h2 className="text-xl font-semibold text-slate-900 mb-2">No reviews yet</h2>
+          <p className="text-slate-600">
             Complete jobs to earn reviews from employers and build your reputation.
           </p>
         </Card>

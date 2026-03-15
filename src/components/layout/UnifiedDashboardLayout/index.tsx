@@ -63,18 +63,8 @@ export const UnifiedDashboardLayout: React.FC<UnifiedDashboardLayoutProps> = () 
         onClose={handleCloseSidebar} 
       />
 
-      {/* Mobile overlay */}
-      {sidebarOpen && (
-        <button
-          type="button"
-          aria-label="Close sidebar"
-          className="fixed inset-0 z-40 bg-black/30 lg:hidden"
-          onClick={handleCloseSidebar}
-        />
-      )}
-
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden w-full min-w-0 ml-64">
+      <div className="flex-1 flex flex-col overflow-hidden w-full min-w-0 lg:ml-64">
         {/* Header with breadcrumbs */}
         <Header
           breadcrumbs={breadcrumbs}

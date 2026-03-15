@@ -3,14 +3,9 @@
  */
 
 import axios, { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
 import { ENV } from '@config/env';
 import { authStore } from '@store/auth.store';
-
-// Simple toast notification fallback
-const toast = {
-  error: (msg: string) => console.error('[Toast]', msg),
-  success: (msg: string) => console.log('[Toast]', msg),
-};
 
 class ApiClient {
   private client: AxiosInstance;

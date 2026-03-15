@@ -5,8 +5,8 @@
 
 export const ENV = {
   // API Configuration
-  VITE_API_URL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
-  VITE_WS_URL: import.meta.env.VITE_WS_URL || 'ws://localhost:5000',
+  VITE_API_URL: import.meta.env.VITE_API_URL || '/api',
+  VITE_WS_URL: import.meta.env.VITE_WS_URL || window.location.origin,
   VITE_CDN_URL: import.meta.env.VITE_CDN_URL || '',
 
   // App Configuration
@@ -28,5 +28,5 @@ export const ENV = {
 
 // Validation
 if (!ENV.VITE_API_URL) {
-  console.warn('VITE_API_URL not configured, using default http://localhost:5000/api');
+  console.warn('VITE_API_URL not configured, using default /api');
 }

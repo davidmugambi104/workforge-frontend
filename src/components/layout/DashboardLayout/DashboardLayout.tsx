@@ -5,17 +5,20 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
+import { uiStore } from '@store/ui.store';
 
 export const DashboardLayout: React.FC = () => {
+  const { sidebarOpen, setSidebarOpen, toggleSidebar } = uiStore();
+
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/30 bg-from-slate-900 bg-to-slate-800">
+    <div className="h-screen w-full flex overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-slate-900 dark:to-slate-800">
       {/* Fixed Sidebar - Always visible on desktop */}
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden w-full min-w-0">
+      <div className="flex-1 flex flex-col overflow-hidden w-full min-w-0 lg:ml-64">
         {/* Header */}
-        <Header />
+        <Header onToggleSidebar={toggleSidebar} />
 
         {/* Page Content - Scrollable */}
         <main className="flex-1 overflow-y-auto overflow-x-hidden">

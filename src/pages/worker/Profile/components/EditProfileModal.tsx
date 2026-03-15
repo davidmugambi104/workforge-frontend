@@ -13,7 +13,7 @@ const editProfileSchema = z.object({
   full_name: z.string().min(2, 'Name must be at least 2 characters'),
   bio: z.string().optional(),
   phone: z.string().min(10, 'Please enter a valid phone number').optional(),
-  hourly_rate: z.number().min(0, 'Hourly rate must be positive').optional(),
+  daily_rate: z.number().min(0, 'Daily wage must be positive').optional(),
   address: z.string().optional(),
 });
 
@@ -42,7 +42,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
       full_name: worker?.full_name || '',
       bio: worker?.bio || '',
       phone: worker?.phone || '',
-      hourly_rate: worker?.hourly_rate,
+      daily_rate: worker?.daily_rate ?? worker?.hourly_rate,
       address: worker?.address || '',
     },
   });
@@ -53,7 +53,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
         full_name: worker.full_name || '',
         bio: worker.bio || '',
         phone: worker.phone || '',
-        hourly_rate: worker.hourly_rate,
+        daily_rate: worker.daily_rate ?? worker.hourly_rate,
         address: worker.address || '',
       });
     }
@@ -70,43 +70,56 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
         Edit Profile
       </Modal.Header>
       <Modal.Body>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="mb-5 rounded-2xl border border-gray-200 bg-gray-50 p-4">
+          <p className="text-sm font-semibold text-gray-900 text-[#1A1A1A]">Make your profile easier to hire</p>
+          <p className="mt-1 text-sm text-gray-600">Clear contact details, rate, location, and a short skills-focused bio help employers trust you faster.</p>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <Input
             {...register('full_name')}
             label="Full Name"
+            placeholder="e.g. David Mugambi"
             error={errors.full_name?.message}
+            hint="Use the same name you want employers to see."
             required
           />
 
           <Textarea
             {...register('bio')}
             label="Bio"
-            placeholder="Tell employers about yourself, your experience, and what you're looking for..."
+            placeholder="Describe your trade, experience, certifications, and the kind of work you do best."
             rows={4}
             error={errors.bio?.message}
+            hint="Short, specific bios perform better than vague descriptions."
           />
 
-          <Input
-            {...register('phone')}
-            label="Phone Number"
-            placeholder="(555) 123-4567"
-            error={errors.phone?.message}
-          />
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <Input
+              {...register('phone')}
+              label="Phone Number"
+              placeholder="e.g. +254 700 000 000"
+              error={errors.phone?.message}
+              hint="Use the number clients can actually reach."
+            />
 
-          <Input
-            {...register('hourly_rate', { valueAsNumber: true })}
-            type="number"
-            label="Hourly Rate ($)"
-            placeholder="25.00"
-            error={errors.hourly_rate?.message}
-            leftIcon={<span className="text-slate-500">$</span>}
-          />
+            <Input
+              {...register('daily_rate', { valueAsNumber: true })}
+              type="number"
+              label="Daily Wage (KES)"
+              placeholder="25.00"
+              error={errors.daily_rate?.message}
+              hint="Set a realistic market rate for your trade."
+              leftIcon={<span className="text-gray-500">KES</span>}
+            />
+          </div>
 
           <Input
             {...register('address')}
             label="Location"
-            placeholder="City, State"
+            placeholder="e.g. Nairobi, Kasarani"
             error={errors.address?.message}
+            hint="A specific location helps with nearby job matching."
           />
 
           <div className="flex justify-end space-x-3 pt-4">

@@ -6,10 +6,8 @@ import React, { useState } from 'react';
 import {
   ExclamationTriangleIcon,
   ClockIcon,
-  UserIcon,
-  DocumentTextIcon,
   CheckCircleIcon,
-  ArrowPathIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { Card } from '@components/ui/Card';
 import { Button } from '@components/ui/Button';
@@ -32,31 +30,92 @@ const statusColors: Record<string, BadgeVariant> = {
   escalated: 'error',
 };
 
+// ── Resolve Modal ──────────────────────────────────────────────────────────────
+const ResolveModal: React.FC<{
+  disputeId: number;
+  onClose: () => void;
+  onConfirm: (resolution: string) => void;
+  isPending: boolean;
+}> = ({ disputeId, onClose, onConfirm, isPending }) => {
+  const [resolution, setResolution] = useState('');
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl w-full max-w-md border border-slate-200 dark:border-slate-700">
+        <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
+            Resolve Dispute #{disputeId}
+          </h2>
+          <button onClick={onClose} className="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <XMarkIcon className="h-5 w-5 text-slate-500" />
+          </button>
+        </div>
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            Describe the resolution outcome. This will be recorded and both parties will be notified.
+          </p>
+          <textarea
+            className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            rows={4}
+            placeholder="e.g. Refund issued to employer. Worker compensated for partial work completed..."
+            value={resolution}
+            onChange={(e) => setResolution(e.target.value)}
+          />
+        </div>
+        <div className="flex gap-3 p-6 pt-0">
+          <Button variant="outline" onClick={onClose} className="flex-1">
+            Cancel
+          </Button>
+          <Button
+            onClick={() => resolution.trim() && onConfirm(resolution.trim())}
+            isLoading={isPending}
+            disabled={!resolution.trim()}
+            className="flex-1"
+            leftIcon={<CheckCircleIcon className="h-4 w-4" />}
+          >
+            Confirm Resolution
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ── Main Component ─────────────────────────────────────────────────────────────
 export const AdminDisputes: React.FC = () => {
   const [filterStatus, setFilterStatus] = useState<string>('');
   const [page, setPage] = useState(1);
-  
-  const { data: disputes, isLoading } = useDisputeQueue({ 
-    page, 
-    per_page: 20, 
-    status: filterStatus || undefined 
+  const [resolveTarget, setResolveTarget] = useState<number | null>(null);
+
+  const { data: disputes, isLoading } = useDisputeQueue({
+    page,
+    per_page: 20,
+    status: filterStatus || undefined,
   });
-  
+
   const resolveMutation = useResolveDispute();
 
-  const handleResolve = async (disputeId: number) => {
-    const resolution = prompt('Enter resolution details:');
-    if (resolution) {
-      await resolveMutation.mutateAsync({ 
-        disputeId, 
-        resolution: { solution: resolution },
-        notes: resolution 
-      });
-    }
+  const handleConfirmResolve = async (resolution: string) => {
+    if (!resolveTarget) return;
+    await resolveMutation.mutateAsync({
+      disputeId: resolveTarget,
+      resolution: { solution: resolution },
+      notes: resolution,
+    });
+    setResolveTarget(null);
   };
 
   return (
-    <div className="space-y-6">
+    <>
+      {resolveTarget !== null && (
+        <ResolveModal
+          disputeId={resolveTarget}
+          onClose={() => setResolveTarget(null)}
+          onConfirm={handleConfirmResolve}
+          isPending={resolveMutation.isPending}
+        />
+      )}
+      <div className="space-y-6">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -150,8 +209,8 @@ export const AdminDisputes: React.FC = () => {
                   <Button
                     size="sm"
                     leftIcon={<CheckCircleIcon className="h-4 w-4" />}
-                    onClick={() => handleResolve(dispute.id)}
-                    isLoading={resolveMutation.isPending}
+                    onClick={() => setResolveTarget(dispute.id)}
+                    isLoading={resolveMutation.isPending && resolveTarget === dispute.id}
                   >
                     Resolve
                   </Button>
@@ -187,6 +246,7 @@ export const AdminDisputes: React.FC = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

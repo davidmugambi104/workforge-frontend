@@ -10,8 +10,6 @@ import {
   ClockIcon,
   UserIcon,
   EnvelopeIcon,
-  PhoneIcon,
-  DocumentTextIcon,
 } from '@heroicons/react/24/outline';
 import { Card } from '@components/ui/Card';
 import { Button } from '@components/ui/Button';
@@ -20,11 +18,65 @@ import { Skeleton } from '@components/ui/Skeleton';
 import { useVerificationQueue, useApproveVerification, useRejectVerification, useBulkVerification } from '@hooks/useAdminOps';
 import { formatDate } from '@lib/utils/format';
 
+interface RejectModalProps {
+  isBulk: boolean;
+  count?: number;
+  onClose: () => void;
+  onConfirm: (reason: string) => void;
+  isPending: boolean;
+}
+
+const RejectModal: React.FC<RejectModalProps> = ({ isBulk, count, onClose, onConfirm, isPending }) => {
+  const [reason, setReason] = useState('');
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-gray-900">
+            {isBulk ? `Reject ${count} Verification(s)` : 'Reject Verification'}
+          </h3>
+          <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <XCircleIcon className="h-6 w-6" />
+          </button>
+        </div>
+        <p className="text-sm text-gray-600 mb-4">
+          Please provide a reason for rejection. This will be sent to the user.
+        </p>
+        <textarea
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          placeholder="Enter rejection reason..."
+          rows={4}
+          className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"
+        />
+        <div className="mt-4 flex gap-3 justify-end">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 text-sm rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            disabled={!reason.trim() || isPending}
+            onClick={() => onConfirm(reason.trim())}
+            className="px-4 py-2 text-sm rounded-xl bg-red-600 text-white hover:bg-red-700 disabled:opacity-50"
+          >
+            {isPending ? 'Rejecting…' : 'Confirm Reject'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const AdminVerifications: React.FC = () => {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [filterType, setFilterType] = useState<string>('');
   const [page, setPage] = useState(1);
-  
+  const [rejectTarget, setRejectTarget] = useState<{ id?: number; bulk: boolean } | null>(null);
+
   const { data: queue, isLoading } = useVerificationQueue({ 
     page, 
     per_page: 20, 
@@ -55,27 +107,23 @@ export const AdminVerifications: React.FC = () => {
     await approveMutation.mutateAsync({ verificationId });
   };
 
-  const handleReject = async (verificationId: number) => {
-    const reason = prompt('Enter rejection reason:');
-    if (reason) {
-      await rejectMutation.mutateAsync({ verificationId, reason });
-    }
-  };
-
   const handleBulkApprove = async () => {
     await bulkMutation.mutateAsync({ ids: selectedIds, action: 'approve' });
     setSelectedIds([]);
   };
 
-  const handleBulkReject = async () => {
-    const reason = prompt('Enter rejection reason for all:');
-    if (reason) {
+  const handleConfirmReject = async (reason: string) => {
+    if (rejectTarget?.bulk) {
       await bulkMutation.mutateAsync({ ids: selectedIds, action: 'reject', reason });
       setSelectedIds([]);
+    } else if (rejectTarget?.id !== undefined) {
+      await rejectMutation.mutateAsync({ verificationId: rejectTarget.id, reason });
     }
+    setRejectTarget(null);
   };
 
   return (
+    <>
     <div className="space-y-6">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -122,7 +170,7 @@ export const AdminVerifications: React.FC = () => {
                 variant="destructive"
                 size="sm"
                 leftIcon={<XCircleIcon className="h-4 w-4" />}
-                onClick={handleBulkReject}
+                onClick={() => setRejectTarget({ bulk: true })}
                 isLoading={bulkMutation.isPending}
               >
                 Reject All
@@ -231,7 +279,7 @@ export const AdminVerifications: React.FC = () => {
                     size="sm"
                     variant="destructive"
                     leftIcon={<XCircleIcon className="h-4 w-4" />}
-                    onClick={() => handleReject(verification.id)}
+                    onClick={() => setRejectTarget({ id: verification.id, bulk: false })}
                     isLoading={rejectMutation.isPending}
                   >
                     Reject
@@ -268,6 +316,16 @@ export const AdminVerifications: React.FC = () => {
         </div>
       )}
     </div>
+    {rejectTarget && (
+      <RejectModal
+        isBulk={rejectTarget.bulk}
+        count={rejectTarget.bulk ? selectedIds.length : 1}
+        onClose={() => setRejectTarget(null)}
+        onConfirm={handleConfirmReject}
+        isPending={rejectMutation.isPending || bulkMutation.isPending}
+      />
+    )}
+    </>
   );
 };
 

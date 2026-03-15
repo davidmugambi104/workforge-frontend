@@ -78,10 +78,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
   }, [user, baseRolePath]);
 
   return (
-    // Fixed Sidebar - Always visible
-    <aside
-      className="fixed left-0 top-0 h-screen w-64 bg-[#0A2540] z-40 flex flex-col"
-    >
+    <>
+      <div
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity lg:hidden ${isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+        onClick={onClose}
+      />
+
+      <aside
+        className={`fixed left-0 top-0 h-screen w-64 bg-[#0A2540] z-50 flex flex-col transform transition-transform duration-300 lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
       {/* Logo Section */}
       <div
         className={`h-16 flex items-center px-6 flex-shrink-0 ${
@@ -117,6 +122,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
                       : 'text-slate-400 hover:bg-slate-800 hover:text-white border border-transparent font-light'
                 }`
               }
+              onClick={onClose}
             >
               <Icon className="w-5 h-5 flex-shrink-0" />
               <span className={`whitespace-nowrap transition-all duration-200 ${isEmployer ? 'opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-48 overflow-hidden' : ''}`}>{item.name}</span>
@@ -152,7 +158,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
 
         {/* Logout */}
         <button
-          onClick={logout}
+          onClick={() => {
+            onClose?.();
+            logout();
+          }}
           className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 border border-transparent ${
             isEmployer
               ? 'text-slate-300 hover:bg-white/10 hover:text-white'
@@ -163,6 +172,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
           <span className={`font-medium whitespace-nowrap transition-all duration-200 ${isEmployer ? 'opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-48 overflow-hidden' : ''}`}>Logout</span>
         </button>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 };

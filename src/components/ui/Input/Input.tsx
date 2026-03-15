@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 import { cn } from '@lib/utils/cn'; // adjust import path as needed
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -26,14 +26,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const inputId = id || `input-${Math.random().toString(36).substring(7)}`;
+    const generatedId = useId();
+    const inputId = id || generatedId;
 
     return (
-      <div className={cn('flex flex-col', fullWidth && 'w-full')}>
+      <div className={cn('flex flex-col gap-2', fullWidth && 'w-full')}>
         {label && (
           <label
             htmlFor={inputId}
-            className="mb-2 text-sm font-medium text-slate-700"
+            className="text-sm font-semibold tracking-tight text-slate-800"
           >
             {label}
           </label>
@@ -41,8 +42,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         <div className="relative">
           {leftIcon && (
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-slate-400">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span className="text-slate-400 transition-colors group-focus-within:text-[#0A2540]">
                 {leftIcon}
               </span>
             </div>
@@ -53,20 +54,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             type={type}
             className={cn(
-              // Base styles
-              'flex h-11 w-full rounded-xl border px-4 py-2 text-sm transition-all duration-200',
-              // Light mode
-              'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400',
-              // Focus ring with navy highlight
-              'focus:outline-none focus:ring-2 focus:ring-[#0A2540]/30 focus:border-[#0A2540]',
-              // Disabled state
-              'disabled:cursor-not-allowed disabled:opacity-50',
-              // Icon padding
-              leftIcon && 'pl-10',
-              rightIcon && 'pr-10',
-              // Error state overrides
-              error &&
-                'border-red-500 focus:ring-red-500',
+              'group flex h-12 w-full rounded-2xl border px-4 py-3 text-[15px] font-medium shadow-sm transition-all duration-200',
+              'border-slate-200 bg-white/95 text-slate-900 placeholder:font-normal placeholder:text-slate-400',
+              'hover:border-slate-300 hover:shadow-md',
+              'focus:outline-none focus:border-[#0066FF] focus:ring-4 focus:ring-[#0066FF]/12 focus:shadow-[0_0_0_1px_rgba(0,102,255,0.08)]',
+              'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-slate-50',
+              leftIcon && 'pl-11',
+              rightIcon && 'pr-11',
+              error && 'border-red-400 bg-red-50/40 focus:border-red-500 focus:ring-red-500/15',
               className
             )}
             aria-invalid={!!error}
@@ -77,7 +72,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
 
           {rightIcon && (
-            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
               <span className="text-slate-400">
                 {rightIcon}
               </span>
@@ -88,7 +83,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {error && (
           <p
             id={`${inputId}-error`}
-            className="mt-1.5 text-sm text-red-600"
+            className="text-sm font-medium text-red-600"
           >
             {error}
           </p>
@@ -97,7 +92,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {hint && !error && (
           <p
             id={`${inputId}-hint`}
-            className="mt-1.5 text-sm text-slate-500"
+            className="text-sm text-slate-500"
           >
             {hint}
           </p>

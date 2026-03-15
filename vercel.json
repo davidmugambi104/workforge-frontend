@@ -7,7 +7,15 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
+      "destination": "http://143.244.146.21/api/$1"
+    },
+    {
+      "source": "/socket.io/(.*)",
+      "destination": "http://143.244.146.21/socket.io/$1"
+    },
+    {
+      "source": "/:path((?!api/|socket.io/|.*\\..*).*)",
       "destination": "/"
     }
   ],

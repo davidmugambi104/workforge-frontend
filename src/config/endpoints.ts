@@ -19,7 +19,7 @@ export const ENDPOINTS = {
     UPDATE: '/users/me',
     UPDATE_BY_ID: (userId: number) => `/users/${userId}`,
     DELETE: (userId: number) => `/users/${userId}`,
-    CHANGE_PASSWORD: '/users/change-password',
+    CHANGE_PASSWORD: '/auth/password/change',
     ADMIN_USERS_ACTIVATE: (userId: number) => `/admin/users/${userId}/activate`,
   },
 

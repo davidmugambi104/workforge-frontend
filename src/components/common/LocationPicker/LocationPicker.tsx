@@ -3,6 +3,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Input } from '@components/ui/Input';
 import { Button } from '@components/ui/Button';
 import { cn } from '@lib/utils/cn';
+import { toast } from 'react-toastify';
 
 interface LocationPickerProps {
   value?: {
@@ -37,7 +38,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({
 
   const handleGetCurrentLocation = () => {
     if (!navigator.geolocation) {
-      alert('Geolocation is not supported');
+      toast.error('Geolocation is not supported by your browser');
       return;
     }
 
@@ -51,7 +52,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({
         });
       },
       (error) => {
-        alert('Failed to get location: ' + error.message);
+        toast.error('Failed to get location: ' + error.message);
       }
     );
   };

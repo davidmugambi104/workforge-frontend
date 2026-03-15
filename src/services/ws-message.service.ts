@@ -38,6 +38,7 @@ class WebSocketService {
   private messageQueue: WSMessage[] = [];
   private authToken: string | null = null;
   private userId: number | null = null;
+  private isDev = import.meta.env.DEV;
 
   // RxJS subjects for reactive updates
   public messages$ = new Subject<any>();
@@ -51,7 +52,9 @@ class WebSocketService {
    */
   connect(token: string, userId: number): void {
     if (this.socket?.connected) {
-      console.log('Socket already connected');
+      if (this.isDev) {
+        console.log('Socket already connected');
+      }
       return;
     }
 
@@ -61,11 +64,12 @@ class WebSocketService {
 
     this.authToken = token;
     this.userId = userId;
-    const wsUrl = import.meta.env.VITE_WS_URL || 'http://localhost:5000';
+    const wsUrl = import.meta.env.VITE_WS_URL || window.location.origin;
 
     try {
       this.connectionStatus$.next('connecting');
       this.socket = io(wsUrl, {
+        path: '/socket.io',
         transports: ['websocket', 'polling'],
         reconnection: true,
         reconnectionAttempts: this.maxReconnectAttempts,
@@ -73,7 +77,9 @@ class WebSocketService {
       });
       this.setupEventHandlers();
     } catch (error) {
-      console.error('Socket connection failed:', error);
+      if (this.isDev) {
+        console.error('Socket connection failed:', error);
+      }
       this.connectionStatus$.next('disconnected');
     }
   }
@@ -82,7 +88,9 @@ class WebSocketService {
     if (!this.socket) return;
 
     this.socket.on('connect', () => {
-      console.log('Socket connected');
+      if (this.isDev) {
+        console.log('Socket connected');
+      }
       this.connectionStatus$.next('connected');
       this.reconnectAttempts = 0;
 
@@ -139,13 +147,17 @@ class WebSocketService {
     });
 
     this.socket.on('disconnect', () => {
-      console.log('Socket disconnected');
+      if (this.isDev) {
+        console.log('Socket disconnected');
+      }
       this.connectionStatus$.next('disconnected');
       this.stopHeartbeat();
     });
 
     this.socket.on('connect_error', (error) => {
-      console.error('Socket error:', error);
+      if (this.isDev) {
+        console.error('Socket error:', error);
+      }
     });
   }
 
@@ -287,14 +299,18 @@ class WebSocketService {
    */
   private handleReconnect(): void {
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.log('Max reconnection attempts reached');
+      if (this.isDev) {
+        console.log('Max reconnection attempts reached');
+      }
       return;
     }
 
     this.reconnectAttempts++;
     const delay = this.reconnectDelay * Math.pow(2, this.reconnectAttempts - 1);
 
-    console.log(`Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts})`);
+    if (this.isDev) {
+      console.log(`Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts})`);
+    }
 
     setTimeout(() => {
       if (this.authToken && this.userId) {

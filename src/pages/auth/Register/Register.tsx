@@ -85,29 +85,38 @@ export const RegisterPage: React.FC = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 0));
   };
 
+  const stepDescriptions = [
+    'Add your account details so we can create your login securely.',
+    'Choose how you will use WorkForge so we show the right tools.',
+    'Confirm your details before creating your live account.',
+  ];
+
   return (
-    <Card className="w-full max-w-2xl">
-      <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 text-[#1A1A1A]">
+    <Card className="w-full max-w-2xl border border-slate-200/80 shadow-[0_24px_80px_rgba(15,23,42,0.08)]">
+      <div className="mb-8 rounded-[28px] bg-gradient-to-br from-[#0A2540] via-[#123B68] to-[#0066FF] px-6 py-7 text-white">
+        <div className="inline-flex items-center rounded-full bg-white/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/85">
+          Step {currentStep + 1} of {registerSteps.length}
+        </div>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight">
           Create Your Account
         </h1>
-        <p className="mt-2 text-sm text-gray-600 ">
-          Join WorkForge and start your journey
+        <p className="mt-2 max-w-xl text-sm text-white/80">
+          {stepDescriptions[currentStep]}
         </p>
       </div>
 
       {/* Progress Steps */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between">
+      <div className="mb-10">
+        <div className="flex items-start justify-between gap-3">
           {registerSteps.map((step, index) => (
             <div key={step.id} className="flex-1 text-center">
               <div className="relative">
                 <div
                   className={`
-                    w-8 h-8 mx-auto rounded-full flex items-center justify-center
+                    mx-auto flex h-10 w-10 items-center justify-center rounded-2xl border text-sm font-semibold shadow-sm transition-all
                     ${index <= currentStep 
-                      ? 'bg-primary-600 text-white' 
-                      : 'bg-gray-200 bg-gray-700 text-gray-600 '
+                      ? 'border-primary-600 bg-primary-600 text-white' 
+                      : 'border-slate-200 bg-white text-slate-500'
                     }
                   `}
                 >
@@ -117,7 +126,7 @@ export const RegisterPage: React.FC = () => {
                     <span>{index + 1}</span>
                   )}
                 </div>
-                <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs whitespace-nowrap text-gray-600 ">
+                <span className={`absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-medium ${index === currentStep ? 'text-slate-900' : 'text-slate-500'}`}>
                   {step.title}
                 </span>
               </div>
@@ -129,14 +138,15 @@ export const RegisterPage: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Step 1: Account Details */}
         {currentStep === 0 && (
-          <div className="space-y-4 animate-in">
+          <div className="animate-in space-y-5 rounded-[24px] border border-slate-200 bg-slate-50/70 p-5 sm:p-6">
             <Input
               {...register('username')}
               label="Username"
-              placeholder="johndoe"
+              placeholder="e.g. davieworks"
               error={errors.username?.message}
               leftIcon={<UserIcon className="h-5 w-5" />}
               autoComplete="username"
+              hint="Pick a simple name employers can recognize easily."
             />
 
             <Input
@@ -147,6 +157,7 @@ export const RegisterPage: React.FC = () => {
               error={errors.email?.message}
               leftIcon={<EnvelopeIcon className="h-5 w-5" />}
               autoComplete="email"
+              hint="Use an email you can access for login and recovery."
             />
 
             <Input
@@ -156,7 +167,7 @@ export const RegisterPage: React.FC = () => {
               placeholder="••••••••"
               error={errors.password?.message}
               leftIcon={<LockClosedIcon className="h-5 w-5" />}
-              hint="Must be at least 6 characters with uppercase, lowercase, and number"
+              hint="Use uppercase, lowercase, and a number for a stronger password."
             />
 
             <Input
@@ -166,6 +177,7 @@ export const RegisterPage: React.FC = () => {
               placeholder="••••••••"
               error={errors.confirmPassword?.message}
               leftIcon={<LockClosedIcon className="h-5 w-5" />}
+              hint="Repeat the same password exactly to avoid signup errors."
             />
           </div>
         )}
@@ -173,45 +185,62 @@ export const RegisterPage: React.FC = () => {
         {/* Step 2: Select Role */}
         {currentStep === 1 && (
           <div className="space-y-6 animate-in">
+            <div className="rounded-[24px] border border-slate-200 bg-slate-50/70 p-5 text-sm text-slate-600">
+              Your role changes the dashboard, messaging tools, and actions you see after login.
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <button
                 type="button"
                 onClick={() => setValue('role', UserRole.WORKER)}
                 className={`
-                  p-6 border-2 rounded-lg text-center transition-all
+                  rounded-[24px] border-2 p-6 text-left transition-all shadow-sm hover:-translate-y-0.5 hover:shadow-md
                   ${selectedRole === UserRole.WORKER
-                    ? 'border-primary-600 bg-primary-50 bg-primary-900/20'
-                    : 'border-gray-200 border-gray-700 hover:border-gray-300 hover:border-gray-600'
+                    ? 'border-primary-600 bg-primary-50'
+                    : 'border-slate-200 bg-white hover:border-slate-300'
                   }
                 `}
               >
-                <BriefcaseIcon className="h-12 w-12 mx-auto mb-3 text-slate-700 " />
+                <div className="mb-4 inline-flex rounded-2xl bg-slate-100 p-3 text-slate-700">
+                  <BriefcaseIcon className="h-8 w-8" />
+                </div>
                 <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-2">
                   I'm a Worker
                 </h3>
                 <p className="text-sm text-gray-600 ">
                   Find jobs, earn money, and grow your skills
                 </p>
+                <ul className="mt-4 space-y-2 text-sm text-slate-500">
+                  <li>• Build your professional profile</li>
+                  <li>• Apply for available jobs</li>
+                  <li>• Chat with employers directly</li>
+                </ul>
               </button>
 
               <button
                 type="button"
                 onClick={() => setValue('role', UserRole.EMPLOYER)}
                 className={`
-                  p-6 border-2 rounded-lg text-center transition-all
+                  rounded-[24px] border-2 p-6 text-left transition-all shadow-sm hover:-translate-y-0.5 hover:shadow-md
                   ${selectedRole === UserRole.EMPLOYER
-                    ? 'border-primary-600 bg-primary-50 bg-primary-900/20'
-                    : 'border-gray-200 border-gray-700 hover:border-gray-300 hover:border-gray-600'
+                    ? 'border-primary-600 bg-primary-50'
+                    : 'border-slate-200 bg-white hover:border-slate-300'
                   }
                 `}
               >
-                <BuildingOfficeIcon className="h-12 w-12 mx-auto mb-3 text-slate-700 " />
+                <div className="mb-4 inline-flex rounded-2xl bg-slate-100 p-3 text-slate-700">
+                  <BuildingOfficeIcon className="h-8 w-8" />
+                </div>
                 <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-2">
                   I'm an Employer
                 </h3>
                 <p className="text-sm text-gray-600 ">
                   Post jobs, find talent, and grow your business
                 </p>
+                <ul className="mt-4 space-y-2 text-sm text-slate-500">
+                  <li>• Post jobs quickly</li>
+                  <li>• Review worker profiles</li>
+                  <li>• Hire and manage applications</li>
+                </ul>
               </button>
             </div>
             {errors.role && (
@@ -225,7 +254,7 @@ export const RegisterPage: React.FC = () => {
         {/* Step 3: Complete */}
         {currentStep === 2 && (
           <div className="space-y-6 animate-in">
-            <div className="bg-gray-50 bg-gray-800 rounded-lg p-6">
+            <div className="rounded-[24px] border border-slate-200 bg-slate-50/70 p-6">
               <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-4">
                 Review Your Information
               </h3>
@@ -252,7 +281,7 @@ export const RegisterPage: React.FC = () => {
               </dl>
             </div>
 
-            <label className="flex items-start">
+            <label className="flex items-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
               <input
                 {...register('terms')}
                 type="checkbox"

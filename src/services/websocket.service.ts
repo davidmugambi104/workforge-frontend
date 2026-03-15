@@ -10,6 +10,7 @@ class WebSocketService {
   private reconnectAttempts = 0;
   private maxReconnectAttempts = 5;
   private reconnectDelay = 1000;
+  private isDev = import.meta.env.DEV;
 
   connect() {
     const token = authStore.getState().accessToken;
@@ -19,9 +20,10 @@ class WebSocketService {
       return;
     }
 
-    this.socket = socketIOClient(import.meta.env.VITE_WS_URL || 'http://localhost:5000', {
+    this.socket = socketIOClient(import.meta.env.VITE_WS_URL || window.location.origin, {
       auth: { token },
       query: { userId },
+      path: '/socket.io',
       transports: ['websocket'],
       reconnection: true,
       reconnectionAttempts: this.maxReconnectAttempts,
@@ -62,12 +64,16 @@ class WebSocketService {
   }
 
   private handleConnect() {
-    console.log('WebSocket connected');
+    if (this.isDev) {
+      console.log('WebSocket connected');
+    }
     this.reconnectAttempts = 0;
   }
 
   private handleDisconnect(reason: string) {
-    console.log('WebSocket disconnected:', reason);
+    if (this.isDev) {
+      console.log('WebSocket disconnected:', reason);
+    }
     
     if (reason === 'io server disconnect') {
       // Server initiated disconnect, don't reconnect
@@ -76,19 +82,27 @@ class WebSocketService {
   }
 
   private handleError(error: Error) {
-    console.error('WebSocket error:', error);
+    if (this.isDev) {
+      console.error('WebSocket error:', error);
+    }
   }
 
   private handleReconnect(attemptNumber: number) {
-    console.log(`WebSocket reconnected after ${attemptNumber} attempts`);
+    if (this.isDev) {
+      console.log(`WebSocket reconnected after ${attemptNumber} attempts`);
+    }
   }
 
   private handleReconnectError(error: Error) {
-    console.error('WebSocket reconnect error:', error);
+    if (this.isDev) {
+      console.error('WebSocket reconnect error:', error);
+    }
     this.reconnectAttempts++;
 
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.log('Max reconnection attempts reached');
+      if (this.isDev) {
+        console.log('Max reconnection attempts reached');
+      }
       this.disconnect();
     }
   }

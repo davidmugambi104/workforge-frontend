@@ -47,8 +47,8 @@ const FilterChip: React.FC<FilterChipProps> = ({ label, active, onClick, count }
     onClick={onClick}
     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
       active 
-        ? 'bg-navy text-white shadow-md' 
-        : 'bg-white text-muted border border-charcoal-200 hover:border-navy hover:text-navy'
+        ? 'bg-slate-800 text-white shadow-md' 
+        : 'bg-white text-muted border border-charcoal-200 hover:border-slate-400 hover:text-slate-800'
     }`}
   >
     {label}
@@ -62,7 +62,7 @@ const FilterChip: React.FC<FilterChipProps> = ({ label, active, onClick, count }
 
 // Skill Badge
 const SkillBadge: React.FC<{ skill: string }> = ({ skill }) => (
-  <span className="px-3 py-1 rounded-full text-xs font-medium bg-navy-50 text-navy border border-navy-100">
+  <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-100">
     {skill}
   </span>
 );
@@ -90,10 +90,10 @@ const WorkerCard: React.FC<{
   onContact: (worker: Worker) => void;
   onViewProfile: (worker: Worker) => void;
 }> = ({ worker, onContact, onViewProfile }) => (
-  <div className="solid-card p-5 group hover:border-navy/30">
+  <div className="solid-card p-5 group hover:border-slate-300">
     <div className="flex items-start gap-4">
       <div className="relative">
-        <div className="w-14 h-14 rounded-xl bg-navy flex items-center justify-center text-white font-bold text-lg">
+        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-slate-800 to-slate-600 flex items-center justify-center text-white font-bold text-lg">
           {worker.name.split(' ').map(n => n[0]).join('')}
         </div>
         {worker.verified && (
@@ -105,7 +105,7 @@ const WorkerCard: React.FC<{
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between">
           <div>
-            <h4 className="font-semibold text-charcoal group-hover:text-navy transition-colors">{worker.name}</h4>
+            <h4 className="font-semibold text-charcoal group-hover:text-slate-800 transition-colors">{worker.name}</h4>
             <p className="text-sm text-muted flex items-center gap-1 mt-0.5">
               <MapPinIcon className="w-3.5 h-3.5" />
               {worker.location}
@@ -147,7 +147,7 @@ const WorkerCard: React.FC<{
           <span>{worker.jobsCompleted} jobs</span>
         </div>
       </div>
-      <span className="text-sm font-semibold text-navy">{worker.hourlyRate}</span>
+      <span className="text-sm font-semibold text-slate-800">{worker.hourlyRate}</span>
     </div>
 
     <div className="flex items-center gap-2 mt-4">
@@ -187,7 +187,7 @@ const FilterSidebar: React.FC<{
               onClick={() => onSkillToggle(skill)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 selectedSkills.includes(skill)
-                  ? 'bg-navy text-white'
+                  ? 'bg-slate-800 text-white'
                   : 'bg-charcoal-50 text-charcoal-600 hover:bg-charcoal-100'
               }`}
             >
@@ -215,7 +215,7 @@ const FilterSidebar: React.FC<{
       <button 
         type="button"
         onClick={onClearFilters}
-        className="w-full btn-ghost text-sm text-navy"
+        className="w-full btn-ghost text-sm text-slate-700"
       >
         Clear all filters
       </button>
@@ -303,7 +303,7 @@ const Workers = () => {
       {/* Page Header */}
       <div className="page-header flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="page-title">Workers</h1>
+          <h1 className="page-title title-display">Workers Directory</h1>
           <p className="page-subtitle">Browse and connect with skilled professionals</p>
         </div>
         <div className="flex items-center gap-2">

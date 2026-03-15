@@ -58,6 +58,11 @@ export default defineConfig(({ mode }) => {
           ws: true,
           changeOrigin: true,
         },
+        '/socket.io': {
+          target: env.VITE_WS_URL || env.VITE_API_URL || 'http://localhost:5000',
+          ws: true,
+          changeOrigin: true,
+        },
       },
     },
     build: {

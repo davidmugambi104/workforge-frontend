@@ -18,8 +18,10 @@ export interface Worker {
   phone?: string;
   profile_picture?: string;
   hourly_rate?: number;
+  daily_rate?: number;
   years_experience?: number;
   availability?: string;
+  availability_status?: string;
   is_verified: boolean;
   verification_score: number;
   average_rating: number;
@@ -49,6 +51,9 @@ export interface WorkerUpdateRequest {
   phone?: string;
   profile_picture?: string;
   hourly_rate?: number;
+  daily_rate?: number;
+  years_experience?: number;
+  availability_status?: string;
 }
 
 export interface WorkerSkillRequest {

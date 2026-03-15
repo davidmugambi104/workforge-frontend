@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 import { cn } from '@lib/utils/cn';
 import { TextareaProps } from './Textarea.types';
 
@@ -18,14 +18,15 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref
   ) => {
-    const textareaId = id || `textarea-${Math.random().toString(36).substring(7)}`;
+    const generatedId = useId();
+    const textareaId = id || generatedId;
 
     return (
-      <div className={cn('flex flex-col', fullWidth && 'w-full')}>
+      <div className={cn('flex flex-col gap-2', fullWidth && 'w-full')}>
         {label && (
           <label
             htmlFor={textareaId}
-            className="mb-1 text-sm font-medium text-gray-700 bg-text-gray-300"
+            className="text-sm font-semibold tracking-tight text-slate-800"
           >
             {label}
           </label>
@@ -33,8 +34,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
         <div className="relative">
           {leftIcon && (
-            <div className="absolute left-0 top-3 pl-3 flex items-start pointer-events-none">
-              <span className="text-gray-500 bg-text-gray-400 sm:text-sm">{leftIcon}</span>
+            <div className="absolute left-0 top-3.5 pl-4 flex items-start pointer-events-none">
+              <span className="text-slate-400 sm:text-sm">{leftIcon}</span>
             </div>
           )}
 
@@ -43,10 +44,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             id={textareaId}
             rows={rows}
             className={cn(
-              'w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 bg-border-slate-600 bg-bg-slate-900 bg-text-white bg-placeholder:text-slate-500',
-              leftIcon && 'pl-10',
-              rightIcon && 'pr-10',
-              error && 'border-red-500 focus:ring-red-500 bg-border-red-500',
+              'w-full rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 text-[15px] text-slate-900 shadow-sm transition-all duration-200',
+              'placeholder:text-slate-400 hover:border-slate-300 hover:shadow-md',
+              'focus:outline-none focus:border-[#0066FF] focus:ring-4 focus:ring-[#0066FF]/12',
+              'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-slate-50',
+              leftIcon && 'pl-11',
+              rightIcon && 'pr-11',
+              error && 'border-red-400 bg-red-50/40 focus:border-red-500 focus:ring-red-500/15',
               className
             )}
             aria-invalid={!!error}
@@ -55,20 +59,20 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           />
 
           {rightIcon && (
-            <div className="absolute right-0 top-3 pr-3 flex items-start pointer-events-none">
-              <span className="text-gray-500 bg-text-gray-400 sm:text-sm">{rightIcon}</span>
+            <div className="absolute right-0 top-3.5 pr-4 flex items-start pointer-events-none">
+              <span className="text-slate-400 sm:text-sm">{rightIcon}</span>
             </div>
           )}
         </div>
 
         {error && (
-          <p id={`${textareaId}-error`} className="mt-1 text-sm text-red-600 bg-text-red-400">
+          <p id={`${textareaId}-error`} className="text-sm font-medium text-red-600">
             {error}
           </p>
         )}
 
         {hint && !error && (
-          <p id={`${textareaId}-hint`} className="mt-1 text-sm text-gray-500 bg-text-gray-400">
+          <p id={`${textareaId}-hint`} className="text-sm text-slate-500">
             {hint}
           </p>
         )}
