@@ -62,8 +62,8 @@ export const RegisterPage: React.FC = () => {
         role: data.role as UserRole,
       });
       
-      toast.success('Account created successfully! Please sign in.');
-      navigate('/auth/login');
+      toast.success('Account created successfully. Check your email for the verification code.');
+      navigate(`/auth/verify-email?email=${encodeURIComponent(data.email)}`);
     } catch (error: any) {
       toast.error(error.response?.data?.error || 'Registration failed');
     } finally {

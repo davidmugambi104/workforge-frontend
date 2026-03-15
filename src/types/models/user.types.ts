@@ -14,6 +14,7 @@ export interface User {
   role: UserRole;
   is_active: boolean;
   is_verified?: boolean;
+  is_email_verified?: boolean;
   profile?: {
     id?: number;
     full_name?: string;
@@ -48,6 +49,31 @@ export interface UserRegisterRequest {
 export interface UserRegisterResponse {
   message: string;
   user: User;
+  requires_email_verification?: boolean;
+  email?: string;
+  verification_code?: string;
+}
+
+export interface EmailVerificationRequestResponse {
+  message: string;
+  email?: string;
+  verified?: boolean;
+  verification_code?: string;
+}
+
+export interface EmailVerificationVerifyResponse {
+  message: string;
+  verified: boolean;
+  user?: User;
+}
+
+export interface PasswordResetRequestResponse {
+  message: string;
+  code?: string;
+}
+
+export interface PasswordResetVerifyResponse {
+  message: string;
 }
 
 export interface UserUpdateRequest {

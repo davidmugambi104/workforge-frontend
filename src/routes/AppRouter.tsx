@@ -26,6 +26,7 @@ const NotFoundPage = lazy(() => import('@pages/public/NotFound/NotFound'));
 const LoginPage = lazy(() => import('@pages/auth/Login/Login'));
 const RegisterPage = lazy(() => import('@pages/auth/Register/Register'));
 const ForgotPasswordPage = lazy(() => import('@pages/auth/ForgotPassword/ForgotPassword'));
+const VerifyEmailPage = lazy(() => import('@pages/auth/VerifyEmail/VerifyEmail'));
 
 /**
  * LAZY LOADED COMPONENTS - EMPLOYER PAGES
@@ -183,6 +184,7 @@ export const AppRouter = () => {
           <Route path="auth">
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="verify-email" element={<VerifyEmailPage />} />
             <Route path="forgot-password" element={<ForgotPasswordPage />} />
           </Route>
         </Route>

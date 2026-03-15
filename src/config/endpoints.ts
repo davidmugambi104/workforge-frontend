@@ -6,6 +6,8 @@ export const ENDPOINTS = {
     LOGOUT: '/auth/logout',
     LOGOUT_REFRESH: '/auth/logout/refresh',
     REFRESH: '/auth/refresh',
+    EMAIL_VERIFICATION_REQUEST: '/auth/email-verification/request',
+    EMAIL_VERIFICATION_VERIFY: '/auth/email-verification/verify',
     PASSWORD_RESET_REQUEST: '/auth/password-reset/request',
     PASSWORD_RESET_VERIFY: '/auth/password-reset/verify',
     PASSWORD_CHANGE: '/auth/password/change',

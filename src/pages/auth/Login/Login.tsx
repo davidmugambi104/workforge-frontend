@@ -36,6 +36,11 @@ export const LoginPage: React.FC = () => {
       toast.success('Welcome back!');
       navigate(redirectPath, { replace: true });
     } catch (error: any) {
+      if (error?.response?.data?.requires_email_verification) {
+        toast.info('Verify your email before signing in.');
+        navigate(`/auth/verify-email?email=${encodeURIComponent(data.email)}`);
+        return;
+      }
       toast.error(error.response?.data?.error || 'Invalid email or password');
     } finally {
       setIsLoading(false);
@@ -45,10 +50,10 @@ export const LoginPage: React.FC = () => {
   return (
     <Card className="w-full max-w-md">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 text-[#1A1A1A]">
+        <h1 className="text-2xl font-bold !text-[#1A1A1A]" style={{ color: '#1A1A1A' }}>
           Welcome Back
         </h1>
-        <p className="mt-2 text-sm text-gray-600 ">
+        <p className="mt-2 text-sm !text-[#4B5563]" style={{ color: '#4B5563' }}>
           Sign in to your WorkForge account
         </p>
       </div>
