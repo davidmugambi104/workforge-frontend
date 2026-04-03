@@ -45,8 +45,8 @@ export const AdminDashboard: React.FC = () => {
       {/* Page Header */}
       <div className="page-header">
         <div>
-          <h1 className="page-title">Admin Dashboard</h1>
-          <p className="page-subtitle">Platform overview and key metrics</p>
+          <h1 className="page-title text-black dark:text-white">Admin Dashboard</h1>
+          <p className="page-subtitle text-black dark:text-white">Platform overview and key metrics</p>
         </div>
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
@@ -65,10 +65,10 @@ export const AdminDashboard: React.FC = () => {
                 <ShieldCheckIcon className="h-6 w-6 text-white" />
               </div>
               <div>
-                <p className="font-semibold text-charcoal">
+                <p className="font-semibold text-black dark:text-charcoal">
                   Logged in as: <span className="text-navy">{permissions.username}</span>
                 </p>
-                <p className="text-sm text-muted">
+                <p className="text-sm text-black/70 dark:text-muted">
                   Role: {permissions.admin_role?.replace('_', ' ').toUpperCase()}
                 </p>
               </div>
@@ -86,8 +86,8 @@ export const AdminDashboard: React.FC = () => {
         <div className="stat-widget">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm font-medium text-muted">Total Users</p>
-              <p className="text-2xl lg:text-3xl font-bold text-charcoal mt-1">
+              <p className="text-sm font-medium text-black/70 dark:text-muted">Total Users</p>
+              <p className="text-2xl lg:text-3xl font-bold text-black dark:text-charcoal mt-1">
                 {kpisLoading ? <Skeleton className="h-8 w-20" /> : kpis?.users.total.toLocaleString()}
               </p>
               <div className="flex items-center gap-1 mt-2">

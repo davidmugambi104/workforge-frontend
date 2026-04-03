@@ -31,7 +31,7 @@ const StatCard: React.FC<StatCardProps> = ({
     return (
       <div className="stat-widget-gradient">
         <div className="flex items-start justify-between relative z-10">
-          <div className="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center text-white">
+          <div className="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center text-black dark:text-white">
             {icon}
           </div>
           {trend !== undefined && (
@@ -43,7 +43,7 @@ const StatCard: React.FC<StatCardProps> = ({
         </div>
         <div className="mt-5 relative z-10">
           <p className="text-3xl font-bold tracking-tight">{value}</p>
-          <p className="text-sm text-white/70 mt-1">{label}</p>
+          <p className="text-sm text-black/70 dark:text-white/70 mt-1">{label}</p>
         </div>
       </div>
     );

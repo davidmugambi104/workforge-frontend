@@ -61,14 +61,14 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 lg:space-y-8 text-slate-900 dark:text-slate-100">
+    <div className="space-y-6 lg:space-y-8 text-black dark:text-slate-100">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-slate-100 title-display">
+          <h1 className="text-2xl lg:text-3xl font-bold text-black dark:text-slate-100 title-display">
             Welcome back, {user?.username || 'Worker'}!
           </h1>
-          <p className="mt-1 text-slate-500dark:text-slate-400">
+          <p className="mt-1 text-slate-500 dark:text-slate-400">
             Track your work requests and discover new opportunities
           </p>
         </div>
@@ -93,8 +93,8 @@ const Dashboard: React.FC = () => {
             <Card className="p-4 lg:p-6 bg-white border border-slate-200" hoverable>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-500dark:text-slate-400">Total Work Requests</p>
-                  <p className="mt-1 text-2xl lg:text-3xl font-bold text-slate-900 dark:text-slate-100">
+                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Work Requests</p>
+                  <p className="mt-1 text-2xl lg:text-3xl font-bold text-black dark:text-slate-100">
                     {stats?.total_applications || 0}
                   </p>
                 </div>
