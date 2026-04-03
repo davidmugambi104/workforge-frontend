@@ -9,12 +9,14 @@ import { Button } from '@components/ui/Button';
 import { Input } from '@components/ui/Input';
 import { Card } from '@components/ui/Card';
 import { useAuth } from '@context/AuthContext';
+import { extractApiErrorMessage } from '@utils/error';
 import { LoginFormData, loginSchema } from './Login.schema';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -31,17 +33,15 @@ export const LoginPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
     setIsLoading(true);
+    setSubmitError(null);
     try {
       const { redirectPath } = await login(data.email, data.password);
       toast.success('Welcome back!');
       navigate(redirectPath, { replace: true });
-    } catch (error: any) {
-      if (error?.response?.data?.requires_email_verification) {
-        toast.info('Verify your email before signing in.');
-        navigate(`/auth/verify-email?email=${encodeURIComponent(data.email)}`);
-        return;
-      }
-      toast.error(error.response?.data?.error || 'Invalid email or password');
+    } catch (error: unknown) {
+      const message = extractApiErrorMessage(error, 'Invalid email or password');
+      setSubmitError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -59,6 +59,12 @@ export const LoginPage: React.FC = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {submitError && (
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {submitError}
+          </div>
+        )}
+
         <Input
           {...register('email')}
           type="email"
@@ -86,7 +92,7 @@ export const LoginPage: React.FC = () => {
               type="checkbox"
               className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 border-gray-600 bg-gray-800"
             />
-            <span className="ml-2 text-sm text-gray-600 ">
+            <span className="ml-2 text-sm text-gray-600">
               Remember me
             </span>
           </label>
@@ -110,10 +116,10 @@ export const LoginPage: React.FC = () => {
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300 border-gray-700" />
+            <div className="w-full border-t border-gray-300" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white bg-gray-900 text-slate-500 ">
+            <span className="px-2 bg-white text-slate-500">
               New to WorkForge?
             </span>
           </div>

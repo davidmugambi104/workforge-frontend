@@ -57,7 +57,7 @@ export const VerificationStatus: React.FC<VerificationStatusProps> = ({
             <div className="text-3xl font-bold text-primary-600 text-primary-400">
               {worker?.verification_score || 0}%
             </div>
-            <p className="text-sm text-gray-600  mt-1">
+            <p className="text-sm text-gray-600mt-1">
               Verification Score
             </p>
           </div>
@@ -67,7 +67,7 @@ export const VerificationStatus: React.FC<VerificationStatusProps> = ({
             {verificationItems.map((item) => (
               <div key={item.id} className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <item.icon className="w-5 h-5 text-slate-400 text-slate-500 mr-3" />
+                  <item.icon className="w-5 h-5 text-slate-400 text-slate-500mr-3" />
                   <span className="text-sm text-slate-700 ">
                     {item.label}
                   </span>

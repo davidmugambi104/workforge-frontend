@@ -36,7 +36,7 @@ export const JobStatusManager: React.FC<JobStatusManagerProps> = ({ job, onStatu
                     Open
                   </p>
                   <p className="text-sm employer-text-muted">
-                    This job is open and receiving applications
+                    This job is open and receiving work requests
                   </p>
                 </div>
               </>
@@ -88,7 +88,7 @@ export const JobStatusManager: React.FC<JobStatusManagerProps> = ({ job, onStatu
                     Expired
                   </p>
                   <p className="text-sm employer-text-muted">
-                    This job expired and is no longer accepting applications
+                    This job expired and is no longer accepting requests
                   </p>
                 </div>
               </>

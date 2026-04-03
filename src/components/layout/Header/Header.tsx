@@ -92,7 +92,7 @@ export const Header: React.FC<HeaderProps> = ({
                 {title}
               </h1>
               {subtitle && (
-                <p className="text-xs text-slate-500 bg-text-slate-400">
+                <p className="text-xs text-slate-500bg-text-slate-400">
                   {subtitle}
                 </p>
               )}

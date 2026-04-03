@@ -48,7 +48,7 @@ const Users: React.FC = () => {
       accessor: (user) => (
         <div className="flex items-center">
           <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-medium text-sm">{user.first_name?.[0]?.toUpperCase() || 'U'}</div>
-          <div className="ml-3"><div className="font-medium text-gray-900 text-[#1A1A1A]">{user.first_name} {user.last_name}</div><div className="text-sm text-slate-500 ">{user.email}</div></div>
+          <div className="ml-3"><div className="font-medium text-[#1A1A1A]">{user.first_name} {user.last_name}</div><div className="text-sm text-slate-500">{user.email}</div></div>
         </div>
       ),
       sortable: true,
@@ -56,7 +56,7 @@ const Users: React.FC = () => {
     {
       key: 'role',
       header: 'Type',
-      accessor: (user) => <span className="inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-blue-100 bg-blue-900/30 text-blue-700 text-blue-400">{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>,
+      accessor: (user) => <span className="inline-flex items-center px-3 py-1 rounded-lg text-sm font-medium bg-blue-100 text-blue-700 text-blue-400">{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>,
       sortable: true,
     },
     {
@@ -83,8 +83,8 @@ const Users: React.FC = () => {
   return (
     <AdminLayout>
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900 text-[#1A1A1A]">User Management</h1>
-        <p className="text-gray-600 ">Monitor and manage platform users</p>
+        <h1 className="text-3xl font-bold text-[#1A1A1A]">User Management</h1>
+        <p className="text-gray-600">Monitor and manage platform users</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <StatCard title="Total Users" value={stats.total} icon={UsersIcon} loading={isLoading} />
@@ -92,7 +92,7 @@ const Users: React.FC = () => {
         <StatCard title="Suspended" value={stats.suspended} icon={UserMinusIcon} loading={isLoading} />
         <StatCard title="Banned" value={stats.banned} icon={ShieldExclamationIcon} loading={isLoading} />
       </div>
-      <div className="bg-white/80 bg-gray-900/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 border-gray-800/50 p-6 space-y-4">
+      <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 border-gray-800/50 p-6 space-y-4">
         <div className="max-w-md"><Input placeholder="Search by name or email..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="rounded-xl" /></div>
         <div className="flex flex-wrap gap-2">
           {['all', 'active', 'suspended', 'banned'].map(status => (

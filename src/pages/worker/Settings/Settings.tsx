@@ -268,12 +268,12 @@ export const WorkerSettings: React.FC = () => {
             {
               key: 'emailNotifications',
               label: 'Email Notifications',
-              description: 'Receive email updates about your applications',
+              description: 'Receive email updates about your work requests',
             },
             {
               key: 'applicationNotifications',
-              label: 'Application Updates',
-              description: 'Get notified when employers respond to your applications',
+              label: 'Request Updates',
+              description: 'Get notified when employers respond to your work requests',
             },
             {
               key: 'messageNotifications',
@@ -363,6 +363,17 @@ export const WorkerSettings: React.FC = () => {
             </div>
           </div>
 
+          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+            <p className="font-medium text-amber-900">Password Recovery Support</p>
+            <p className="mt-1 text-sm text-amber-800">
+              If you use Forgot Password and do not receive a reset code, contact support for private recovery.
+              A support admin can issue a short-lived one-time code after identity verification.
+            </p>
+            <p className="mt-2 text-xs text-amber-700">
+              For your privacy, recovery codes are never shown publicly and are only shared through verified support channels.
+            </p>
+          </div>
+
           {/* Two-Factor Authentication */}
           <div className="flex items-center justify-between py-4">
             <div className="flex items-start gap-3">
@@ -418,7 +429,7 @@ export const WorkerSettings: React.FC = () => {
 
       {/* Danger Zone */}
       <Card className="p-4 lg:p-6 border-red-200 border-red-800 bg-red-50 bg-red-900/10">
-        <h2 className="flex items-center gap-3 text-lg font-semibold text-red-600 text-red-400 mb-4">
+        <h2 className="flex items-center gap-3 text-lg font-semibold text-red-600 mb-4">
           <TrashIcon className="w-5 h-5" />
           Danger Zone
         </h2>

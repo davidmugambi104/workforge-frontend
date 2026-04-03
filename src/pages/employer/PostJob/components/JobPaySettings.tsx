@@ -91,7 +91,7 @@ export const JobPaySettings: React.FC = () => {
         <div className="rounded-lg border employer-border employer-bg-muted p-4">
           <p className="text-sm employer-text-primary">
             <strong>Tip:</strong> Setting a competitive pay rate helps attract qualified candidates faster. Research
-            shows jobs with clear pay ranges receive 30% more applications.
+            shows jobs with clear pay ranges receive 30% more work requests.
           </p>
         </div>
       </div>

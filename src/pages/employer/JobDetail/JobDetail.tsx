@@ -166,7 +166,7 @@ const JobDetail = () => {
 
   const applicants: Applicant[] = applications.slice(0, 5).map((application) => ({
     id: application.id,
-    name: application.worker?.full_name || `Applicant #${application.worker_id}`,
+    name: application.worker?.full_name || `Fundi #${application.worker_id}`,
     role: application.job?.title || 'Worker',
     applied: application.created_at ? new Date(application.created_at).toLocaleDateString() : '—',
     status: String(application.status || 'pending'),
@@ -254,7 +254,7 @@ const JobDetail = () => {
   const stats = [
     { label: 'Total Views', value: job.views.toString(), icon: <EyeIcon className="w-5 h-5" /> },
     { label: 'Unique Views', value: job.uniqueViews.toString(), icon: <UsersIcon className="w-5 h-5" /> },
-    { label: 'Applicants', value: job.applicants.toString(), icon: <BriefcaseIcon className="w-5 h-5" /> },
+    { label: 'Requests', value: job.applicants.toString(), icon: <BriefcaseIcon className="w-5 h-5" /> },
     { label: 'Shortlisted', value: job.shortlisted.toString(), icon: <CheckBadgeIcon className="w-5 h-5" /> },
   ];
 
@@ -442,10 +442,10 @@ const JobDetail = () => {
             </div>
           </div>
 
-          {/* Applicants */}
+          {/* Interested Fundis */}
           <div className="solid-card p-5">
             <div className="flex items-center justify-between mb-4">
-              <h4 className="font-semibold text-charcoal">Recent Applicants</h4>
+              <h4 className="font-semibold text-charcoal">Recent Interested Fundis</h4>
               <Link to="/employer/applications" className="text-sm text-navy font-medium hover:underline">
                 View all
               </Link>
@@ -494,7 +494,7 @@ const JobDetail = () => {
             </div>
             <p className="text-charcoal mb-6">
               Are you sure you want to delete <strong>&quot;{job.title}&quot;</strong>? 
-              All applicant data will be permanently removed.
+              All request data will be permanently removed.
             </p>
             <div className="flex items-center justify-end gap-3">
               <button 

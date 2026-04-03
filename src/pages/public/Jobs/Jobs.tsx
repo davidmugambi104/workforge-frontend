@@ -17,7 +17,7 @@ import { useJobs } from '@hooks/useJobs';
 import { formatDate } from '@lib/utils/format';
 import { JOB_CATEGORIES, JOB_TYPES, LOCATION_RADIUS_OPTIONS } from '@config/constants';
 
-// Apply Merriweather font to all headings in this component
+// Apply clean, sans-serif font to all headings in this component
 const grapeNutsStyle = `
   #jobs-page h1,
   #jobs-page h2,
@@ -25,7 +25,8 @@ const grapeNutsStyle = `
   #jobs-page h4,
   #jobs-page h5,
   #jobs-page h6 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
   }
 `;
 
@@ -396,7 +397,7 @@ const FilterPanel: React.FC<FilterPanelProps> = React.memo(({
           onClick={onApply}
           className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-sm transition-colors"
         >
-          Apply Filters
+          Update Results
         </Button>
         <Button
           variant="outline"
@@ -434,7 +435,7 @@ const JobCard: React.FC<JobCardProps> = React.memo(({ job }) => {
       <Card className="p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer bg-white rounded-xl">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <h3 className="text-xl font-semibold text-gray-900">
                 {job.title}
               </h3>
@@ -443,9 +444,15 @@ const JobCard: React.FC<JobCardProps> = React.memo(({ job }) => {
                   {job.status}
                 </Badge>
               )}
+              {/* Urgency Badge */}
+              {job.created_at && new Date(job.created_at).getTime() > Date.now() - 3600000 && (
+                <Badge className="bg-orange-600 text-white border-0 font-semibold animate-pulse">
+                  🔥 Needed TODAY
+                </Badge>
+              )}
             </div>
 
-            <p className="text-gray-600 mt-1">
+            <p className="text-gray-600mt-1">
               {companyName}
             </p>
 
@@ -469,6 +476,11 @@ const JobCard: React.FC<JobCardProps> = React.memo(({ job }) => {
                   {job.required_skill.name}
                 </span>
               )}
+              {job.pay_type === 'day' && (
+                <Badge className="bg-orange-100 text-orange-700 border-0 text-xs font-semibold">
+                  ⚡ Same-Day Work
+                </Badge>
+              )}
             </div>
 
             <p className="mt-4 text-slate-700 line-clamp-2">
@@ -478,7 +490,9 @@ const JobCard: React.FC<JobCardProps> = React.memo(({ job }) => {
             <div className="flex items-center gap-4 mt-4 text-xs text-slate-500">
               <span>Posted {formatDate(job.created_at)}</span>
               {job.application_count !== undefined && (
-                <span>{job.application_count} applicants</span>
+                <span className="flex items-center font-semibold text-orange-600">
+                  👥 {job.application_count} fundis requested
+                </span>
               )}
             </div>
           </div>
@@ -525,7 +539,7 @@ const EmptyState: React.FC<EmptyStateProps> = React.memo(({ onClearFilters }) =>
       <h3 className="text-lg font-semibold text-gray-900 mb-2">
         No jobs found
       </h3>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600mb-6">
         Try adjusting your search criteria or filters
       </p>
       <Button
@@ -595,7 +609,7 @@ const Jobs: React.FC = () => {
   }
 
   return (
-    <main id="jobs-page" className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-emerald-50 overflow-hidden">
+    <main id="jobs-page" className="relative min-h-screen bg-gradient-to-br from-orange-50 via-white to-yellow-50 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient orbs */}

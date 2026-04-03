@@ -71,7 +71,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
       </Modal.Header>
       <Modal.Body>
         <div className="mb-5 rounded-2xl border border-gray-200 bg-gray-50 p-4">
-          <p className="text-sm font-semibold text-gray-900 text-[#1A1A1A]">Make your profile easier to hire</p>
+          <p className="text-sm font-semibold text-[#1A1A1A]">Make your profile easier to hire</p>
           <p className="mt-1 text-sm text-gray-600">Clear contact details, rate, location, and a short skills-focused bio help employers trust you faster.</p>
         </div>
 

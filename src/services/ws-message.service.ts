@@ -29,6 +29,14 @@ export interface PresencePayload {
   last_seen?: number;
 }
 
+export interface NotificationPayload {
+  event: 'new_application' | 'in_app_notification' | 'application_status_changed';
+  title: string;
+  message: string;
+  type?: 'info' | 'success' | 'warning' | 'error';
+  raw: any;
+}
+
 class WebSocketService {
   private socket: Socket | null = null;
   private reconnectAttempts = 0;
@@ -45,6 +53,7 @@ class WebSocketService {
   public typing$ = new Subject<TypingPayload>();
   public readReceipts$ = new Subject<ReadReceiptPayload>();
   public presence$ = new Subject<PresencePayload>();
+  public notifications$ = new Subject<NotificationPayload>();
   public connectionStatus$ = new BehaviorSubject<'connecting' | 'connected' | 'disconnected'>('disconnected');
 
   /**
@@ -95,12 +104,23 @@ class WebSocketService {
       this.reconnectAttempts = 0;
 
       this.socket?.emit('authenticate', {
-        token: this.authToken,
         user_id: this.userId,
       });
 
       this.startHeartbeat();
       this.flushMessageQueue();
+    });
+
+    this.socket.on('authenticated', (payload) => {
+      if (this.isDev) {
+        console.log('Socket authenticated:', payload);
+      }
+    });
+
+    this.socket.on('auth_error', (payload) => {
+      if (this.isDev) {
+        console.error('Socket auth error:', payload);
+      }
     });
 
     this.socket.on('receive_message', (payload) => {
@@ -136,6 +156,40 @@ class WebSocketService {
 
     this.socket.on('user_offline', (payload) => {
       this.presence$.next({ user_id: payload.user_id, status: 'offline' });
+    });
+
+    this.socket.on('new_application', (payload) => {
+      this.notifications$.next({
+        event: 'new_application',
+        title: 'New application received',
+        message: payload?.worker_name
+          ? `${payload.worker_name} applied for ${payload?.job_title || 'your job'}`
+          : `A worker applied for ${payload?.job_title || 'your job'}`,
+        type: 'info',
+        raw: payload,
+      });
+    });
+
+    this.socket.on('in_app_notification', (payload) => {
+      this.notifications$.next({
+        event: 'in_app_notification',
+        title: payload?.title || 'Notification',
+        message: payload?.message || 'You have a new notification.',
+        type: payload?.type || 'info',
+        raw: payload,
+      });
+    });
+
+    this.socket.on('application_status_changed', (payload) => {
+      this.notifications$.next({
+        event: 'application_status_changed',
+        title: 'Application status updated',
+        message: payload?.job_title
+          ? `${payload.job_title}: ${payload?.new_status || 'updated'}`
+          : 'Your application status changed.',
+        type: 'info',
+        raw: payload,
+      });
     });
 
     this.socket.on('pong', () => {

@@ -24,15 +24,15 @@ export const ApplicationReview: React.FC<ApplicationReviewProps> = ({
 
   return (
     <div className="mt-6 space-y-6">
-      {/* Cover Letter */}
+      {/* Worker Note */}
       <div>
         <h5 className="text-sm font-medium employer-text-primary mb-2 flex items-center">
           <DocumentTextIcon className="w-4 h-4 mr-2 employer-text-accent" />
-          Cover Letter
+          Worker Note
         </h5>
         <div className="p-4 employer-bg-muted rounded-lg border employer-border">
           <p className="text-sm employer-text-primary whitespace-pre-line">
-            {application.cover_letter || 'No cover letter provided'}
+            {application.cover_letter || 'No note provided'}
           </p>
         </div>
       </div>
@@ -49,14 +49,14 @@ export const ApplicationReview: React.FC<ApplicationReviewProps> = ({
         </div>
       )}
 
-      {/* Message to Applicant */}
+      {/* Message to Fundi */}
       <div>
         <h5 className="text-sm font-medium employer-text-primary mb-2 flex items-center">
           <ChatBubbleLeftIcon className="w-4 h-4 mr-2 employer-text-accent" />
-          Message to Applicant (Optional)
+          Message to Fundi (Optional)
         </h5>
         <Textarea
-          placeholder="Add a personal message when accepting or rejecting..."
+          placeholder="Add a short message when hiring or declining..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
@@ -71,7 +71,7 @@ export const ApplicationReview: React.FC<ApplicationReviewProps> = ({
           leftIcon={<CheckCircleIcon className="w-5 h-5" />}
           className="rounded-xl employer-button-primary shadow-sm active:scale-95"
         >
-          Accept Application
+          Hire Fundi
         </Button>
         <Button
           onClick={onReject}
@@ -79,15 +79,15 @@ export const ApplicationReview: React.FC<ApplicationReviewProps> = ({
           leftIcon={<XCircleIcon className="w-5 h-5" />}
           className="text-red-600 hover:underline"
         >
-          Reject Application
+          Decline Request
         </Button>
       </div>
 
       {/* Tips */}
       <div className="employer-bg-muted border-l-4 employer-border-accent rounded-lg p-4">
         <p className="text-sm text-blue-800">
-          <strong>Tip:</strong> Accepting an application will mark this job as "In Progress" 
-          and notify the worker. You can only accept one applicant per job.
+          <strong>Tip:</strong> Hiring this fundi will mark this job as "In Progress" 
+          and notify the worker. You can only hire one fundi per job.
         </p>
       </div>
     </div>

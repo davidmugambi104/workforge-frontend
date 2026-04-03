@@ -110,11 +110,11 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-[22rem] h-[32rem] bg-white bg-gray-900 border border-gray-200 border-gray-800 rounded-lg shadow-2xl flex flex-col">
-      <div className="flex items-center justify-between p-3 border-b border-gray-200 border-gray-800">
+    <div className="fixed bottom-4 right-4 z-50 w-[22rem] h-[32rem] bg-white border border-gray-200 rounded-lg shadow-2xl flex flex-col">
+      <div className="flex items-center justify-between p-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
           <Sparkles size={18} className="text-indigo-500" />
-          <h3 className="text-sm font-semibold text-gray-900 text-[#1A1A1A]">AI Assistant</h3>
+          <h3 className="text-sm font-semibold text-[#1A1A1A]">AI Assistant</h3>
         </div>
         <button
           onClick={() => setIsOpen(false)}
@@ -132,7 +132,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
                 message.role === 'user'
                   ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-100 bg-gray-800 text-gray-900 text-gray-100'
+                  : 'bg-gray-100 text-gray-900 text-gray-100'
               }`}
             >
               <p className="whitespace-pre-wrap">{message.content}</p>
@@ -142,7 +142,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
                     <button
                       key={suggestion}
                       onClick={() => handleSuggestionClick(suggestion)}
-                      className="text-xs rounded border border-gray-300 border-gray-700 px-2 py-1 hover:bg-white/20"
+                      className="text-xs rounded border border-gray-300 px-2 py-1 hover:bg-white/20"
                     >
                       {suggestion}
                     </button>
@@ -158,14 +158,14 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSubmit} className="p-3 border-t border-gray-200 border-gray-800">
+      <form onSubmit={handleSubmit} className="p-3 border-t border-gray-200">
         <div className="flex items-center gap-2">
           <input
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Ask about WorkForge..."
-            className="flex-1 rounded-lg border border-gray-300 border-gray-700 px-3 py-2 text-sm bg-white bg-gray-900"
+            className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm bg-white"
           />
           <button
             type="submit"

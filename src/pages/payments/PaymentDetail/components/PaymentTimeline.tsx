@@ -118,7 +118,7 @@ export const PaymentTimeline: React.FC<PaymentTimelineProps> = ({ payment }) => 
   return (
     <Card>
       <CardHeader>
-        <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A]">
+        <h3 className="text-lg font-semibold text-[#1A1A1A]">
           Payment Timeline
         </h3>
       </CardHeader>
@@ -157,16 +157,16 @@ export const PaymentTimeline: React.FC<PaymentTimelineProps> = ({ payment }) => 
                     </div>
                     <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                       <div>
-                        <p className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                        <p className="text-sm font-medium text-[#1A1A1A]">
                           {event.title}
                         </p>
                         {event.description && (
-                          <p className="mt-0.5 text-sm text-slate-500 ">
+                          <p className="mt-0.5 text-sm text-slate-500">
                             {event.description}
                           </p>
                         )}
                       </div>
-                      <div className="whitespace-nowrap text-right text-sm text-slate-500 ">
+                      <div className="whitespace-nowrap text-right text-sm text-slate-500">
                         <time dateTime={event.timestamp}>
                           {format(new Date(event.timestamp), 'MMM d, yyyy • h:mm a')}
                         </time>
@@ -180,8 +180,8 @@ export const PaymentTimeline: React.FC<PaymentTimelineProps> = ({ payment }) => 
         </div>
 
         {payment.disputes && payment.disputes.length > 0 && (
-          <div className="mt-6 pt-6 border-t border-gray-200 border-gray-800">
-            <h4 className="text-sm font-medium text-gray-900 text-[#1A1A1A] mb-4">
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <h4 className="text-sm font-medium text-[#1A1A1A] mb-4">
               Dispute Details
             </h4>
             {payment.disputes.map((dispute) => (
@@ -190,7 +190,7 @@ export const PaymentTimeline: React.FC<PaymentTimelineProps> = ({ payment }) => 
                 className="bg-red-50 bg-red-900/20 rounded-lg p-4"
               >
                 <div className="flex items-start">
-                  <ExclamationTriangleIcon className="w-5 h-5 text-red-600 text-red-400 mt-0.5 mr-3" />
+                  <ExclamationTriangleIcon className="w-5 h-5 text-red-600 mt-0.5 mr-3" />
                   <div>
                     <p className="text-sm font-medium text-red-800 text-red-300">
                       {dispute.reason}

@@ -26,7 +26,7 @@ export const ApplicantList = ({ applicants }: ApplicantListProps) => (
           <Avatar name={applicant.name} size="md" />
           <div>
             <p className="font-medium text-gray-900">{applicant.name}</p>
-            <p className="text-sm text-gray-500">Applied {applicant.appliedDate}</p>
+            <p className="text-sm text-gray-500">Requested {applicant.appliedDate}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">

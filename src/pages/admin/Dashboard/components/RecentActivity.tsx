@@ -25,11 +25,11 @@ const activityIcons = {
 };
 
 const activityColors = {
-  user: 'bg-blue-100 bg-blue-900/30 text-blue-600 text-blue-400',
-  job: 'bg-green-100 bg-green-900/30 text-green-600 text-green-400',
-  payment: 'bg-purple-100 bg-purple-900/30 text-purple-600 text-purple-400',
+  user: 'bg-blue-100 text-blue-600',
+  job: 'bg-green-100 text-green-600 text-green-400',
+  payment: 'bg-purple-100 text-purple-600',
   verification: 'bg-yellow-100 bg-yellow-900/30 text-yellow-600 text-yellow-400',
-  moderation: 'bg-red-100 bg-red-900/30 text-red-600 text-red-400',
+  moderation: 'bg-red-100 text-red-600',
 };
 
 export const RecentActivity: React.FC = () => {
@@ -141,21 +141,21 @@ export const RecentActivity: React.FC = () => {
                       </div>
                       <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                         <div>
-                          <p className="text-sm text-gray-900 text-[#1A1A1A]">
+                          <p className="text-sm text-[#1A1A1A]">
                             <span className="font-medium">{entry.admin_name}</span>{' '}
                             {entry.action}{' '}
-                            <span className="font-medium text-gray-900 text-[#1A1A1A]">
+                            <span className="font-medium text-[#1A1A1A]">
                               {entry.entity_type}
                               {entry.entity_id !== null ? ` #${entry.entity_id}` : ''}
                             </span>
                           </p>
                           {entry.changes && Object.keys(entry.changes).length > 0 && (
-                            <p className="mt-1 text-xs text-slate-500 ">
+                            <p className="mt-1 text-xs text-slate-500">
                               Changed: {Object.keys(entry.changes).join(', ')}
                             </p>
                           )}
                         </div>
-                        <div className="whitespace-nowrap text-right text-sm text-slate-500 ">
+                        <div className="whitespace-nowrap text-right text-sm text-slate-500">
                           <time dateTime={entry.created_at}>
                             {formatDistanceToNow(new Date(entry.created_at), { addSuffix: true })}
                           </time>
@@ -171,7 +171,7 @@ export const RecentActivity: React.FC = () => {
 
         {(!auditLog?.entries || auditLog.entries.length === 0) && (
           <div className="text-center py-6">
-            <p className="text-slate-500 ">No recent activity</p>
+            <p className="text-slate-500">No recent activity</p>
           </div>
         )}
       </CardBody>

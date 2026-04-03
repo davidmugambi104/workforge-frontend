@@ -19,7 +19,7 @@ import { formatDate } from '@lib/utils/format';
 import { toast } from 'react-toastify';
 import { UserRole } from '@types';
 
-// Match Jobs page heading style
+// Match Jobs page heading style - clean sans-serif
 const jobDetailHeadingStyle = `
   #job-detail-page h1,
   #job-detail-page h2,
@@ -27,21 +27,22 @@ const jobDetailHeadingStyle = `
   #job-detail-page h4,
   #job-detail-page h5,
   #job-detail-page h6 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
   }
 `;
 
 const JobDetailBackground: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div id="job-detail-page" className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-emerald-50 overflow-hidden">
+  <div id="job-detail-page" className="relative min-h-screen bg-gradient-to-br from-orange-50 via-white to-yellow-50 overflow-hidden">
     {/* Animated background elements */}
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Gradient orbs */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-400/20 rounded-full blur-3xl opacity-30 animate-blob" />
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl opacity-25 animate-blob animation-delay-2000" />
-      <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-300/20 rounded-full blur-3xl opacity-25 animate-blob animation-delay-4000" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-orange-300/15 rounded-full blur-3xl opacity-30 animate-blob" />
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-yellow-300/15 rounded-full blur-3xl opacity-25 animate-blob animation-delay-2000" />
+      <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-200/10 rounded-full blur-3xl opacity-25 animate-blob animation-delay-4000" />
 
       {/* Grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(251,146,60,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(251,146,60,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
     </div>
 
     <style>{jobDetailHeadingStyle}</style>
@@ -69,7 +70,7 @@ const JobDetail: React.FC = () => {
     }
 
     if (user?.role !== UserRole.WORKER) {
-      toast.error('Only workers can apply to jobs');
+      toast.error('Only workers can send work requests for jobs');
       return;
     }
 
@@ -78,11 +79,11 @@ const JobDetail: React.FC = () => {
         jobId: Number(actualJobId),
         data: { cover_letter: coverLetter },
       });
-      toast.success('Application submitted successfully!');
+      toast.success('Work request sent successfully!');
       setShowApplyModal(false);
       setCoverLetter('');
     } catch (error: any) {
-      toast.error(error.response?.data?.error || 'Failed to submit application');
+      toast.error(error.response?.data?.error || 'Failed to send work request');
     }
   };
 
@@ -104,7 +105,7 @@ const JobDetail: React.FC = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
               Job Not Found
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600mb-6">
               The job you're looking for doesn't exist or has been removed.
             </p>
             <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
@@ -205,14 +206,14 @@ const JobDetail: React.FC = () => {
                 className="w-full mb-4 bg-blue-600 hover:bg-blue-700 text-white"
                 disabled={applyMutation.isPending}
               >
-                {applyMutation.isPending ? 'Submitting...' : 'Apply Now'}
+                {applyMutation.isPending ? 'Sending...' : 'Send Work Request'}
               </Button>
 
               <div className="space-y-4 text-sm">
                 <div>
-                  <p className="text-slate-500">Applicants</p>
+                  <p className="text-slate-500">Interested Fundis</p>
                   <p className="font-semibold text-gray-900">
-                    {job.application_count || 0} applied
+                    {job.application_count || 0} requests sent
                   </p>
                 </div>
                 {job.created_at && (
@@ -232,23 +233,23 @@ const JobDetail: React.FC = () => {
       <Modal
         isOpen={showApplyModal}
         onClose={() => setShowApplyModal(false)}
-        title="Apply for this Job"
+        title="Request This Job"
       >
         <div className="space-y-4">
           <div>
-            <p className="text-sm text-gray-600 mb-4">
-              You're applying for: <strong>{job.title}</strong>
+            <p className="text-sm text-gray-600mb-4">
+              You're requesting this job: <strong>{job.title}</strong>
             </p>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">
-              Cover Letter (Optional)
+              Quick Note (Optional)
             </label>
             <textarea
               value={coverLetter}
               onChange={(e) => setCoverLetter(e.target.value)}
-              placeholder="Tell the employer why you're a great fit..."
+              placeholder="Tell the employer your skills, tools, and availability..."
               rows={6}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
@@ -260,7 +261,7 @@ const JobDetail: React.FC = () => {
               disabled={applyMutation.isPending}
               className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
             >
-              {applyMutation.isPending ? 'Submitting...' : 'Submit Application'}
+              {applyMutation.isPending ? 'Sending...' : 'Send Request'}
             </Button>
             <Button
               variant="outline"

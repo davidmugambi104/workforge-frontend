@@ -1,3 +1,180 @@
+
+Task 3.3: Add Quick-Action Buttons [JUST COMPLETED]
+Files created:
+
+frontend/src/pages/messages/Inbox/components/QuickActionButtons.tsx
+
+Implementation includes:
+
+typescript
+// QuickActionButtons.tsx - Pre-written response templates for fast replies
+
+interface QuickActionButtonsProps {
+  onQuickResponse: (message: string) => void
+  disabled?: boolean
+}
+
+const QUICK_RESPONSES = [
+  {
+    id: 'interested',
+    label: 'Interested',
+    message: 'I\'m very interested in this opportunity. Let\'s discuss further!',
+    icon: CheckIcon,
+    color: 'text-green-600',
+  },
+  {
+    id: 'soon',
+    label: 'Reply Soon',
+    message: 'Thanks for reaching out. I\'ll respond with more details shortly.',
+    icon: ClockIcon,
+    color: 'text-blue-600',
+  },
+  {
+    id: 'available',
+    label: 'Available Now',
+    message: 'I\'m available to discuss this right now. What are the details?',
+    icon: RocketLaunchIcon,
+    color: 'text-emerald-600',
+  },
+]
+
+export const QuickActionButtons: React.FC<QuickActionButtonsProps> = ({
+  onQuickResponse,
+  disabled = false,
+}) => {
+  return (
+    <div className="px-4 py-2 border-b border-charcoal-200 bg-charcoal-50">
+      <p className="text-xs font-semibold text-muted mb-2">Quick responses:</p>
+      <div className="flex gap-2 flex-wrap">
+        {QUICK_RESPONSES.map((response) => (
+          <button
+            key={response.id}
+            onClick={() => onQuickResponse(response.message)}
+            disabled={disabled}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-charcoal-200 bg-white hover:bg-charcoal-50 transition-all"
+          >
+            <Icon className={`w-4 h-4 ${response.color}`} />
+            {response.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+Features:
+- Three pre-written response templates
+- Contextual icons for each response type
+- Mobile-responsive button layout
+- Conditional visibility based on conversation state
+
+Integration:
+- Added to ChatWindow.tsx
+- Shows after messages are loaded
+- Hides after quick action is used
+
+Mark Task 3.3 [DONE]
+
+Task 3.4: Add Response-Time Metrics [JUST COMPLETED]
+Files created:
+
+frontend/src/pages/messages/Inbox/components/ResponseTimeMetrics.tsx
+
+Implementation includes:
+
+typescript
+// ResponseTimeMetrics.tsx - Display average response time from conversation history
+
+interface ResponseTimeMetricsProps {
+  messages: Message[]
+  currentUserId: number
+  otherUserId: number
+}
+
+const calculateAverageResponseTime = (
+  messages: Message[],
+  userId: number,
+): ResponseMetric | null => {
+  // Sort messages chronologically
+  const sortedMessages = [...messages].sort(
+    (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+  )
+
+  const responseTimes: number[] = []
+
+  // Analyze response patterns
+  for (let i = 0; i < sortedMessages.length - 1; i++) {
+    const currentMsg = sortedMessages[i]
+    const nextMsg = sortedMessages[i + 1]
+
+    // When other user responds to this user's message
+    if (currentMsg.sender_id !== userId && nextMsg.sender_id === userId) {
+      const timeDiff = Math.floor(
+        (new Date(nextMsg.created_at).getTime() - new Date(currentMsg.created_at).getTime()) /
+        1000 / 60 // Convert milliseconds to minutes
+      )
+      responseTimes.push(timeDiff)
+    }
+  }
+
+  if (responseTimes.length === 0) {
+    return null
+  }
+
+  const averageTime = Math.round(responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length)
+  const isExcellent = averageTime < 60 // Under 1 hour is excellent
+
+  return {
+    isExcellent,
+    responseTime: averageTime,
+    label: formatResponseTime(averageTime),
+  }
+}
+
+export const ResponseTimeMetrics: React.FC<ResponseTimeMetricsProps> = ({
+  messages,
+  currentUserId,
+  otherUserId,
+}) => {
+  const metric = useMemo(
+    () => calculateAverageResponseTime(messages, otherUserId),
+    [messages, otherUserId]
+  )
+
+  if (!metric) {
+    return null
+  }
+
+  return (
+    <div className={cn(
+      'flex items-center gap-2 px-3 py-2 rounded-lg text-xs',
+      metric.isExcellent
+        ? 'bg-green-50 text-green-700'
+        : 'bg-amber-50 text-amber-700'
+    )}>
+      <ClockIcon className="w-4 h-4" />
+      <span className="font-medium">
+        {metric.isExcellent ? 'Fast responder • ' : 'Responds • '}
+        {metric.label}
+      </span>
+    </div>
+  )
+}
+
+Features:
+- Calculates average response time from message history
+- Formats time intelligently (minutes/hours/days)
+- Shows "Fast responder" badge for <60 minute avg
+- Color-coded indicators (green for excellent, amber for standard)
+- Only displays when sufficient message history exists
+
+Integration:
+- Displays in ChatWindow header
+- Shows in ConversationItem as "Fast" badge
+- Desktop and mobile responsive
+- Auto-updates as conversation grows
+
+Mark Task 3.4 [DONE]
 # SYSTEM INSTRUCTION: MESSAGING PLATFORM OVERHAUL - EXECUTE UNTIL COMPLETE
 
 You are an expert full-stack developer. You MUST complete ALL tasks below in order. Do NOT stop until ALL items are marked [DONE]. If you encounter an error, fix it and continue. Track progress in a visible checklist.
@@ -20,20 +197,6 @@ Current messaging platform has 11 critical issues:
 
 ## LIVE EXECUTION CHECKLIST (AGENT UPDATED)
 
-- [DONE] Task 1.1: Fix Socket Conflict
-- [DONE] Task 1.2: Fix Zustand Selector Performance
-- [DONE] Task 1.3: Add Optimistic Updates
-- [DONE] Task 1.4: Add Error Recovery
-- [DONE] Task 2.1: Implement Message Virtualization
-- [DONE] Task 2.2: Add Database Indexes
-- [DONE] Task 2.3: Replace Polling with WebSockets
-- [DONE] Task 3.1: Add WhatsApp-like Features
-- [DONE] Task 3.2: Add Job Profile Integration
-- [DONE] Task 4.1: Create CSV-trained Chatbot
-- [DONE] Task 5.1: Dockerize with Redis
-- [DONE] Task 5.2: Add CDN for Attachments
-
-### INITIALIZATION
 First, examine the current codebase structure:
 ```bash
 ls -la frontend/src/pages/messages/

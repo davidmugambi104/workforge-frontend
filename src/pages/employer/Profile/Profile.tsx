@@ -82,7 +82,7 @@ const JobPreviewCard: React.FC<{ job: JobPreview }> = ({ job }) => (
   <Link to={`/employer/jobs/${job.id}`} className="flex items-center justify-between p-3 border border-charcoal-100 rounded-lg hover:border-navy/30 hover:bg-navy-50/30 transition-all cursor-pointer">
     <div>
       <p className="font-medium text-charcoal">{job.title}</p>
-      <p className="text-xs text-muted">{job.applicants} applicants</p>
+      <p className="text-xs text-muted">{job.applicants} requests</p>
     </div>
     <span className={`badge ${job.status === 'Open' ? 'badge-success' : 'badge-neutral'}`}>
       {job.status}

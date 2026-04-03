@@ -24,7 +24,7 @@ export const RecentApplications: React.FC = () => {
     return (
       <Card>
         <CardHeader>
-          <h3 className="text-lg font-semibold">Recent Applications</h3>
+          <h3 className="text-lg font-semibold">Recent Work Requests</h3>
         </CardHeader>
         <CardBody>
           <div className="space-y-4">
@@ -42,7 +42,7 @@ export const RecentApplications: React.FC = () => {
   return (
     <Card>
       <CardHeader>
-        <h3 className="text-lg font-semibold">Recent Applications</h3>
+        <h3 className="text-lg font-semibold">Recent Work Requests</h3>
         <Link to="/worker/applications">
           <Button variant="ghost" size="sm" rightIcon={<ArrowRightIcon className="w-4 h-4" />}>
             View All
@@ -52,8 +52,8 @@ export const RecentApplications: React.FC = () => {
       <CardBody>
         <div className="space-y-4">
           {recentApplications.length === 0 ? (
-            <p className="text-center text-slate-500  py-4">
-              No applications yet. Start applying to jobs!
+            <p className="text-center text-slate-500 py-4">
+              No work requests yet. Start requesting jobs!
             </p>
           ) : (
             recentApplications.map((application) => (
@@ -69,14 +69,14 @@ export const RecentApplications: React.FC = () => {
                       size="sm"
                     />
                     <div>
-                      <h4 className="font-medium text-gray-900 text-[#1A1A1A]">
+                      <h4 className="font-medium text-[#1A1A1A]">
                         {application.job?.title}
                       </h4>
-                      <p className="text-sm text-slate-500 ">
+                      <p className="text-sm text-slate-500">
                         {application.job?.employer?.company_name}
                       </p>
-                      <p className="text-xs text-slate-400 text-slate-500 mt-1">
-                        Applied {formatDistanceToNow(new Date(application.created_at), { addSuffix: true })}
+                      <p className="text-xs text-slate-400 text-slate-500mt-1">
+                        Requested {formatDistanceToNow(new Date(application.created_at), { addSuffix: true })}
                       </p>
                     </div>
                   </div>

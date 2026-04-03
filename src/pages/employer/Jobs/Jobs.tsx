@@ -131,7 +131,7 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
         <div className="flex items-center gap-4 text-sm text-muted">
           <span className="flex items-center gap-1">
             <UsersIcon className="w-4 h-4" />
-            {job.applicants} applicants
+            {job.applicants} requests
           </span>
           <span className="flex items-center gap-1">
             <EyeIcon className="w-4 h-4" />
@@ -328,7 +328,7 @@ const Jobs = () => {
                 <tr>
                   <th>Job Title</th>
                   <th>Status</th>
-                  <th>Applicants</th>
+                  <th>Requests</th>
                   <th>Views</th>
                   <th>Salary</th>
                   <th>Location</th>

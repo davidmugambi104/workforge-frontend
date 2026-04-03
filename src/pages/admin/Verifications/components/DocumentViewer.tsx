@@ -30,7 +30,7 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
             />
           </div>
         ) : (
-          <div className="text-center py-12 text-gray-600 ">
+          <div className="text-center py-12 text-gray-600">
             No document available.
           </div>
         )}

@@ -61,7 +61,7 @@ export const EmployerStats: React.FC = () => {
       icon: BriefcaseIcon,
     },
     {
-      title: 'Total Applications',
+      title: 'Total Requests',
       value: stats?.total_applications || 0,
       icon: UsersIcon,
     },

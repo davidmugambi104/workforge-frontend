@@ -57,7 +57,7 @@ export const JobOverview: React.FC<JobOverviewProps> = ({ job }) => {
 
             <div>
               <p className="text-sm font-medium employer-text-muted">
-                Total Applicants
+                Interested Fundis
               </p>
               <div className="flex items-center gap-2 mt-1">
                 <UserGroupIcon className="h-5 w-5 employer-text-muted" />

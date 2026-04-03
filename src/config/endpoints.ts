@@ -176,6 +176,7 @@ export const ENDPOINTS = {
     SKILLS: '/analytics/skills',
     GROWTH: '/analytics/growth',
     LOCATION: '/analytics/location',
+    PUBLIC_STATS: '/analytics/public-stats',
   },
 
   // ============ BULK OPERATIONS ============

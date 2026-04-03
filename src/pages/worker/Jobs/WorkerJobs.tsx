@@ -63,7 +63,7 @@ export const WorkerJobs: React.FC = () => {
             Available Jobs
           </h1>
           <p className="mt-1 text-slate-600">
-            Find and apply to jobs that match your skills
+            Find and request jobs that match your skills
           </p>
         </div>
         {totalCount > 0 && (

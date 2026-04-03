@@ -161,7 +161,7 @@ export const JobFiltersSidebar: React.FC<JobFiltersSidebarProps> = ({
       {/* Actions */}
       <div className="flex flex-col space-y-2">
         <Button type="submit" fullWidth>
-          Apply Filters
+          Update Results
         </Button>
         <Button
           type="button"
@@ -177,8 +177,8 @@ export const JobFiltersSidebar: React.FC<JobFiltersSidebarProps> = ({
 
   if (isMobile) {
     return (
-      <div className="fixed inset-0 z-50 bg-white bg-gray-900 overflow-y-auto">
-        <div className="sticky top-0 bg-white bg-gray-900 border-b border-gray-200 border-gray-800 p-4 flex items-center justify-between">
+      <div className="fixed inset-0 z-50 bg-white overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold">Filters</h2>
           <button
             onClick={onClose}

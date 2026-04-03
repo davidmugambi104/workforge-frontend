@@ -26,7 +26,7 @@ export const RatingDistribution: React.FC<RatingDistributionProps> = ({ stats })
   return (
     <Card>
       <CardHeader>
-        <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A]">
+        <h3 className="text-lg font-semibold text-[#1A1A1A]">
           Rating Distribution
         </h3>
       </CardHeader>
@@ -34,7 +34,7 @@ export const RatingDistribution: React.FC<RatingDistributionProps> = ({ stats })
         <div className="space-y-4">
           {/* Average Rating */}
           <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 text-[#1A1A1A]">
+            <div className="text-4xl font-bold text-[#1A1A1A]">
               {stats.average_rating.toFixed(1)}
             </div>
             <div className="flex items-center justify-center mt-2">
@@ -49,7 +49,7 @@ export const RatingDistribution: React.FC<RatingDistributionProps> = ({ stats })
                 />
               ))}
             </div>
-            <p className="mt-2 text-sm text-gray-600 ">
+            <p className="mt-2 text-sm text-gray-600">
               Based on {stats.total_reviews} reviews
             </p>
           </div>
@@ -70,7 +70,7 @@ export const RatingDistribution: React.FC<RatingDistributionProps> = ({ stats })
                   />
                 </div>
                 <div className="w-12 text-right">
-                  <span className="text-sm text-gray-600 ">
+                  <span className="text-sm text-gray-600">
                     {rating.count}
                   </span>
                 </div>
@@ -80,12 +80,12 @@ export const RatingDistribution: React.FC<RatingDistributionProps> = ({ stats })
 
           {/* Recommendation Rate */}
           {stats.recommendation_rate > 0 && (
-            <div className="mt-6 pt-6 border-t border-gray-200 border-gray-800">
+            <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="text-center">
                 <div className="text-2xl font-bold text-green-600 text-green-400">
                   {stats.recommendation_rate}%
                 </div>
-                <p className="text-sm text-gray-600  mt-1">
+                <p className="text-sm text-gray-600mt-1">
                   would recommend this worker
                 </p>
               </div>

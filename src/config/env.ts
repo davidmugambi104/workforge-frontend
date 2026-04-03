@@ -18,7 +18,10 @@ export const ENV = {
   VITE_ENABLE_PWA: import.meta.env.VITE_ENABLE_PWA === 'true',
 
   // Third-party Services
-  VITE_STRIPE_PUBLIC_KEY: import.meta.env.VITE_STRIPE_PUBLIC_KEY || '',
+  VITE_STRIPE_PUBLIC_KEY:
+    import.meta.env.VITE_STRIPE_PUBLIC_KEY ||
+    import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ||
+    '',
   VITE_MAPBOX_TOKEN: import.meta.env.VITE_MAPBOX_TOKEN || '',
 
   // Auth

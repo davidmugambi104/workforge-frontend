@@ -103,7 +103,7 @@ export const FeaturedJobs: React.FC = () => {
                       <div className="flex items-center justify-between text-xs text-[#737373]">
                         <span>Posted {formatDate(job.created_at)}</span>
                         {job.application_count !== undefined && (
-                          <span>{job.application_count} applicants</span>
+                          <span>{job.application_count} interested fundis</span>
                         )}
                       </div>
                     </div>

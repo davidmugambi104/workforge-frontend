@@ -105,7 +105,19 @@ const WorkerCard: React.FC<{
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between">
           <div>
-            <h4 className="font-semibold text-charcoal group-hover:text-slate-800 transition-colors">{worker.name}</h4>
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="font-semibold text-charcoal group-hover:text-slate-800 transition-colors">{worker.name}</h4>
+              {worker.verified && (
+                <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-semibold">
+                  ⚡ Quick Responder
+                </span>
+              )}
+              {worker.rating >= 4.8 && (
+                <span className="text-xs px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 font-semibold">
+                  🔥 Top Fundi
+                </span>
+              )}
+            </div>
             <p className="text-sm text-muted flex items-center gap-1 mt-0.5">
               <MapPinIcon className="w-3.5 h-3.5" />
               {worker.location}
@@ -304,7 +316,7 @@ const Workers = () => {
       <div className="page-header flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="page-title title-display">Workers Directory</h1>
-          <p className="page-subtitle">Browse and connect with skilled professionals</p>
+          <p className="page-subtitle">Browse and connect with skilled fundis</p>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted">{filtered.length} workers found</span>

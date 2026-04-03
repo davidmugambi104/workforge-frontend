@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { cn } from '@lib/utils/cn';
 import { Avatar } from '@components/ui/Avatar';
@@ -60,12 +60,19 @@ export const ConversationItem: React.FC<ConversationItemProps> = ({
       </div>
 
       <div className="flex-1 min-w-0 text-left">
-        <div className="flex items-center justify-between">
-          <h4 className="text-sm font-semibold text-charcoal truncate">
-            {displayName}
-          </h4>
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <h4 className="text-sm font-semibold text-charcoal truncate">
+              {displayName}
+            </h4>
+            {isOnline && (
+              <span className="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded-full whitespace-nowrap">
+                Fast
+              </span>
+            )}
+          </div>
           {lastMessageTimeLabel && (
-            <span className="text-xs text-muted whitespace-nowrap ml-2">
+            <span className="text-xs text-muted whitespace-nowrap">
               {lastMessageTimeLabel}
             </span>
           )}

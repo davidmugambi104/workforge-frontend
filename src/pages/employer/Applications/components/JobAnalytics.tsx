@@ -17,7 +17,7 @@ export const JobAnalytics: React.FC<JobAnalyticsProps> = ({ job }) => {
 
   const stats = [
     {
-      label: 'Total Applications',
+      label: 'Total Requests',
       value: totalApplicants,
       icon: UsersIcon,
     },
@@ -45,7 +45,7 @@ export const JobAnalytics: React.FC<JobAnalyticsProps> = ({ job }) => {
           <div>
             <h3 className="text-lg font-semibold employer-text-primary mb-4 flex items-center gap-2">
               <ChartBarIcon className="h-5 w-5 employer-text-accent" />
-              Application Analytics
+              Work Request Analytics
             </h3>
           </div>
 
@@ -75,13 +75,13 @@ export const JobAnalytics: React.FC<JobAnalyticsProps> = ({ job }) => {
 
           <div className="border employer-border rounded-2xl p-6 text-center employer-bg-surface">
             <p className="text-sm font-medium employer-text-muted mb-1">
-              Acceptance Rate
+              Hiring Rate
             </p>
             <p className="text-3xl font-bold employer-text-primary">
               {acceptanceRate}%
             </p>
             <p className="text-xs employer-text-muted mt-2">
-              {acceptedCount} accepted out of {totalApplicants} total applications
+              {acceptedCount} hired out of {totalApplicants} total requests
             </p>
           </div>
         </div>

@@ -37,14 +37,14 @@ export const Header: React.FC<HeaderProps> = ({ className, onToggleSidebar }) =>
       <div className="max-w-7xl mx-auto">
         {/* Search & Notifications Bar */}
         <div className={`
-          bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700
+          bg-white border border-slate-200
           rounded-2xl px-4 py-3 
           flex items-center gap-3 sm:gap-4 
           shadow-sm
         `}>
           <button
             onClick={onToggleSidebar}
-            className="lg:hidden p-2 rounded-xl text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+            className="lg:hidden p-2 rounded-xl text-slate-500dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
             aria-label="Open sidebar"
           >
             <Bars3Icon className="w-5 h-5" />
@@ -52,13 +52,13 @@ export const Header: React.FC<HeaderProps> = ({ className, onToggleSidebar }) =>
 
           {/* Search Bar */}
           <div className="flex items-center gap-2 flex-1 min-w-0">
-            <MagnifyingGlassIcon className="w-5 h-5 text-slate-400 dark:text-slate-500 flex-shrink-0" />
+            <MagnifyingGlassIcon className="w-5 h-5 text-slate-400 dark:text-slate-500flex-shrink-0" />
             <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-transparent outline-none text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 w-full text-sm font-medium"
+              className="bg-transparent outline-none text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500w-full text-sm font-medium"
             />
           </div>
 
@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({ className, onToggleSidebar }) =>
             {/* Theme Toggle */}
             <button
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-              className="p-2 rounded-xl text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+              className="p-2 rounded-xl text-slate-500dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
               aria-label="Toggle theme"
             >
               {theme === 'light' ? <MoonIcon className="w-5 h-5" /> : <SunIcon className="w-5 h-5" />}
@@ -79,13 +79,13 @@ export const Header: React.FC<HeaderProps> = ({ className, onToggleSidebar }) =>
             {/* Settings */}
             <Link
               to={settingsPath}
-              className="p-2 rounded-xl text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+              className="p-2 rounded-xl text-slate-500dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
             >
               <Cog6ToothIcon className="w-5 h-5" />
             </Link>
 
             {/* Notifications */}
-            <button className="relative p-2 rounded-xl text-slate-500 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+            <button className="relative p-2 rounded-xl text-slate-500dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
               <BellIcon className="w-5 h-5" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>

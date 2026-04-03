@@ -61,7 +61,7 @@ export const VerificationRequestCard: React.FC<VerificationRequestCardProps> = (
               />
               <div>
                 <div className="flex items-center space-x-2">
-                  <h4 className="text-lg font-semibold text-gray-900 text-[#1A1A1A]">
+                  <h4 className="text-lg font-semibold text-[#1A1A1A]">
                     {request.worker?.full_name}
                   </h4>
                   <Badge
@@ -78,13 +78,13 @@ export const VerificationRequestCard: React.FC<VerificationRequestCardProps> = (
                 </div>
                 
                 <div className="flex items-center space-x-4 mt-2">
-                  <div className="flex items-center text-sm text-gray-600 ">
+                  <div className="flex items-center text-sm text-gray-600">
                     <Icon className="w-4 h-4 mr-1" />
                     <span className="capitalize">
                       {request.type.replace('_', ' ')}
                     </span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-600 ">
+                  <div className="flex items-center text-sm text-gray-600">
                     <ClockIcon className="w-4 h-4 mr-1" />
                     <span>Submitted {format(new Date(request.created_at), 'MMM dd, yyyy')}</span>
                   </div>
@@ -104,20 +104,20 @@ export const VerificationRequestCard: React.FC<VerificationRequestCardProps> = (
           {/* Worker Stats */}
           <div className="mt-4 grid grid-cols-3 gap-4">
             <div className="bg-gray-50 bg-gray-800 rounded-lg p-3">
-              <p className="text-xs text-slate-500 ">Email</p>
-              <p className="text-sm font-medium text-gray-900 text-[#1A1A1A] mt-1">
+              <p className="text-xs text-slate-500">Email</p>
+              <p className="text-sm font-medium text-[#1A1A1A] mt-1">
                 {request.worker?.email}
               </p>
             </div>
             <div className="bg-gray-50 bg-gray-800 rounded-lg p-3">
-              <p className="text-xs text-slate-500 ">Phone</p>
-              <p className="text-sm font-medium text-gray-900 text-[#1A1A1A] mt-1">
+              <p className="text-xs text-slate-500">Phone</p>
+              <p className="text-sm font-medium text-[#1A1A1A] mt-1">
                 {request.worker?.phone || 'Not provided'}
               </p>
             </div>
             <div className="bg-gray-50 bg-gray-800 rounded-lg p-3">
-              <p className="text-xs text-slate-500 ">Current Score</p>
-              <p className="text-sm font-medium text-gray-900 text-[#1A1A1A] mt-1">
+              <p className="text-xs text-slate-500">Current Score</p>
+              <p className="text-sm font-medium text-[#1A1A1A] mt-1">
                 {request.worker?.verification_score}%
               </p>
             </div>
@@ -125,7 +125,7 @@ export const VerificationRequestCard: React.FC<VerificationRequestCardProps> = (
 
           {/* Document Preview */}
           {isExpanded && (
-            <div className="mt-4 pt-4 border-t border-gray-200 border-gray-800">
+            <div className="mt-4 pt-4 border-t border-gray-200">
               <div className="bg-slate-100 bg-gray-800 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-sm font-medium text-slate-700 ">
@@ -156,14 +156,14 @@ export const VerificationRequestCard: React.FC<VerificationRequestCardProps> = (
               {/* Review Notes */}
               {request.review_notes && (
                 <div className="mt-4 p-4 bg-gray-50 bg-gray-800 rounded-lg">
-                  <p className="text-xs font-medium text-slate-500  mb-1">
+                  <p className="text-xs font-medium text-slate-500 mb-1">
                     Review Notes:
                   </p>
                   <p className="text-sm text-slate-700 ">
                     {request.review_notes}
                   </p>
                   {request.reviewed_by && (
-                    <p className="text-xs text-slate-500  mt-2">
+                    <p className="text-xs text-slate-500 mt-2">
                       Reviewed by Admin #{request.reviewed_by} •{' '}
                       {format(new Date(request.updated_at), 'MMM dd, yyyy h:mm a')}
                     </p>

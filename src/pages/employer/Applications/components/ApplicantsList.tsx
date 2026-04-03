@@ -36,7 +36,7 @@ export const ApplicantsList: React.FC = () => {
     return (
       <Card className="employer-bg-surface border employer-border rounded-2xl">
         <CardHeader>
-          <h3 className="text-xl font-semibold employer-text-primary">Applicants</h3>
+          <h3 className="text-xl font-semibold employer-text-primary">Interested Fundis</h3>
         </CardHeader>
         <CardBody>
           <div className="space-y-4">
@@ -53,7 +53,7 @@ export const ApplicantsList: React.FC = () => {
     <Card className="employer-bg-surface border employer-border rounded-2xl">
       <CardHeader>
         <h3 className="text-xl font-semibold employer-text-primary">
-          Applicants ({filteredApplications?.length || 0})
+          Interested Fundis ({filteredApplications?.length || 0})
         </h3>
       </CardHeader>
       <CardBody>
@@ -62,7 +62,7 @@ export const ApplicantsList: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <Input
-                placeholder="Search applicants..."
+                placeholder="Search fundis..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 leftIcon={<MagnifyingGlassIcon className="w-5 h-5 employer-text-muted" />}
@@ -88,7 +88,7 @@ export const ApplicantsList: React.FC = () => {
           <div className="space-y-4">
             {filteredApplications?.length === 0 ? (
               <p className="text-center employer-text-muted py-8">
-                No applicants found
+                No fundis found
               </p>
             ) : (
               filteredApplications?.map((application) => (

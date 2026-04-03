@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-500 hover:text-gray-600 bg-text-gray-400 bg-hover:text-gray-300"
+                  className="text-gray-500 hover:text-gray-600bg-text-gray-400 bg-hover:text-gray-300"
                 >
                   <span className="sr-only">{item.name}</span>
                   <item.icon className="h-6 w-6" aria-hidden="true" />
@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
                     <li key={item.name}>
                       <Link
                         to={item.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 bg-text-gray-400 bg-hover:text-white"
+                        className="text-sm text-gray-600hover:text-gray-900 bg-text-gray-400 bg-hover:text-white"
                       >
                         {item.name}
                       </Link>
@@ -89,7 +89,7 @@ export const Footer: React.FC = () => {
                     <li key={item.name}>
                       <Link
                         to={item.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 bg-text-gray-400 bg-hover:text-white"
+                        className="text-sm text-gray-600hover:text-gray-900 bg-text-gray-400 bg-hover:text-white"
                       >
                         {item.name}
                       </Link>
@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
                     <li key={item.name}>
                       <Link
                         to={item.href}
-                        className="text-sm text-gray-600 hover:text-gray-900 bg-text-gray-400 bg-hover:text-white"
+                        className="text-sm text-gray-600hover:text-gray-900 bg-text-gray-400 bg-hover:text-white"
                       >
                         {item.name}
                       </Link>

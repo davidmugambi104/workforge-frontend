@@ -28,13 +28,13 @@ export const NotificationCenter: React.FC = () => {
               Notifications
             </h3>
             <div className="space-y-3">
-              <div className="text-sm text-gray-600 bg-text-gray-400">
+              <div className="text-sm text-gray-600bg-text-gray-400">
                 New verification request from John Doe
               </div>
-              <div className="text-sm text-gray-600 bg-text-gray-400">
+              <div className="text-sm text-gray-600bg-text-gray-400">
                 Payment dispute opened (#1234)
               </div>
-              <div className="text-sm text-gray-600 bg-text-gray-400">
+              <div className="text-sm text-gray-600bg-text-gray-400">
                 10 new users registered today
               </div>
             </div>

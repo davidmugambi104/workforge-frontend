@@ -115,10 +115,10 @@ export const PaymentForm: React.FC = () => {
   return (
     <Card>
       <CardHeader>
-        <h2 className="text-xl font-semibold text-gray-900 text-[#1A1A1A]">
+        <h2 className="text-xl font-semibold text-[#1A1A1A]">
           Complete Payment
         </h2>
-        <p className="text-sm text-gray-600 ">
+        <p className="text-sm text-gray-600">
           Pay for job: {job.title}
         </p>
       </CardHeader>
@@ -132,26 +132,26 @@ export const PaymentForm: React.FC = () => {
               </h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 ">Job Amount:</span>
-                  <span className="font-medium text-gray-900 text-[#1A1A1A]">
+                  <span className="text-gray-600">Job Amount:</span>
+                  <span className="font-medium text-[#1A1A1A]">
                     {formatCurrency(amount)}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 ">Platform Fee (10%):</span>
-                  <span className="font-medium text-gray-900 text-[#1A1A1A]">
+                  <span className="text-gray-600">Platform Fee (10%):</span>
+                  <span className="font-medium text-[#1A1A1A]">
                     {formatCurrency(platformFee)}
                   </span>
                 </div>
                 <div className="border-t border-gray-200 border-gray-700 my-2 pt-2">
                   <div className="flex justify-between font-medium">
-                    <span className="text-gray-900 text-[#1A1A1A]">Total:</span>
+                    <span className="text-[#1A1A1A]">Total:</span>
                     <span className="text-primary-600 text-primary-400">
                       {formatCurrency(amount)}
                     </span>
                   </div>
                 </div>
-                <div className="text-xs text-slate-500  mt-2">
+                <div className="text-xs text-slate-500 mt-2">
                   Worker receives: {formatCurrency(workerAmount)}
                 </div>
               </div>

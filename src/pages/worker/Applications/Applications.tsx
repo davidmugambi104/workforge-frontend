@@ -50,7 +50,7 @@ export const WorkerApplications: React.FC = () => {
           <ClipboardDocumentCheckIcon className="h-8 w-8 text-red-500" />
         </div>
         <h2 className="text-xl font-semibold text-slate-900 mb-2">
-          Failed to load applications
+          Failed to load work requests
         </h2>
         <p className="text-slate-600 mb-6">
           {error?.message || 'Please try again'}
@@ -66,15 +66,15 @@ export const WorkerApplications: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 title-display">
-            My Applications
+            My Work Requests
           </h1>
           <p className="mt-1 text-slate-600">
-            Track and manage your job applications
+            Track and manage your job requests
           </p>
         </div>
         {totalCount > 0 && (
           <div className="text-sm text-slate-600">
-            <span className="font-medium text-slate-900">{totalCount}</span> total applications
+            <span className="font-medium text-slate-900">{totalCount}</span> total requests
           </div>
         )}
       </div>
@@ -122,7 +122,7 @@ export const WorkerApplications: React.FC = () => {
         </div>
       </Card>
 
-      {/* Applications List */}
+      {/* Work Requests List */}
       {isLoading ? (
         <div className="space-y-4">
           {[...Array(5)].map((_, i) => (
@@ -137,10 +137,10 @@ export const WorkerApplications: React.FC = () => {
             <ClipboardDocumentCheckIcon className="h-10 w-10 text-slate-400" />
           </div>
           <h2 className="text-xl font-semibold text-slate-900 mb-2">
-            No applications yet
+            No work requests yet
           </h2>
           <p className="text-slate-600 mb-6 max-w-md mx-auto">
-            Start by browsing and applying to jobs that match your skills
+            Start by browsing jobs and sending requests that match your skills
           </p>
           <Link to="/worker/jobs">
             <Button>Browse Jobs</Button>
@@ -166,8 +166,8 @@ export const WorkerApplications: React.FC = () => {
                     {/* Left: Job Info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start gap-3 lg:gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-100 bg-blue-900/30 flex items-center justify-center">
-                          <ClipboardDocumentCheckIcon className="h-6 w-6 text-blue-600 text-blue-400" />
+                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+                          <ClipboardDocumentCheckIcon className="h-6 w-6 text-blue-600" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <h3 className="text-lg font-semibold text-slate-900 truncate">
@@ -196,7 +196,7 @@ export const WorkerApplications: React.FC = () => {
                         {application.created_at && (
                           <div className="flex items-center gap-1.5 text-slate-600">
                             <CalendarIcon className="h-4 w-4 flex-shrink-0" />
-                            Applied {formatDate(application.created_at)}
+                            Requested {formatDate(application.created_at)}
                           </div>
                         )}
                       </div>

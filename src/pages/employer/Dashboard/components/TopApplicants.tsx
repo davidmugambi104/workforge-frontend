@@ -20,7 +20,7 @@ export const TopApplicants: React.FC = () => {
     return (
       <Card className="employer-bg-surface border employer-border rounded-2xl">
         <CardHeader>
-          <h3 className="text-lg font-semibold employer-text-primary">Top Applicants</h3>
+          <h3 className="text-lg font-semibold employer-text-primary">Top Fundis</h3>
         </CardHeader>
         <CardBody>
           <div className="space-y-4">
@@ -40,7 +40,7 @@ export const TopApplicants: React.FC = () => {
   return (
     <Card className="employer-bg-surface border employer-border rounded-2xl">
       <CardHeader>
-        <h3 className="text-lg font-semibold employer-text-primary">Recent Applicants</h3>
+        <h3 className="text-lg font-semibold employer-text-primary">Recent Fundis</h3>
         <Link to="/employer/applications">
           <Button variant="ghost" size="sm" className="employer-link-accent hover:underline">
             View All
@@ -51,7 +51,7 @@ export const TopApplicants: React.FC = () => {
         <div className="space-y-4">
           {topApplicants.length === 0 ? (
             <p className="text-center employer-text-muted py-4">
-              No applications yet
+              No requests yet
             </p>
           ) : (
             topApplicants.map((application) => (

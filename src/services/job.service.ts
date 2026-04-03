@@ -51,18 +51,35 @@ export interface JobSearchParams {
 }
 
 class JobService {
-  // Public job listings
+  // Public job listings - handle both array and {jobs: [], total} response
   async getJobs(params?: JobSearchParams): Promise<{ jobs: Job[]; total: number }> {
-    return axiosClient.get(ENDPOINTS.JOBS.LIST, { params });
+    const response = await axiosClient.get<any>(ENDPOINTS.JOBS.LIST, { params });
+    
+    // Handle both {jobs: [...], total: n} and [...] response formats
+    if (Array.isArray(response)) {
+      return { jobs: response, total: response.length };
+    }
+    return {
+      jobs: response.jobs || response.data || [],
+      total: response.total || response.jobs?.length || response.data?.length || 0
+    };
   }
 
   async getJob(jobId: number): Promise<Job> {
     return axiosClient.get(ENDPOINTS.JOBS.DETAIL(jobId));
   }
 
-  // Search jobs
+  // Search jobs - handle both formats
   async searchJobs(params: JobSearchParams): Promise<{ jobs: Job[]; total: number }> {
-    return axiosClient.get(ENDPOINTS.JOBS.SEARCH, { params });
+    const response = await axiosClient.get<any>(ENDPOINTS.JOBS.SEARCH, { params });
+    
+    if (Array.isArray(response)) {
+      return { jobs: response, total: response.length };
+    }
+    return {
+      jobs: response.jobs || response.data || [],
+      total: response.total || response.jobs?.length || 0
+    };
   }
 
   // Create job (employer)

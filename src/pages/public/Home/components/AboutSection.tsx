@@ -22,7 +22,7 @@ const values = [
   {
     icon: Heart,
     title: 'Fair Opportunities',
-    description: 'Ensuring equal access to opportunities and fair compensation for all skilled professionals.',
+    description: 'Ensuring equal access to jobs and fair pay for all skilled workers.',
   },
   {
     icon: ShieldCheck,
@@ -41,26 +41,23 @@ export const AboutSection: React.FC = () => {
             About WorkForge
           </h2>
           <p className="text-lg text-[#525252] max-w-3xl mx-auto leading-relaxed">
-            WorkForge is a platform connecting talented blue-collar workers with employers who value their skills. 
-            Our mission is to make finding work and hiring easier, faster, and more transparent for everyone.
+            WorkForge connects skilled Kenyan fundis with real jobs that need doing. 
+            We make finding work fast, getting paid quick, and building your reputation simple.
           </p>
         </div>
 
         {/* Mission Statement */}
         <div className="max-w-4xl mx-auto mb-16">
-          <div className="fintech-panel p-8 md:p-12">
+          <div className="fintech-panel p-8 md:p-12 bg-gradient-to-r from-orange-600 to-orange-500">
             <h3 className="text-2xl font-bold text-white mb-4">
               Our Mission
             </h3>
-            <p className="text-lg text-white/80 leading-relaxed mb-4">
-              We believe skilled workers deserve respect, fair pay, and access to quality opportunities. 
-              Whether you're a carpenter, electrician, plumber, or any other skilled professional, 
-              WorkForge empowers you to take control of your career and build lasting relationships with employers.
+            <p className="text-lg text-white/90 leading-relaxed mb-4">
+              Skilled fundis deserve real opportunities and fair pay. Whether you're a carpenter, electrician, plumber, or any other tradesperson, 
+              WorkForge gives you direct access to jobs, guaranteed payment, and control over your daily earnings.
             </p>
-            <p className="text-lg text-white/80 leading-relaxed">
-              For employers, we provide access to a vetted network of talented professionals, 
-              streamlined hiring tools, and secure payment processing—making it simple to find 
-              the right person for the job.
+            <p className="text-lg text-white/90 leading-relaxed">
+              For employers, we connect you with trusted, local fundis fast. Post a job, find vetted workers, get the work done—with guaranteed payment and no middleman delays.
             </p>
           </div>
         </div>
@@ -75,8 +72,8 @@ export const AboutSection: React.FC = () => {
               const Icon = value.icon;
               return (
                 <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-[#0F2137]/5 rounded-2xl mb-4">
-                    <Icon className="h-8 w-8 text-[#0F2137]" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 rounded-2xl mb-4">
+                    <Icon className="h-8 w-8 text-orange-600" />
                   </div>
                   <h4 className="text-lg font-semibold text-[#1A1A1A] mb-2">
                     {value.title}

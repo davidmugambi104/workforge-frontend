@@ -72,7 +72,7 @@ export const RatingInput: React.FC<RatingInputProps> = ({
                 <StarOutlineIcon
                   className={cn(
                     sizes[size],
-                    'text-slate-300 text-gray-600 transition-colors'
+                    'text-slate-300 text-gray-600transition-colors'
                   )}
                 />
               )}
@@ -82,17 +82,17 @@ export const RatingInput: React.FC<RatingInputProps> = ({
 
         {currentHover > 0 && (
           <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+            <span className="text-sm font-medium text-[#1A1A1A]">
               {ratings[currentHover - 1].label}
             </span>
-            <span className="text-xs text-slate-500 ">
+            <span className="text-xs text-slate-500">
               {ratings[currentHover - 1].description}
             </span>
           </div>
         )}
 
         {error && (
-          <p className="text-sm text-red-600 text-red-400">{error}</p>
+          <p className="text-sm text-red-600">{error}</p>
         )}
       </div>
     </div>

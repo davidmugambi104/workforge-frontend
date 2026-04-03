@@ -16,6 +16,7 @@ import { Button } from '@components/ui/Button';
 import { Input } from '@components/ui/Input';
 import { Card } from '@components/ui/Card';
 import { authService } from '@services/auth.service';
+import { extractApiErrorMessage } from '@utils/error';
 import { UserRole } from '@types';
 import { RegisterFormData, registerSchema, registerSteps } from './Register.schema';
 
@@ -24,6 +25,7 @@ export const RegisterPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [currentStep, setCurrentStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const defaultRole = searchParams.get('role');
   const validRoles = [UserRole.WORKER, UserRole.EMPLOYER] as const;
@@ -54,6 +56,7 @@ export const RegisterPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<RegisterFormData> = async (data) => {
     setIsLoading(true);
+    setSubmitError(null);
     try {
       await authService.register({
         username: data.username,
@@ -64,8 +67,10 @@ export const RegisterPage: React.FC = () => {
       
       toast.success('Account created successfully. Check your email for the verification code.');
       navigate(`/auth/verify-email?email=${encodeURIComponent(data.email)}`);
-    } catch (error: any) {
-      toast.error(error.response?.data?.error || 'Registration failed');
+    } catch (error: unknown) {
+      const message = extractApiErrorMessage(error, 'Registration failed');
+      setSubmitError(message);
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -136,6 +141,12 @@ export const RegisterPage: React.FC = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {submitError && (
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {submitError}
+          </div>
+        )}
+
         {/* Step 1: Account Details */}
         {currentStep === 0 && (
           <div className="animate-in space-y-5 rounded-[24px] border border-slate-200 bg-slate-50/70 p-5 sm:p-6">
@@ -203,15 +214,15 @@ export const RegisterPage: React.FC = () => {
                 <div className="mb-4 inline-flex rounded-2xl bg-slate-100 p-3 text-slate-700">
                   <BriefcaseIcon className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-2">
+                <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">
                   I'm a Worker
                 </h3>
-                <p className="text-sm text-gray-600 ">
+                <p className="text-sm text-gray-600">
                   Find jobs, earn money, and grow your skills
                 </p>
                 <ul className="mt-4 space-y-2 text-sm text-slate-500">
-                  <li>• Build your professional profile</li>
-                  <li>• Apply for available jobs</li>
+                  <li>• Build your fundi profile</li>
+                  <li>• Send requests for available jobs</li>
                   <li>• Chat with employers directly</li>
                 </ul>
               </button>
@@ -230,21 +241,21 @@ export const RegisterPage: React.FC = () => {
                 <div className="mb-4 inline-flex rounded-2xl bg-slate-100 p-3 text-slate-700">
                   <BuildingOfficeIcon className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-2">
+                <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">
                   I'm an Employer
                 </h3>
-                <p className="text-sm text-gray-600 ">
+                <p className="text-sm text-gray-600">
                   Post jobs, find talent, and grow your business
                 </p>
                 <ul className="mt-4 space-y-2 text-sm text-slate-500">
                   <li>• Post jobs quickly</li>
                   <li>• Review worker profiles</li>
-                  <li>• Hire and manage applications</li>
+                  <li>• Hire and manage work requests</li>
                 </ul>
               </button>
             </div>
             {errors.role && (
-              <p className="text-sm text-red-600 text-red-400 text-center">
+              <p className="text-sm text-red-600 text-center">
                 {errors.role.message}
               </p>
             )}
@@ -255,26 +266,26 @@ export const RegisterPage: React.FC = () => {
         {currentStep === 2 && (
           <div className="space-y-6 animate-in">
             <div className="rounded-[24px] border border-slate-200 bg-slate-50/70 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-4">
+              <h3 className="text-lg font-semibold text-[#1A1A1A] mb-4">
                 Review Your Information
               </h3>
               
               <dl className="space-y-3">
                 <div className="flex justify-between">
-                  <dt className="text-sm text-gray-600 ">Username:</dt>
-                  <dd className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                  <dt className="text-sm text-gray-600">Username:</dt>
+                  <dd className="text-sm font-medium text-[#1A1A1A]">
                     {watch('username')}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-sm text-gray-600 ">Email:</dt>
-                  <dd className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                  <dt className="text-sm text-gray-600">Email:</dt>
+                  <dd className="text-sm font-medium text-[#1A1A1A]">
                     {watch('email')}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-sm text-gray-600 ">Role:</dt>
-                  <dd className="text-sm font-medium capitalize text-gray-900 text-[#1A1A1A]">
+                  <dt className="text-sm text-gray-600">Role:</dt>
+                  <dd className="text-sm font-medium capitalize text-[#1A1A1A]">
                     {watch('role')}
                   </dd>
                 </div>
@@ -287,7 +298,7 @@ export const RegisterPage: React.FC = () => {
                 type="checkbox"
                 className="mt-1 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 border-gray-600 bg-gray-800"
               />
-              <span className="ml-2 text-sm text-gray-600 ">
+              <span className="ml-2 text-sm text-gray-600">
                 I agree to the{' '}
                 <Link to="/terms" className="font-medium text-primary-600 hover:text-primary-500">
                   Terms of Service
@@ -299,7 +310,7 @@ export const RegisterPage: React.FC = () => {
               </span>
             </label>
             {errors.terms && (
-              <p className="text-sm text-red-600 text-red-400">
+              <p className="text-sm text-red-600">
                 {errors.terms.message}
               </p>
             )}
@@ -333,7 +344,7 @@ export const RegisterPage: React.FC = () => {
         </div>
       </form>
 
-      <p className="mt-6 text-center text-sm text-gray-600 ">
+      <p className="mt-6 text-center text-sm text-gray-600">
         Already have an account?{' '}
         <Link to="/auth/login" className="font-medium text-primary-600 hover:text-primary-500">
           Sign in

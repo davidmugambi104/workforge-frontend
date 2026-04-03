@@ -90,7 +90,7 @@ export const WorkerProfile: React.FC = () => {
             My Profile
           </h1>
           <p className="mt-1 text-slate-600">
-            Manage your professional information
+            Your work details and fundi information
           </p>
         </div>
         <Button 
@@ -123,7 +123,24 @@ export const WorkerProfile: React.FC = () => {
                     <h2 className="text-xl lg:text-2xl font-bold text-slate-900">
                       {profile?.full_name || `${profile?.user?.first_name || ''} ${profile?.user?.last_name || ''}`.trim()}
                     </h2>
-                    <div className="flex items-center gap-3 mt-2">
+                    <div className="flex items-center gap-2 mt-2 flex-wrap">
+                      {profile?.availability_status === 'available' && (
+                        <Badge className="bg-green-100 text-green-700 border-0 font-semibold animate-pulse">
+                          🟢 Available Now
+                        </Badge>
+                      )}
+                      {profile?.is_verified && (
+                        <Badge className="bg-emerald-100 text-emerald-700 border-0">
+                          ⚡ Verified
+                        </Badge>
+                      )}
+                      {profile?.rating >= 4.5 && (
+                        <Badge className="bg-orange-100 text-orange-700 border-0">
+                          🔥 Top Rated
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 mt-3">
                       <div className="flex items-center gap-1">
                         {[1, 2, 3, 4, 5].map(star => (
                           <StarIcon
@@ -195,11 +212,11 @@ export const WorkerProfile: React.FC = () => {
             </div>
           </Card>
 
-          {/* Professional Info */}
+          {/* Work Info */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card className="p-4 lg:p-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-6">
-                Professional Information
+                Work Information
               </h3>
               
               <div className="space-y-6">
@@ -300,7 +317,7 @@ export const WorkerProfile: React.FC = () => {
               <div className="text-center py-8">
                 <AcademicCapIcon className="h-12 w-12 text-slate-300 mx-auto mb-3" />
                 <p className="text-slate-600">No skills added yet</p>
-                <p className="text-sm text-slate-500 mt-1">
+                <p className="text-sm text-slate-500mt-1">
                   Add your skills to stand out to employers
                 </p>
               </div>

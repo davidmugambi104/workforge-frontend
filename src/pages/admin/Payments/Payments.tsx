@@ -61,7 +61,7 @@ const Payments: React.FC = () => {
       accessor: (tx) => (
         <div className="flex items-center gap-2">
           {tx.type === 'income' ? <ArrowDownLeftIcon className="w-5 h-5 text-emerald-600" /> : <ArrowUpRightIcon className="w-5 h-5 text-blue-600" />}
-          <div><div className="font-medium text-gray-900 text-[#1A1A1A]">{tx.description}</div><div className="text-sm text-slate-500">{tx.user}</div></div>
+          <div><div className="font-medium text-[#1A1A1A]">{tx.description}</div><div className="text-sm text-slate-500">{tx.user}</div></div>
         </div>
       ),
     },
@@ -77,7 +77,7 @@ const Payments: React.FC = () => {
   return (
     <AdminLayout>
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900 text-[#1A1A1A]">Payments & Revenue</h1>
+        <h1 className="text-3xl font-bold text-[#1A1A1A]">Payments & Revenue</h1>
         <p className="text-gray-600">Monitor financial transactions and payments</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

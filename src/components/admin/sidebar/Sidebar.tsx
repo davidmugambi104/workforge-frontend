@@ -83,7 +83,7 @@ export const Sidebar: React.FC = () => {
           <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-from-white bg-to-gray-400 bg-clip-text text-transparent">
             WorkForge
           </span>
-          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-gray-100 bg-bg-gray-800 text-gray-600 bg-text-gray-400">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-gray-100 bg-bg-gray-800 text-gray-600bg-text-gray-400">
             Admin
           </span>
         </div>

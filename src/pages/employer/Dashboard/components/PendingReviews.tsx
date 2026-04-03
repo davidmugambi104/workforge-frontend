@@ -21,7 +21,7 @@ export const PendingReviews: React.FC = () => {
           <div className="flex items-center gap-2 mb-4">
             <ClockIcon className="h-5 w-5 employer-text-accent" />
             <h3 className="text-lg font-semibold employer-text-primary">
-              Pending Application Reviews
+              Pending Work Request Reviews
             </h3>
           </div>
 
@@ -29,10 +29,10 @@ export const PendingReviews: React.FC = () => {
             <div className="text-center py-8">
               <ClockIcon className="h-12 w-12 mx-auto employer-text-subtle mb-3" />
               <p className="employer-text-muted">
-                No pending applications
+                No pending requests
               </p>
               <p className="text-sm employer-text-muted mt-1">
-                All applications have been reviewed
+                All requests have been reviewed
               </p>
             </div>
           ) : (
@@ -47,7 +47,7 @@ export const PendingReviews: React.FC = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h4 className="font-semibold employer-text-primary">
-                          {application.worker?.full_name || 'Applicant'}
+                          {application.worker?.full_name || 'Fundi'}
                         </h4>
                         {application.worker?.average_rating && (
                           <div className="flex items-center gap-0.5">
@@ -62,7 +62,7 @@ export const PendingReviews: React.FC = () => {
                         {application.job?.title || 'Job'}
                       </p>
                       <p className="text-xs employer-text-muted mt-1">
-                        Applied {formatDate(application.created_at)}
+                        Requested {formatDate(application.created_at)}
                       </p>
                     </div>
                     <Button variant="ghost" size="sm" className="employer-link-accent hover:underline">

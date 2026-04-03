@@ -150,9 +150,9 @@ const ApplicantTableRow: React.FC<{
 // Stats Overview Cards
 const OverviewCards: React.FC<{ counts: { all: number; shortlisted: number; pending: number; rejected: number } }> = ({ counts }) => {
   const stats = [
-    { label: 'Total Applications', value: String(counts.all), icon: <UsersIcon className="w-6 h-6" />, color: 'navy' },
+    { label: 'Total Work Requests', value: String(counts.all), icon: <UsersIcon className="w-6 h-6" />, color: 'navy' },
     { label: 'Shortlisted', value: String(counts.shortlisted), icon: <CheckCircleIcon className="w-6 h-6" />, color: 'emerald' },
-    { label: 'Pending Review', value: String(counts.pending), icon: <ClockIcon className="w-6 h-6" />, color: 'amber' },
+    { label: 'Needs Review', value: String(counts.pending), icon: <ClockIcon className="w-6 h-6" />, color: 'amber' },
     { label: 'Rejected', value: String(counts.rejected), icon: <XCircleIcon className="w-6 h-6" />, color: 'red' },
   ];
 
@@ -193,7 +193,7 @@ const Applications = () => {
       id: app.id,
       workerId: app.worker_id,
       workerUserId: app.worker?.user_id,
-      name: app.worker?.full_name || `Applicant #${app.worker_id || app.id}`,
+      name: app.worker?.full_name || `Fundi #${app.worker_id || app.id}`,
       email: app.worker?.user?.email || '—',
       phone: app.worker?.phone || '—',
       job: app.job?.title || `Job #${app.job_id}`,
@@ -233,7 +233,7 @@ const Applications = () => {
       return;
     }
 
-    toast.info('Contact details are not available for this applicant yet.');
+    toast.info('Contact details are not available for this fundi yet.');
   };
 
   const handleViewProfile = (applicant: Applicant) => {
@@ -250,8 +250,8 @@ const Applications = () => {
       {/* Page Header */}
       <div className="page-header flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="page-title">Applications</h1>
-          <p className="page-subtitle">Review and manage job applicants</p>
+          <h1 className="page-title">Work Requests</h1>
+          <p className="page-subtitle">Review and manage interested fundis</p>
         </div>
         <Link to="/employer/jobs">
           <button className="btn-secondary">
@@ -271,7 +271,7 @@ const Applications = () => {
             <SearchInput 
               value={query} 
               onChange={setQuery}
-              placeholder="Search applicants by name or job..."
+              placeholder="Search fundis by name or job..."
             />
           </div>
           <div className="flex items-center gap-2 flex-wrap">
@@ -306,15 +306,15 @@ const Applications = () => {
         </div>
       </div>
 
-      {/* Applications Table */}
+      {/* Work Requests Table */}
       {filtered.length === 0 ? (
         <div className="empty-state">
           <div className="w-16 h-16 rounded-full bg-charcoal-100 flex items-center justify-center mx-auto mb-4">
             <UsersIcon className="w-8 h-8 text-muted" />
           </div>
-          <h3 className="text-lg font-semibold text-charcoal mb-2">No applications found</h3>
+          <h3 className="text-lg font-semibold text-charcoal mb-2">No work requests found</h3>
           <p className="text-muted">Try adjusting your filters or search terms.</p>
-          {isLoading && <p className="text-sm text-muted mt-2">Loading applications...</p>}
+          {isLoading && <p className="text-sm text-muted mt-2">Loading work requests...</p>}
         </div>
       ) : (
         <div className="solid-card overflow-hidden">
@@ -322,10 +322,10 @@ const Applications = () => {
             <table className="employer-table">
               <thead>
                 <tr>
-                  <th>Applicant</th>
+                  <th>Fundi</th>
                   <th>Job</th>
                   <th>Status</th>
-                  <th>Applied</th>
+                  <th>Requested</th>
                   <th>Rating</th>
                   <th></th>
                 </tr>
@@ -349,7 +349,7 @@ const Applications = () => {
       {filtered.length > 0 && (
         <div className="flex items-center justify-between mt-6">
           <p className="text-sm text-muted">
-            Showing {filtered.length} of {applicants.length} applications
+            Showing {filtered.length} of {applicants.length} work requests
           </p>
           <div className="flex items-center gap-2">
             <button 

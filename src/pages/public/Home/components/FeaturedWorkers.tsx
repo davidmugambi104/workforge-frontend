@@ -39,7 +39,7 @@ export const FeaturedWorkers: React.FC = () => {
             Featured Skilled Workers
           </h2>
           <p className="text-lg text-[#525252] max-w-2xl mx-auto">
-            Connect with verified professionals ready to bring your projects to life
+            Connect with verified fundis ready to get the job done
           </p>
         </div>
 

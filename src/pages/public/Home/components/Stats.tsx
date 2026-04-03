@@ -2,41 +2,66 @@ import React from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { Users, CheckCircle, Building2, DollarSign } from 'lucide-react';
+import { analyticsService } from '@services/analytics.service';
+import { useQuery } from '@tanstack/react-query';
 
-const stats = [
-  { 
-    id: 1, 
-    name: 'Active Workers', 
-    value: 15000, 
-    suffix: '+',
-    icon: Users,
-    variant: 'gradient'
-  },
-  { 
-    id: 2, 
-    name: 'Jobs Completed', 
-    value: 50000, 
-    suffix: '+',
-    icon: CheckCircle,
-  },
-  { 
-    id: 3, 
-    name: 'Verified Employers', 
-    value: 5000, 
-    suffix: '+',
-    icon: Building2,
-  },
-  { 
-    id: 4, 
-    name: 'Total Earnings', 
-    value: 2.5, 
-    prefix: '$', 
-    suffix: 'M+',
-    icon: DollarSign,
-  },
-];
+interface StatsData {
+  active_workers: number;
+  jobs_completed: number;
+  verified_employers: number;
+  total_earnings: number;
+}
 
 export const Stats: React.FC = () => {
+  const { data: statsData, isLoading } = useQuery<StatsData>({
+    queryKey: ['publicStats'],
+    queryFn: () => analyticsService.getPublicStats(),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
+  const stats = React.useMemo(() => {
+    const data = statsData || { active_workers: 0, jobs_completed: 0, verified_employers: 0, total_earnings: 0 };
+    
+    // Format earnings to millions
+    const earningsInMillions = data.total_earnings / 1000000;
+    const earningsDisplay = earningsInMillions >= 1 
+      ? earningsInMillions.toFixed(1) 
+      : (data.total_earnings / 1000).toFixed(0);
+    const earningsSuffix = earningsInMillions >= 1 ? 'M+' : 'K+';
+    
+    return [
+      { 
+        id: 1, 
+        name: 'Active Workers', 
+        value: data.active_workers || 0, 
+        suffix: '+',
+        icon: Users,
+        variant: 'gradient'
+      },
+      { 
+        id: 2, 
+        name: 'Jobs Completed', 
+        value: data.jobs_completed || 0, 
+        suffix: '+',
+        icon: CheckCircle,
+      },
+      { 
+        id: 3, 
+        name: 'Verified Employers', 
+        value: data.verified_employers || 0, 
+        suffix: '+',
+        icon: Building2,
+      },
+      { 
+        id: 4, 
+        name: 'Total Earnings', 
+        value: parseFloat(earningsDisplay), 
+        prefix: '$', 
+        suffix: earningsSuffix,
+        icon: DollarSign,
+      },
+    ];
+  }, [statsData]);
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,

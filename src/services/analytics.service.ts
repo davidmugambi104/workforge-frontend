@@ -33,6 +33,16 @@ export interface SkillAnalytics {
 }
 
 class AnalyticsService {
+  // Public stats for homepage
+  async getPublicStats(): Promise<{
+    active_workers: number;
+    jobs_completed: number;
+    verified_employers: number;
+    total_earnings: number;
+  }> {
+    return axiosClient.get(ENDPOINTS.ANALYTICS.PUBLIC_STATS);
+  }
+
   // Overview
   async getOverview(): Promise<AnalyticsOverview> {
     return axiosClient.get(ENDPOINTS.ANALYTICS.OVERVIEW);

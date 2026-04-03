@@ -45,7 +45,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
             />
             <div className="flex-1">
               <div className="flex items-center space-x-2">
-                <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A]">
+                <h3 className="text-lg font-semibold text-[#1A1A1A]">
                   {application.job?.title}
                 </h3>
                 <Badge variant={statusColors[application.status] as any}>
@@ -53,24 +53,24 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
                 </Badge>
               </div>
               
-              <p className="text-sm text-gray-600  mt-1">
+              <p className="text-sm text-gray-600mt-1">
                 {application.job?.employer?.company_name}
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-slate-500 ">
+              <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-slate-500">
                 {application.proposed_rate && (
                   <div>
                     Proposed rate: {formatCurrency(application.proposed_rate)}/hr
                   </div>
                 )}
                 <div>
-                  Applied {formatDistanceToNow(new Date(application.created_at), { addSuffix: true })}
+                  Requested {formatDistanceToNow(new Date(application.created_at), { addSuffix: true })}
                 </div>
               </div>
 
               {application.cover_letter && (
                 <div className="mt-3 p-3 bg-gray-50 bg-gray-800 rounded-lg">
-                  <p className="text-sm text-gray-600  line-clamp-2">
+                  <p className="text-sm text-gray-600line-clamp-2">
                     {application.cover_letter}
                   </p>
                 </div>
@@ -80,7 +80,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
                 <div className="mt-3 flex items-center text-green-600 text-green-400">
                   <CheckCircleIcon className="w-5 h-5 mr-2" />
                   <span className="text-sm font-medium">
-                    Congratulations! Your application has been accepted.
+                    Great news! Your work request has been accepted.
                   </span>
                 </div>
               )}
@@ -88,7 +88,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
           </div>
         </div>
 
-        <div className="mt-4 pt-4 border-t border-gray-200 border-gray-800 flex items-center justify-between">
+        <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
           <JobStatusBadge status={application.job?.status!} />
           
           <div className="flex items-center space-x-2">

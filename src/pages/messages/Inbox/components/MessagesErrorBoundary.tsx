@@ -57,15 +57,15 @@ export class MessagesErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="h-[calc(100vh-4rem)] flex items-center justify-center bg-white bg-gray-900 rounded-lg border border-gray-200 border-gray-800">
+        <div className="h-[calc(100vh-4rem)] flex items-center justify-center bg-white rounded-lg border border-gray-200">
           <div className="max-w-md text-center px-6">
             <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-amber-100 bg-amber-900/20 flex items-center justify-center">
               <ExclamationTriangleIcon className="w-7 h-7 text-amber-600" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-2">
+            <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">
               Messages temporarily unavailable
             </h3>
-            <p className="text-sm text-slate-500 mb-5">
+            <p className="text-sm text-slate-500mb-5">
               We hit a runtime issue while loading your inbox. Try again to continue.
             </p>
             {import.meta.env.DEV && (this.state.errorName || this.state.errorMessage) && (

@@ -20,12 +20,12 @@ export const JobPostingCard = ({ title, company, location, type, salaryRange, ap
     <p className="text-sm text-gray-500">{location}</p>
     <p className="mt-2 text-sm font-medium text-gray-700">{salaryRange}</p>
     <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
-      <span>{applicants} applicants</span>
+      <span>{applicants} requests</span>
       <span>{views} views</span>
     </div>
     <div className="mt-4 flex gap-2">
       <Button variant="secondary" size="sm">Edit</Button>
-      <Button variant="tertiary" size="sm">View Applicants</Button>
+      <Button variant="tertiary" size="sm">View Fundis</Button>
     </div>
   </article>
 );

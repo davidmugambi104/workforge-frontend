@@ -35,7 +35,7 @@ const testimonials = [
     name: 'Maria Rodriguez',
     role: 'Construction Worker',
     rating: 5,
-    text: "I've found consistent work through WorkForge. The payment system is secure and employers are professional.",
+    text: "I've found consistent work through WorkForge. The payment system is secure and employers are respectful and clear.",
   },
   {
     name: 'David Chen',

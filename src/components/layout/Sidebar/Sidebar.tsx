@@ -44,7 +44,7 @@ const SidebarHeader: React.FC<SidebarHeaderProps> = ({ title = 'WorkForge', subt
         <div>
           <div className="text-lg font-semibold text-slate-900 bg-text-white employer-sidebar-title">{title}</div>
           {subtitle ? (
-            <div className="text-xs text-slate-500 bg-text-slate-400 employer-sidebar-subtitle">{subtitle}</div>
+            <div className="text-xs text-slate-500bg-text-slate-400 employer-sidebar-subtitle">{subtitle}</div>
           ) : null}
         </div>
       )}
@@ -90,7 +90,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, className }) => {
       className={cn(sidebarItemVariants({ active: isActive, variant }), 'employer-nav-link', className)}
       aria-current={isActive ? 'page' : undefined}
     >
-      <span className="flex items-center justify-center text-slate-500 bg-text-slate-400">
+      <span className="flex items-center justify-center text-slate-500bg-text-slate-400">
         {item.icon ? <item.icon className="h-5 w-5" /> : null}
       </span>
       {variant === 'compact' ? null : (
@@ -124,7 +124,7 @@ const SidebarDefaultContent: React.FC = () => {
         </div>
       </SidebarNav>
       <SidebarFooter>
-        <div className="text-xs text-slate-500 bg-text-slate-400 employer-sidebar-version">WorkForge v1.0</div>
+        <div className="text-xs text-slate-500bg-text-slate-400 employer-sidebar-version">WorkForge v1.0</div>
       </SidebarFooter>
     </>
   );

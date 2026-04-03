@@ -66,7 +66,7 @@ export const JobBasicInfo: React.FC = () => {
             className="employer-floating-input"
             placeholder=" "
           />
-          <label className="employer-floating-label">Application Deadline</label>
+          <label className="employer-floating-label">Request Deadline</label>
           {errors.expiration_date?.message ? (
             <p className="employer-validation-error">
               <ExclamationTriangleIcon className="h-4 w-4" />

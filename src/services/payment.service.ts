@@ -11,6 +11,10 @@ import {
 } from '@types';
 
 class PaymentService {
+  async getIntegrationStatus(): Promise<any> {
+    return axiosClient.get('/payments/integration-status');
+  }
+
   // Payment CRUD
   async createPayment(data: PaymentCreateRequest): Promise<Payment> {
     return axiosClient.post<Payment>(ENDPOINTS.PAYMENTS.CREATE, data);

@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowLeftIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useMessages } from '@hooks/useMessages';
+import { useAuth } from '@context/AuthContext';
 import { MessageInput } from './MessageInput';
 import { TypingIndicator } from './TypingIndicator';
 import { MessageList } from './MessageList';
 import { UserProfileChip } from './UserProfileChip';
+import { QuickActionButtons } from './QuickActionButtons';
+import { ResponseTimeMetrics } from './ResponseTimeMetrics';
 
 interface ChatWindowUser {
   id: number;
@@ -35,6 +38,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   onBack,
   onNewMessage,
 }) => {
+  const { user: currentUser } = useAuth();
   const {
     messages,
     typingUsers,
@@ -44,6 +48,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   } = useMessages(conversationId, otherUserId);
 
   const endRef = useRef<HTMLDivElement>(null);
+  const [showQuickActions, setShowQuickActions] = React.useState(true);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -51,6 +56,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
   const handleSend = async (content: string, attachments?: File[]) => {
     await sendMessage(content, attachments);
+    setShowQuickActions(true); // Show quick actions again after sending
+  };
+
+  const handleQuickResponse = async (message: string) => {
+    await sendMessage(message);
+    setShowQuickActions(false); // Hide after using quick action
   };
 
   return (
@@ -94,6 +105,17 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         )}
       </div>
 
+      {/* Response Time Metrics */}
+      {currentUser && (
+        <div className="px-4 py-2 bg-charcoal-50">
+          <ResponseTimeMetrics 
+            messages={messages}
+            currentUserId={currentUser.id}
+            otherUserId={otherUserId}
+          />
+        </div>
+      )}
+
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto bg-charcoal-50">
         <MessageList
@@ -106,6 +128,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           <div ref={endRef} />
         </div>
       </div>
+
+      {/* Quick Action Buttons */}
+      {showQuickActions && messages.length > 0 && (
+        <QuickActionButtons
+          onQuickResponse={handleQuickResponse}
+        />
+      )}
 
       {/* Input Area */}
       <MessageInput

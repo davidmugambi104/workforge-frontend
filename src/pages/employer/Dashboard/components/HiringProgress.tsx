@@ -32,7 +32,7 @@ export const HiringProgress: React.FC = () => {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-medium employer-text-muted">
-                  Pending Review
+                  Needs Review
                 </span>
                 <span className="text-sm font-semibold employer-text-primary">
                   {statusCounts.pending}
@@ -100,10 +100,10 @@ export const HiringProgress: React.FC = () => {
               </div>
             </div>
 
-            {/* Acceptance Rate */}
+            {/* Hiring Rate */}
             <div className="border-t employer-border pt-4 mt-4">
               <p className="text-sm font-medium employer-text-muted mb-2">
-                Overall Acceptance Rate
+                Overall Hiring Rate
               </p>
               <p className="text-3xl font-bold text-green-600">
                 {acceptedRate}%

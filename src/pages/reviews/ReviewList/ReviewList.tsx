@@ -25,8 +25,8 @@ export default function ReviewList() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 text-[#1A1A1A]">Reviews</h1>
-        <p className="mt-2 text-gray-600 ">View all reviews and ratings</p>
+        <h1 className="text-3xl font-bold text-[#1A1A1A]">Reviews</h1>
+        <p className="mt-2 text-gray-600">View all reviews and ratings</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

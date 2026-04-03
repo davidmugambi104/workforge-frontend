@@ -68,8 +68,8 @@ const Dashboard: React.FC = () => {
           <h1 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-slate-100 title-display">
             Welcome back, {user?.username || 'Worker'}!
           </h1>
-          <p className="mt-1 text-slate-500 dark:text-slate-400">
-            Track your applications and discover new opportunities
+          <p className="mt-1 text-slate-500dark:text-slate-400">
+            Track your work requests and discover new opportunities
           </p>
         </div>
         <Link to="/worker/jobs">
@@ -89,11 +89,11 @@ const Dashboard: React.FC = () => {
           ))
         ) : (
           <>
-            {/* Total Applications */}
-            <Card className="p-4 lg:p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700" hoverable>
+            {/* Total Work Requests */}
+            <Card className="p-4 lg:p-6 bg-white border border-slate-200" hoverable>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Applications</p>
+                  <p className="text-sm font-medium text-slate-500dark:text-slate-400">Total Work Requests</p>
                   <p className="mt-1 text-2xl lg:text-3xl font-bold text-slate-900 dark:text-slate-100">
                     {stats?.total_applications || 0}
                   </p>
@@ -104,11 +104,11 @@ const Dashboard: React.FC = () => {
               </div>
             </Card>
 
-            {/* Pending Applications */}
-            <Card className="p-4 lg:p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700" hoverable>
+            {/* Pending Requests */}
+            <Card className="p-4 lg:p-6 bg-white border border-slate-200" hoverable>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Pending</p>
+                  <p className="text-sm font-medium text-slate-500dark:text-slate-400">Pending</p>
                   <p className="mt-1 text-2xl lg:text-3xl font-bold text-slate-900 dark:text-slate-100">
                     {pendingApplicationsCount}
                   </p>
@@ -120,10 +120,10 @@ const Dashboard: React.FC = () => {
             </Card>
 
             {/* Accepted */}
-            <Card className="p-4 lg:p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700" hoverable>
+            <Card className="p-4 lg:p-6 bg-white border border-slate-200" hoverable>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Accepted</p>
+                  <p className="text-sm font-medium text-slate-500dark:text-slate-400">Accepted</p>
                   <p className="mt-1 text-2xl lg:text-3xl font-bold text-slate-900 dark:text-slate-100">
                     {acceptedApplicationsCount}
                   </p>
@@ -135,10 +135,10 @@ const Dashboard: React.FC = () => {
             </Card>
 
             {/* Average Rating */}
-            <Card className="p-4 lg:p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700" hoverable>
+            <Card className="p-4 lg:p-6 bg-white border border-slate-200" hoverable>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Average Rating</p>
+                  <p className="text-sm font-medium text-slate-500dark:text-slate-400">Average Rating</p>
                   <p className="mt-1 text-2xl lg:text-3xl font-bold text-slate-900 dark:text-slate-100">
                     {stats?.average_rating?.toFixed(1) || '0.0'}
                   </p>
@@ -154,10 +154,10 @@ const Dashboard: React.FC = () => {
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Applications */}
-        <Card className="p-4 lg:p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+        {/* Recent Work Requests */}
+        <Card className="p-4 lg:p-6 bg-white border border-slate-200">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Recent Applications</h2>
+            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Recent Work Requests</h2>
             <Link to="/worker/applications" className="text-sm text-blue-600 hover:underline">
               View All
             </Link>
@@ -170,7 +170,7 @@ const Dashboard: React.FC = () => {
           ) : recentApplications.length === 0 ? (
             <div className="text-center py-8">
               <BriefcaseIcon className="h-12 w-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
-              <p className="text-slate-500 dark:text-slate-400">No applications yet</p>
+              <p className="text-slate-500dark:text-slate-400">No work requests yet</p>
               <Link to="/worker/jobs">
                 <Button size="sm" className="mt-4">Find Your First Job</Button>
               </Link>
@@ -186,7 +186,7 @@ const Dashboard: React.FC = () => {
                   <div className="flex items-center justify-between gap-3">
                     <div className="min-w-0 flex-1">
                       <h3 className="font-medium text-slate-900 dark:text-slate-100 truncate">{app.job?.title || 'Job'}</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                      <p className="text-sm text-slate-500dark:text-slate-400">
                         {app.employer?.company_name || 'Employer'} • {formatDate(app.created_at)}
                       </p>
                     </div>
@@ -202,7 +202,7 @@ const Dashboard: React.FC = () => {
         </Card>
 
         {/* Recommended Jobs */}
-        <Card className="p-4 lg:p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+        <Card className="p-4 lg:p-6 bg-white border border-slate-200">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Recommended Jobs</h2>
             <Link to="/worker/jobs" className="text-sm text-blue-600 hover:underline">
@@ -217,8 +217,8 @@ const Dashboard: React.FC = () => {
           ) : topRecommendedJobs.length === 0 ? (
             <div className="text-center py-8">
               <StarIcon className="h-12 w-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
-              <p className="text-slate-500 dark:text-slate-400">No recommendations yet</p>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Complete your profile to get personalized job suggestions</p>
+              <p className="text-slate-500dark:text-slate-400">No recommendations yet</p>
+              <p className="text-sm text-slate-500dark:text-slate-400 mt-1">Complete your profile to get personalized job suggestions</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -231,7 +231,7 @@ const Dashboard: React.FC = () => {
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
                       <h3 className="font-medium text-slate-900 dark:text-slate-100 truncate">{job.title}</h3>
-                      <div className="flex flex-wrap items-center gap-2 mt-1 text-sm text-slate-500 dark:text-slate-400">
+                      <div className="flex flex-wrap items-center gap-2 mt-1 text-sm text-slate-500dark:text-slate-400">
                         {job.address && (
                           <span className="flex items-center gap-1">
                             <MapPinIcon className="h-3.5 w-3.5" />
@@ -246,7 +246,7 @@ const Dashboard: React.FC = () => {
                         )}
                       </div>
                     </div>
-                    <Button size="sm" variant="outline">Apply</Button>
+                    <Button size="sm" variant="outline">Request</Button>
                   </div>
                 </Link>
               ))}
@@ -264,7 +264,7 @@ const Dashboard: React.FC = () => {
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-slate-900 dark:text-slate-100">Complete Your Profile</h3>
-              <p className="mt-1 text-sm text-gray-600 dark:text-slate-400">
+              <p className="mt-1 text-sm text-gray-600dark:text-slate-400">
                 Add your skills and verify your profile to get more job recommendations and increase your chances of being hired.
               </p>
               <Link to="/worker/profile">

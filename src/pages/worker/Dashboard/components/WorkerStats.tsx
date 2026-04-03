@@ -56,7 +56,7 @@ export const WorkerStats: React.FC = () => {
 
   const statsData = [
     {
-      title: 'Total Applications',
+      title: 'Total Work Requests',
       value: stats?.total_applications || 0,
       icon: BriefcaseIcon,
       iconBg: 'bg-primary-500/10',

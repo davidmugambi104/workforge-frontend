@@ -61,7 +61,7 @@ export const PaymentElement: React.FC<PaymentElementProps> = ({
 
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-gray-600 bg-text-gray-400">
+          <p className="text-sm text-gray-600bg-text-gray-400">
             Total Amount:
           </p>
           <p className="text-2xl font-bold text-gray-900 bg-text-white">

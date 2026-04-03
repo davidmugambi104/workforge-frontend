@@ -46,7 +46,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
       [UserRole.WORKER]: [
         { name: 'Dashboard', path: `${baseRolePath}/dashboard`, icon: HomeIcon },
         { name: 'Browse Jobs', path: `${baseRolePath}/jobs`, icon: BriefcaseIcon },
-        { name: 'Applications', path: `${baseRolePath}/applications`, icon: DocumentTextIcon },
+        { name: 'Work Requests', path: `${baseRolePath}/applications`, icon: DocumentTextIcon },
         { name: 'Reviews', path: `${baseRolePath}/reviews`, icon: ClipboardDocumentListIcon },
         { name: 'Profile', path: `${baseRolePath}/profile`, icon: UserCircleIcon },
       ],
@@ -54,7 +54,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
         { name: 'Dashboard', path: `${baseRolePath}/dashboard`, icon: HomeIcon },
         { name: 'Jobs', path: `${baseRolePath}/jobs`, icon: BriefcaseIcon },
         { name: 'Post Job', path: `${baseRolePath}/post-job`, icon: DocumentTextIcon },
-        { name: 'Applications', path: `${baseRolePath}/applications`, icon: ClipboardDocumentListIcon },
+        { name: 'Work Requests', path: `${baseRolePath}/applications`, icon: ClipboardDocumentListIcon },
         { name: 'Workers', path: `${baseRolePath}/workers`, icon: UsersIcon },
         { name: 'Reviews', path: `${baseRolePath}/reviews`, icon: ClipboardDocumentListIcon },
         { name: 'Profile', path: `${baseRolePath}/profile`, icon: UserCircleIcon },

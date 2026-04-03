@@ -93,10 +93,10 @@ const Jobs: React.FC = () => {
     <AdminLayout>
       {/* Header */}
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900 text-[#1A1A1A]">
+        <h1 className="text-3xl font-bold text-[#1A1A1A]">
           Jobs Moderation
         </h1>
-        <p className="text-gray-600 ">
+        <p className="text-gray-600">
           Review and approve job postings
         </p>
       </div>
@@ -128,7 +128,7 @@ const Jobs: React.FC = () => {
       </div>
 
       {/* Search & Filter */}
-      <div className="bg-white/80 bg-gray-900/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 border-gray-800/50 p-6">
+      <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 border-gray-800/50 p-6">
         <div className="max-w-md">
           <Input
             placeholder="Search jobs..."

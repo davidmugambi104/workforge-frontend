@@ -59,10 +59,10 @@ export const AdminUsers: React.FC = () => {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <ExclamationTriangleIcon className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-gray-900 text-[#1A1A1A] mb-2">
+            <h2 className="text-xl font-semibold text-[#1A1A1A] mb-2">
               Authentication Required
             </h2>
-            <p className="text-gray-600 ">
+            <p className="text-gray-600">
               Please log in to access the admin panel.
             </p>
           </div>
@@ -77,10 +77,10 @@ export const AdminUsers: React.FC = () => {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <ShieldExclamationIcon className="w-16 h-16 text-red-500 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-gray-900 text-[#1A1A1A] mb-2">
+            <h2 className="text-xl font-semibold text-[#1A1A1A] mb-2">
               Admin Access Required
             </h2>
-            <p className="text-gray-600 ">
+            <p className="text-gray-600">
               You need administrator privileges to access this page.
             </p>
           </div>
@@ -124,8 +124,8 @@ export const AdminUsers: React.FC = () => {
               {initial}
             </div>
             <div className="ml-4">
-              <div className="font-medium text-gray-900 text-[#1A1A1A]">{displayName}</div>
-              <div className="text-sm text-slate-500 ">{user.email}</div>
+              <div className="font-medium text-[#1A1A1A]">{displayName}</div>
+              <div className="text-sm text-slate-500">{user.email}</div>
             </div>
           </div>
         );
@@ -156,7 +156,7 @@ export const AdminUsers: React.FC = () => {
           type="button"
           disabled={(banUser.isPending || unbanUser.isPending) || (user.role === 'admin' && user.id === currentUser?.id)}
           onClick={() => handleToggleUserStatus(user)}
-          className="px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-300 border-gray-700 text-slate-700 text-gray-200 hover:bg-slate-100 hover:bg-gray-800 disabled:opacity-50"
+          className="px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-300 text-slate-700 text-gray-200 hover:bg-slate-100 hover:bg-gray-800 disabled:opacity-50"
         >
           {user.is_active ? 'Suspend' : 'Reactivate'}
         </button>
@@ -188,7 +188,7 @@ export const AdminUsers: React.FC = () => {
         <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 from-white to-gray-400 bg-clip-text text-transparent">
           User Management
         </h1>
-        <p className="mt-2 text-gray-600 ">
+        <p className="mt-2 text-gray-600">
           Monitor, manage, and moderate platform users
         </p>
       </div>
@@ -201,7 +201,7 @@ export const AdminUsers: React.FC = () => {
       </div>
 
       {/* Users Table */}
-      <div className="bg-white/80 bg-gray-900/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 border-gray-800/50 p-4 sm:p-6">
+      <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 border-gray-800/50 p-4 sm:p-6">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <input
             type="text"
@@ -211,7 +211,7 @@ export const AdminUsers: React.FC = () => {
               setSearch(event.target.value);
             }}
             placeholder="Search by username or email"
-            className="h-10 rounded-lg border border-gray-300 border-gray-700 bg-white bg-gray-900 px-3 text-sm"
+            className="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm"
           />
 
           <select
@@ -220,7 +220,7 @@ export const AdminUsers: React.FC = () => {
               setCurrentPage(1);
               setRoleFilter(event.target.value as 'all' | 'worker' | 'employer' | 'admin');
             }}
-            className="h-10 rounded-lg border border-gray-300 border-gray-700 bg-white bg-gray-900 px-3 text-sm"
+            className="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm"
           >
             <option value="all">All roles</option>
             <option value="worker">Worker</option>
@@ -234,7 +234,7 @@ export const AdminUsers: React.FC = () => {
               setCurrentPage(1);
               setStatusFilter(event.target.value as 'all' | 'active' | 'inactive');
             }}
-            className="h-10 rounded-lg border border-gray-300 border-gray-700 bg-white bg-gray-900 px-3 text-sm"
+            className="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm"
           >
             <option value="all">All statuses</option>
             <option value="active">Active</option>
@@ -249,7 +249,7 @@ export const AdminUsers: React.FC = () => {
               setRoleFilter('all');
               setStatusFilter('all');
             }}
-            className="h-10 rounded-lg border border-gray-300 border-gray-700 px-3 text-sm font-medium text-slate-700 text-gray-200 hover:bg-slate-100 hover:bg-gray-800"
+            className="h-10 rounded-lg border border-gray-300 px-3 text-sm font-medium text-slate-700 text-gray-200 hover:bg-slate-100 hover:bg-gray-800"
           >
             Reset filters
           </button>

@@ -64,7 +64,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         )}
         
         {hint && !error && (
-          <p id={`${selectId}-hint`} className="mt-1 text-sm text-slate-500 bg-text-slate-400">
+          <p id={`${selectId}-hint`} className="mt-1 text-sm text-slate-500bg-text-slate-400">
             {hint}
           </p>
         )}

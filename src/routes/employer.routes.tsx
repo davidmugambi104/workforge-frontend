@@ -6,6 +6,7 @@ const EmployerProfile = lazy(() => import('@pages/employer/Profile/Profile'));
 const EmployerJobs = lazy(() => import('@pages/employer/Jobs/Jobs'));
 const EmployerJobDetail = lazy(() => import('@pages/employer/JobDetail/JobDetail'));
 const EmployerApplications = lazy(() => import('@pages/employer/Applications/Applications'));
+const EmployerApplicationDetail = lazy(() => import('@pages/employer/Applications/ApplicationDetail'));
 const EmployerWorkers = lazy(() => import('@pages/employer/Workers/Workers'));
 const EmployerReviews = lazy(() => import('@pages/employer/Reviews/Reviews'));
 const EmployerSettings = lazy(() => import('@pages/employer/Settings/Settings'));
@@ -23,6 +24,7 @@ export const EmployerRoutes = () => {
 			</Route>
 			<Route path="post-job" element={<EmployerPostJob />} />
 			<Route path="applications" element={<EmployerApplications />} />
+			<Route path="applications/:applicationId" element={<EmployerApplicationDetail />} />
 			<Route path="workers" element={<EmployerWorkers />} />
 			<Route path="reviews" element={<EmployerReviews />} />
 			<Route path="settings" element={<EmployerSettings />} />

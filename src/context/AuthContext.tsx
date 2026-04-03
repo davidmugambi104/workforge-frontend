@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, ReactNode } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 import { authStore } from '@store/auth.store';
 import { authService } from '@services/auth.service';
+import { wsMessageService } from '@services/ws-message.service';
 import { User, UserRole } from '@types';
 
 interface AuthContextType {
@@ -16,7 +19,16 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { user, isAuthenticated, isLoading, setLoading, login: storeLogin, logout: storeLogout } = authStore();
+  const {
+    user,
+    accessToken,
+    isAuthenticated,
+    isLoading,
+    setLoading,
+    login: storeLogin,
+    logout: storeLogout,
+  } = authStore();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -40,6 +52,35 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     initializeAuth();
   }, []);
+
+  useEffect(() => {
+    if (accessToken && user) {
+      wsMessageService.connect(accessToken, user.id);
+    } else {
+      wsMessageService.disconnect();
+    }
+  }, [accessToken, user]);
+
+  useEffect(() => {
+    const subscription = wsMessageService.notifications$.subscribe((notification) => {
+      if (notification.type === 'success') {
+        toast.success(notification.message);
+      } else if (notification.type === 'warning') {
+        toast.warning(notification.message);
+      } else if (notification.type === 'error') {
+        toast.error(notification.message);
+      } else {
+        toast.info(notification.message);
+      }
+
+      if (notification.event === 'new_application') {
+        queryClient.invalidateQueries({ queryKey: ['employerApplications'] });
+        queryClient.invalidateQueries({ queryKey: ['employerStats'] });
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [queryClient]);
 
   const getRedirectPath = (role: UserRole) => {
     switch (role) {

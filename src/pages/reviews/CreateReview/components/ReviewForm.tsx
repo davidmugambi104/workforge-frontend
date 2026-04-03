@@ -85,10 +85,10 @@ export const ReviewForm: React.FC = () => {
   return (
     <Card>
       <CardHeader>
-        <h2 className="text-xl font-semibold text-gray-900 text-[#1A1A1A]">
+        <h2 className="text-xl font-semibold text-[#1A1A1A]">
           Review Worker
         </h2>
-        <p className="text-sm text-gray-600 ">
+        <p className="text-sm text-gray-600">
           Job: {job.title} • Worker: {job.worker?.full_name}
         </p>
       </CardHeader>
@@ -170,7 +170,7 @@ export const ReviewForm: React.FC = () => {
             </h4>
             <ul className="text-xs text-blue-700 text-blue-400 space-y-1">
               <li>• Be honest and constructive in your feedback</li>
-              <li>• Focus on the work quality and professionalism</li>
+              <li>• Focus on work quality and reliability</li>
               <li>• Avoid personal attacks or inappropriate language</li>
               <li>• Don't include private contact information</li>
             </ul>

@@ -147,7 +147,7 @@ const ProfileTab: React.FC = () => {
       description="Update your company details and branding"
     >
       <div className="mb-6 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 text-sm text-slate-600">
-        Strong employer profiles get better applicants. Add a clear company name, website, contact phone, and a concise business description.
+        Strong employer profiles get better fundi requests. Add a clear company name, website, contact phone, and a concise business description.
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -156,7 +156,7 @@ const ProfileTab: React.FC = () => {
           value={formState.company_name}
           onChange={(e) => setFormState((prev) => ({ ...prev, company_name: e.target.value }))}
           placeholder="e.g. Mugambi Construction Ltd"
-          hint="Use the exact business name applicants will recognize."
+          hint="Use the exact business name fundis will recognize."
         />
         <FormField label="Industry">
           <select
@@ -185,7 +185,7 @@ const ProfileTab: React.FC = () => {
             value={formState.contact_email}
             onChange={(e) => setFormState((prev) => ({ ...prev, contact_email: e.target.value }))}
             placeholder="contact@company.com"
-            hint="This email is shown to applicants."
+            hint="This email is shown to interested fundis."
           />
         </FormField>
         <Input
@@ -194,7 +194,7 @@ const ProfileTab: React.FC = () => {
           value={formState.phone}
           onChange={(e) => setFormState((prev) => ({ ...prev, phone: e.target.value }))}
           placeholder="e.g. +254 700 000 000"
-          hint="Applicants may use this for urgent job communication."
+          hint="Fundis may use this for urgent job communication."
         />
         <FormField label="Company Size">
           <select
@@ -216,7 +216,7 @@ const ProfileTab: React.FC = () => {
           value={formState.website}
           onChange={(e) => setFormState((prev) => ({ ...prev, website: e.target.value }))}
           placeholder="https://yourcompany.com"
-          hint="A website improves trust and application quality."
+          hint="A website improves trust and request quality."
         />
       </div>
       <div className="mt-5">
@@ -226,7 +226,7 @@ const ProfileTab: React.FC = () => {
           value={formState.description}
           onChange={(e) => setFormState((prev) => ({ ...prev, description: e.target.value }))}
           placeholder="Tell workers what your company does, what kind of projects you handle, and why they should work with you."
-          hint="A clear description attracts more relevant applicants."
+          hint="A clear description attracts more relevant fundi requests."
         />
       </div>
       <div className="flex justify-end mt-5">
@@ -292,8 +292,8 @@ const NotificationsTab: React.FC = () => {
         <div className="space-y-4">
           <div className="flex items-center justify-between py-3 border-b border-charcoal-100">
             <div>
-              <p className="font-medium text-charcoal">New Applications</p>
-              <p className="text-sm text-muted">Get notified when someone applies to your jobs</p>
+              <p className="font-medium text-charcoal">New Work Requests</p>
+              <p className="text-sm text-muted">Get notified when someone requests your jobs</p>
             </div>
             <Toggle 
               enabled={settings.emailApplications} 
@@ -330,8 +330,8 @@ const NotificationsTab: React.FC = () => {
         <div className="space-y-4">
           <div className="flex items-center justify-between py-3 border-b border-charcoal-100">
             <div>
-              <p className="font-medium text-charcoal">Application Updates</p>
-              <p className="text-sm text-muted">Instant alerts for new applications</p>
+              <p className="font-medium text-charcoal">Request Updates</p>
+              <p className="text-sm text-muted">Instant alerts for new work requests</p>
             </div>
             <Toggle 
               enabled={settings.pushApplications} 
@@ -374,22 +374,16 @@ const SecurityTab: React.FC = () => {
     next: '',
     confirm: '',
   });
+
   const [sessions, setSessions] = useState([
-    {
-      id: 'current',
-      title: 'MacBook Pro - Chrome',
-      detail: 'Current session',
-      active: true,
-      icon: '💻',
-    },
-    {
-      id: 'mobile',
-      title: 'iPhone 14 - Safari',
-      detail: 'Last active 2 hours ago',
-      active: false,
-      icon: '📱',
-    },
+    { id: '1', title: 'Current Session', detail: 'Chrome on Linux • Active now', active: true, icon: '💻' },
+    { id: '2', title: 'Mobile App', detail: 'iOS • Last active 2 hours ago', active: false, icon: '📱' },
   ]);
+
+  const revokeSession = (sessionId: string) => {
+    setSessions(sessions.filter(s => s.id !== sessionId));
+    toast.success('Session revoked successfully');
+  };
 
   const updatePassword = async () => {
     if (!passwords.current || !passwords.next || !passwords.confirm) {
@@ -409,11 +403,6 @@ const SecurityTab: React.FC = () => {
 
     setPasswords({ current: '', next: '', confirm: '' });
     toast.success('Password updated successfully');
-  };
-
-  const revokeSession = (sessionId: string) => {
-    setSessions((prev) => prev.filter((session) => session.id !== sessionId));
-    toast.success('Session revoked');
   };
 
   return (
@@ -451,6 +440,17 @@ const SecurityTab: React.FC = () => {
             />
           </FormField>
           <button type="button" onClick={updatePassword} className="btn-primary">Update Password</button>
+        </div>
+
+        <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 p-4">
+          <p className="font-medium text-amber-900">Password Recovery Support</p>
+          <p className="mt-1 text-sm text-amber-800">
+            If Forgot Password does not deliver your reset code, contact support for private recovery.
+            A support admin can issue a one-time recovery code after identity verification.
+          </p>
+          <p className="mt-2 text-xs text-amber-700">
+            Recovery codes are private, short-lived, and never shown publicly.
+          </p>
         </div>
       </SectionCard>
 
@@ -503,7 +503,7 @@ const BillingTab: React.FC = () => (
           <h4 className="text-xl font-bold mt-1">Professional</h4>
           <p className="text-sm text-white/70 mt-1">$49/month • Billed monthly</p>
         </div>
-        <button type="button" onClick={() => window.location.assign('/payments')} className="btn bg-white text-navy hover:bg-white/90">Upgrade Plan</button>
+        <button type="button" onClick={() => window.location.assign('/payments')} className="btn-secondary">Upgrade Plan</button>
       </div>
     </SectionCard>
 

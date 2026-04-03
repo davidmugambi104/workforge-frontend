@@ -93,6 +93,13 @@ export const ForgotPasswordPage: React.FC = () => {
           <Button type="submit" fullWidth isLoading={isLoading}>
             Send Reset Code
           </Button>
+
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+            <p className="text-xs text-amber-800">
+              If you do not receive a reset code, contact support for private recovery.
+              Support can issue a short-lived one-time code after identity verification.
+            </p>
+          </div>
         </form>
       ) : (
         <form onSubmit={handleResetPassword} className="space-y-6">
@@ -150,12 +157,19 @@ export const ForgotPasswordPage: React.FC = () => {
           <Button type="button" variant="outline" fullWidth onClick={() => setStep('request')}>
             Use a Different Email
           </Button>
+
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+            <p className="text-xs text-amber-800">
+              Did not get a code? Contact support for private recovery and request an admin-issued
+              one-time reset code.
+            </p>
+          </div>
         </form>
       )}
 
       <Link
         to="/auth/login"
-        className="mt-6 flex items-center justify-center text-sm text-gray-600 hover:text-gray-900  hover:text-gray-100"
+        className="mt-6 flex items-center justify-center text-sm text-gray-600hover:text-gray-900  hover:text-gray-100"
       >
         <ArrowLeftIcon className="h-4 w-4 mr-2" />
         Back to sign in

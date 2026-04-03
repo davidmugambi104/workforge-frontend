@@ -48,7 +48,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
             <span className="font-semibold text-slate-900 bg-text-white">Menu</span>
             <button
               onClick={onClose}
-              className="text-slate-500 hover:text-slate-700 bg-hover:text-slate-300"
+              className="text-slate-500hover:text-slate-700 bg-hover:text-slate-300"
               aria-label="Close menu"
             >
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   <Avatar name={user?.username} size="sm" />
                   <div>
                     <div className="font-medium text-slate-900 bg-text-white">{user?.username}</div>
-                    <div className="text-xs text-slate-500 bg-text-slate-400">{user?.role}</div>
+                    <div className="text-xs text-slate-500bg-text-slate-400">{user?.role}</div>
                   </div>
                 </button>
 

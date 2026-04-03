@@ -39,7 +39,7 @@ const RejectModal: React.FC<RejectModalProps> = ({ isBulk, count, onClose, onCon
             <XCircleIcon className="h-6 w-6" />
           </button>
         </div>
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm text-gray-600mb-4">
           Please provide a reason for rejection. This will be sent to the user.
         </p>
         <textarea
@@ -128,10 +128,10 @@ export const AdminVerifications: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 text-[#1A1A1A]">
+          <h1 className="text-2xl lg:text-3xl font-bold text-[#1A1A1A]">
             Verification Queue
           </h1>
-          <p className="mt-1 text-slate-500 ">
+          <p className="mt-1 text-slate-500">
             Review and approve user verification requests
           </p>
         </div>
@@ -191,13 +191,13 @@ export const AdminVerifications: React.FC = () => {
         </div>
       ) : queue?.verifications?.length === 0 ? (
         <Card className="p-8 lg:p-12 text-center">
-          <div className="w-20 h-20 rounded-full bg-green-100 bg-green-900/30 flex items-center justify-center mx-auto mb-4">
+          <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
             <ShieldCheckIcon className="h-10 w-10 text-green-600" />
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 text-[#1A1A1A] mb-2">
+          <h2 className="text-xl font-semibold text-[#1A1A1A] mb-2">
             All Caught Up!
           </h2>
-          <p className="text-slate-500 ">
+          <p className="text-slate-500">
             No pending verifications in the queue
           </p>
         </Card>
@@ -230,12 +230,12 @@ export const AdminVerifications: React.FC = () => {
 
                 {/* User Info */}
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="w-12 h-12 rounded-xl bg-blue-100 bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
                     <UserIcon className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-gray-900 text-[#1A1A1A]">
+                      <h3 className="font-semibold text-[#1A1A1A]">
                         {verification.user.username}
                       </h3>
                       <Badge variant={verification.user.role === 'worker' ? 'info' : 'default'}>

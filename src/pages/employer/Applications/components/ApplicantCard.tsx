@@ -51,7 +51,7 @@ export const ApplicantCard: React.FC<ApplicantCardProps> = ({ application, onSta
             </div>
             <div>
               <h3 className="font-semibold employer-text-primary">
-                {application.worker?.full_name || 'Unknown Applicant'}
+                {application.worker?.full_name || 'Unknown Fundi'}
               </h3>
               {application.worker?.title && (
                 <p className="text-sm employer-text-muted">
@@ -68,7 +68,7 @@ export const ApplicantCard: React.FC<ApplicantCardProps> = ({ application, onSta
           )}
 
           <div className="flex items-center gap-4 mt-2 text-xs employer-text-muted">
-            <span>Applied {formatDate(application.created_at)}</span>
+            <span>Requested {formatDate(application.created_at)}</span>
             {application.worker?.average_rating && (
               <span className="flex items-center gap-1">
                 <StarIcon className="h-4 w-4 text-yellow-400" />
@@ -110,12 +110,12 @@ export const ApplicantCard: React.FC<ApplicantCardProps> = ({ application, onSta
             >
               Reject
             </Button>
-            <Button
+              <Button
               size="sm"
               className="rounded-xl employer-button-primary shadow-sm active:scale-95"
               onClick={() => onStatusChange(ApplicationStatus.ACCEPTED)}
             >
-              Accept
+                Hire Fundi
             </Button>
           </>
         )}

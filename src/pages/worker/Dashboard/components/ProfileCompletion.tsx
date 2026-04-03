@@ -75,7 +75,7 @@ export const ProfileCompletion: React.FC = () => {
                 {completion}% Complete
               </span>
               <span className={`text-sm font-medium ${isComplete ? 'text-success-600' : 'text-warning-600'}`}>
-                {isComplete ? 'Ready to apply!' : 'Needs attention'}
+                {isComplete ? 'Ready to request!' : 'Needs attention'}
               </span>
             </div>
             <div className="w-full bg-slate-200 rounded-full h-2.5 bg-slate-700 overflow-hidden">
@@ -99,7 +99,7 @@ export const ProfileCompletion: React.FC = () => {
                   </li>
                 ))}
                 {missingItems.length > 3 && (
-                  <li className="text-sm text-slate-500 text-slate-500">
+                  <li className="text-sm text-slate-500text-slate-500">
                     +{missingItems.length - 3} more items
                   </li>
                 )}

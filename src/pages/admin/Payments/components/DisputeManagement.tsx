@@ -88,7 +88,7 @@ export const DisputeManagement: React.FC = () => {
             {data?.disputes.length === 0 ? (
               <div className="text-center py-6">
                 <ExclamationTriangleIcon className="w-12 h-12 mx-auto text-slate-400" />
-                <p className="mt-2 text-sm text-slate-500 ">
+                <p className="mt-2 text-sm text-slate-500">
                   No active disputes
                 </p>
               </div>
@@ -103,7 +103,7 @@ export const DisputeManagement: React.FC = () => {
                       <ExclamationTriangleIcon className="w-5 h-5 text-red-500 mt-0.5" />
                       <div>
                         <div className="flex items-center space-x-2">
-                          <h4 className="font-medium text-gray-900 text-[#1A1A1A]">
+                          <h4 className="font-medium text-[#1A1A1A]">
                             Dispute #{dispute.id}
                           </h4>
                           <Badge variant={priorityColors[dispute.priority] as any} size="sm">
@@ -113,7 +113,7 @@ export const DisputeManagement: React.FC = () => {
                             {dispute.status}
                           </Badge>
                         </div>
-                        <p className="text-sm text-gray-600  mt-1">
+                        <p className="text-sm text-gray-600mt-1">
                           {dispute.reason}
                         </p>
                       </div>
@@ -127,23 +127,23 @@ export const DisputeManagement: React.FC = () => {
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 text-sm">
-                    <div className="flex items-center text-gray-600 ">
+                    <div className="flex items-center text-gray-600">
                       <UserIcon className="w-4 h-4 mr-2" />
                       <span>
                         {dispute.initiated_by === 'employer' ? 'Employer' : 'Worker'}
                       </span>
                     </div>
-                    <div className="flex items-center text-gray-600 ">
+                    <div className="flex items-center text-gray-600">
                       <BriefcaseIcon className="w-4 h-4 mr-2" />
                       <span>Job #{dispute.job_id}</span>
                     </div>
-                    <div className="flex items-center text-gray-600 ">
+                    <div className="flex items-center text-gray-600">
                       <CurrencyDollarIcon className="w-4 h-4 mr-2" />
                       <span>${dispute.payment_id}</span>
                     </div>
                   </div>
 
-                  <div className="text-xs text-slate-500 text-slate-500">
+                  <div className="text-xs text-slate-500text-slate-500">
                     Created {format(new Date(dispute.created_at), 'MMM dd, yyyy h:mm a')}
                   </div>
                 </div>
@@ -170,12 +170,12 @@ export const DisputeManagement: React.FC = () => {
                 <h4 className="text-sm font-medium text-slate-700  mb-2">
                   Dispute Details
                 </h4>
-                <p className="text-sm text-gray-600 ">
+                <p className="text-sm text-gray-600">
                   {selectedDispute.description}
                 </p>
                 {selectedDispute.evidence_urls && (
                   <div className="mt-3">
-                    <p className="text-xs font-medium text-slate-500  mb-2">
+                    <p className="text-xs font-medium text-slate-500 mb-2">
                       Evidence:
                     </p>
                     <div className="flex space-x-2">
@@ -228,7 +228,7 @@ export const DisputeManagement: React.FC = () => {
                     <label className="block text-sm font-medium text-slate-700  mb-1">
                       Payment Amount
                     </label>
-                    <p className="text-lg font-semibold text-gray-900 text-[#1A1A1A]">
+                    <p className="text-lg font-semibold text-[#1A1A1A]">
                       {formatCurrency(selectedDispute.payment_id)} {/* This should be payment.amount */}
                     </p>
                   </div>

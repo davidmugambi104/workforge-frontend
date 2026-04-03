@@ -73,7 +73,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({
       </form>
 
       {value?.address && (
-        <div className="text-sm text-gray-600 bg-text-gray-400">
+        <div className="text-sm text-gray-600bg-text-gray-400">
           Selected: {value.address}
         </div>
       )}

@@ -19,17 +19,18 @@ export const Hero: React.FC = () => {
   }, []);
 
   const stats = [
-    { value: '10K+', label: 'Active Workers', icon: Users },
-    { value: '5K+', label: 'Verified Employers', icon: Building2 },
-    { value: '$2M+', label: 'Payments Made', icon: DollarSign },
+    { value: '10K+', label: 'Skilled Fundis', icon: Users },
+    { value: '2K+', label: 'Businesses Hiring', icon: Building2 },
+    { value: 'KSh 50M+', label: 'Paid to Workers', icon: DollarSign },
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 overflow-hidden">
-      {/* Background decoration */}
+    <div className="relative min-h-screen bg-gradient-to-br from-orange-50 via-white to-yellow-50 overflow-hidden">
+      {/* Background decoration - warm colors */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-[#0F2137]/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-[#0F2137]/5 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-orange-200/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-yellow-200/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-orange-100/10 rounded-full blur-3xl" />
       </div>
 
       {/* Navigation */}
@@ -51,21 +52,21 @@ export const Hero: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-20">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F2137]/5 border border-[#0F2137]/10 mb-8">
-            <Sparkles className="w-4 h-4 text-[#0F2137]" />
-            <span className="text-sm font-medium text-[#0F2137]">Trusted by Industry Leaders</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 border border-orange-300 mb-8">
+            <Sparkles className="w-4 h-4 text-orange-600" />
+            <span className="text-sm font-medium text-orange-700">10,000+ Fundis Earning Daily</span>
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A1A1A] tracking-tight leading-tight mb-6 max-w-3xl">
-            Your Next
-            <span className="text-[#0F2137]"> Great Opportunity</span>
-            <span className="block text-[#1A1A1A]">Awaits</span>
+            Find Work TODAY.
+            <span className="text-orange-600"> Get Paid FAST.</span>
+            <span className="block text-[#1A1A1A]">No Waiting.</span>
           </h1>
 
           {/* Subheading */}
           <p className="text-lg text-[#525252] leading-relaxed mb-8 max-w-xl">
-            WorkForge connects talented professionals with employers who value their skills. Whether you're looking for your next role or searching for top talent, we make it happen—fast, fair, and transparent.
+            Real jobs. Real money. Real fast. Post your skills, get work in minutes, earn same-day payment. For fundis in Kenya.
           </p>
 
           {/* Trust indicators */}
@@ -86,13 +87,13 @@ export const Hero: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Link to="/jobs" className="btn-primary px-8 py-4 text-base">
+            <Link to="/jobs" className="btn-primary px-8 py-4 text-base bg-orange-600 hover:bg-orange-700">
               <Search className="w-5 h-5" />
-              Find Work Now
+              Find Work
             </Link>
-            <Link to="/auth/register?role=employer" className="btn-secondary px-8 py-4 text-base">
+            <Link to="/auth/register?role=employer" className="btn-secondary px-8 py-4 text-base border-orange-600 text-orange-600 hover:bg-orange-50">
               <Briefcase className="w-5 h-5" />
-              Post a Job Free
+              Hire a Fundi
             </Link>
           </div>
 

@@ -9,8 +9,8 @@ const workerSteps = [
     icon: UserPlus,
   },
   {
-    title: 'Find & Apply',
-    description: 'Search for jobs that match your skills and apply',
+    title: 'Find & Request',
+    description: 'Search for jobs that match your skills and send a work request',
     icon: FileText,
   },
   {
@@ -33,7 +33,7 @@ const employerSteps = [
   },
   {
     title: 'Hire & Manage',
-    description: 'Review applications, hire workers, and manage projects',
+    description: 'Review work requests, hire fundis, and manage projects',
     icon: ThumbsUp,
   },
 ];

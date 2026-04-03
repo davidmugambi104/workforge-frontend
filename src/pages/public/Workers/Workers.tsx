@@ -82,7 +82,7 @@ const Workers: React.FC = () => {
     <div className="min-h-screen bg-gray-50 bg-gray-900">
       <div className="bg-white bg-gray-800 border-b border-gray-200 border-gray-700">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl font-bold text-gray-900 text-[#1A1A1A] mb-6">
+          <h1 className="text-3xl font-bold text-[#1A1A1A] mb-6">
             Find Skilled Workers
           </h1>
 
@@ -176,7 +176,7 @@ const Workers: React.FC = () => {
 
                 <div className="flex items-end">
                   <Button onClick={handleSearch} className="w-full">
-                    Apply Filters
+                    Update Results
                   </Button>
                 </div>
               </div>
@@ -194,12 +194,12 @@ const Workers: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Results Header */}
         <div className="flex items-center justify-between mb-6">
-          <p className="text-gray-600 ">
+          <p className="text-gray-600">
             {isLoading ? (
               'Loading...'
             ) : (
               <>
-                <span className="font-semibold text-gray-900 text-[#1A1A1A]">
+                <span className="font-semibold text-[#1A1A1A]">
                   {workers?.length || 0}
                 </span>{' '}
                 workers found
@@ -223,8 +223,7 @@ const Workers: React.FC = () => {
               <Link key={worker.id} to={`/workers/${worker.id}`}>
                 <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                   <div className="flex flex-col h-full">
-                    {/* Profile Picture and Verification */}
-                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
                         {worker.profile_picture ? (
                           <img
@@ -238,14 +237,28 @@ const Workers: React.FC = () => {
                           </div>
                         )}
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] flex items-center gap-2">
-                            {worker.full_name}
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="text-lg font-semibold text-[#1A1A1A]">
+                              {worker.full_name}
+                            </h3>
                             {worker.is_verified && (
                               <CheckBadgeIcon className="h-5 w-5 text-primary-600" />
                             )}
-                          </h3>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {worker.is_verified && (
+                              <Badge className="bg-emerald-100 text-emerald-700 text-xs border-0">
+                                ⚡ Verified
+                              </Badge>
+                            )}
+                            {worker.average_rating >= 4.5 && (
+                              <Badge className="bg-orange-100 text-orange-700 text-xs border-0">
+                                🔥 Top Rated
+                              </Badge>
+                            )}
+                          </div>
                           {worker.title && (
-                            <p className="text-sm text-gray-600 ">
+                            <p className="text-sm text-gray-600 mt-1">
                               {worker.title}
                             </p>
                           )}
@@ -261,7 +274,7 @@ const Workers: React.FC = () => {
                           {worker.average_rating.toFixed(1)}
                         </span>
                         {worker.total_ratings > 0 && (
-                          <span className="text-xs text-slate-500 ">
+                          <span className="text-xs text-slate-500">
                             ({worker.total_ratings} reviews)
                           </span>
                         )}
@@ -278,24 +291,24 @@ const Workers: React.FC = () => {
                     {/* Details */}
                     <div className="mt-auto space-y-2">
                       {worker.address && (
-                        <div className="flex items-center text-sm text-gray-600 ">
+                        <div className="flex items-center text-sm text-gray-600">
                           <MapPinIcon className="h-4 w-4 mr-2 flex-shrink-0" />
                           <span className="truncate">{worker.address}</span>
                         </div>
                       )}
                       {worker.hourly_rate && (
-                        <div className="flex items-center text-sm font-semibold text-gray-900 text-[#1A1A1A]">
+                        <div className="flex items-center text-sm font-semibold text-[#1A1A1A]">
                           <CurrencyDollarIcon className="h-4 w-4 mr-2 flex-shrink-0" />
                           <span>${worker.hourly_rate}/hour</span>
                         </div>
                       )}
                       {worker.years_experience && (
-                        <div className="flex items-center text-sm text-gray-600 ">
+                        <div className="flex items-center text-sm text-gray-600">
                           <span>{worker.years_experience} years experience</span>
                         </div>
                       )}
                       {worker.completed_jobs > 0 && (
-                        <div className="flex items-center text-sm text-gray-600 ">
+                        <div className="flex items-center text-sm text-gray-600">
                           <span>{worker.completed_jobs} jobs completed</span>
                         </div>
                       )}
@@ -327,10 +340,10 @@ const Workers: React.FC = () => {
           <Card className="p-12">
             <div className="text-center">
               <UserCircleIcon className="h-16 w-16 mx-auto text-slate-400 mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-2">
+              <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">
                 No workers found
               </h3>
-              <p className="text-gray-600  mb-6">
+              <p className="text-gray-600mb-6">
                 Try adjusting your search criteria or filters
               </p>
               <Button onClick={clearFilters}>Clear Filters</Button>

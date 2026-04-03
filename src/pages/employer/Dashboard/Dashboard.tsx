@@ -174,7 +174,7 @@ const Dashboard = () => {
 
   const recentApplicants: Applicant[] = applications.slice(0, 6).map((application) => ({
     id: application.id,
-    name: application.worker?.full_name || `Applicant #${application.worker_id || application.id}`,
+    name: application.worker?.full_name || `Fundi #${application.worker_id || application.id}`,
     role: application.job?.title || 'Worker',
     applied: application.created_at ? new Date(application.created_at).toLocaleDateString() : '—',
   }));
@@ -185,7 +185,7 @@ const Dashboard = () => {
       <div className="page-header flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="page-title">Dashboard</h1>
-          <p className="page-subtitle">Welcome back! Here's your hiring overview.</p>
+          <p className="page-subtitle">Welcome back! Here's your fundi hiring overview.</p>
         </div>
         <Link to="/employer/post-job">
           <button className="btn-primary">
@@ -205,7 +205,7 @@ const Dashboard = () => {
           variant="gradient"
         />
         <StatCard 
-          label="Total Applicants" 
+          label="Total Requests" 
           value={dashboardStats.totalApplicants} 
           icon={<UserGroupIcon className="w-6 h-6" />}
           trend={12.1}
@@ -241,7 +241,7 @@ const Dashboard = () => {
                   <tr>
                     <th>Job Title</th>
                     <th>Status</th>
-                    <th>Applicants</th>
+                    <th>Requests</th>
                     <th>Views</th>
                     <th>Posted</th>
                     <th></th>
@@ -262,10 +262,10 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Recent Applicants */}
+        {/* Recent Fundis */}
         <div className="solid-card">
           <div className="card-header flex items-center justify-between">
-            <h3 className="section-title">Recent Applicants</h3>
+            <h3 className="section-title">Recent Fundis</h3>
             <Link to="/employer/applications" className="text-sm font-medium text-navy hover:underline">
               View all
             </Link>
@@ -274,7 +274,7 @@ const Dashboard = () => {
             {recentApplicants.map((applicant) => (
               <ApplicantCard key={applicant.id} applicant={applicant} />
             ))}
-            {applicationsLoading && <p className="text-sm text-muted">Loading applicants...</p>}
+            {applicationsLoading && <p className="text-sm text-muted">Loading fundis...</p>}
           </div>
         </div>
       </div>
@@ -290,8 +290,8 @@ const Dashboard = () => {
             to="/employer/post-job"
           />
           <QuickActionCard
-            title="Review Applications"
-            description="Check pending applications"
+            title="Review Work Requests"
+            description="Check pending fundi requests"
             icon={<UserGroupIcon className="w-6 h-6" />}
             to="/employer/applications"
           />

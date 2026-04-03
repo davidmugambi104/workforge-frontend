@@ -6,6 +6,7 @@ import axios, { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { ENV } from '@config/env';
 import { authStore } from '@store/auth.store';
+import { extractApiErrorMessage, normalizeAxiosErrorPayload } from '@utils/error';
 
 class ApiClient {
   private client: AxiosInstance;
@@ -45,8 +46,12 @@ class ApiClient {
       (response) => response,
       async (error: AxiosError) => {
         const originalRequest = error.config as any;
+        normalizeAxiosErrorPayload(error);
+        const requestUrl = String(originalRequest?.url || '');
+        const isAuthRequest = requestUrl.includes('/auth/login') || requestUrl.includes('/auth/register');
+        const hasSessionTokens = Boolean(authStore.getState().accessToken && authStore.getState().refreshToken);
 
-        if (error.response?.status === 401 && !originalRequest._retry) {
+        if (error.response?.status === 401 && !originalRequest._retry && !isAuthRequest && hasSessionTokens) {
           if (this.isRefreshing) {
             // Queue request while token is refreshing
             return new Promise((onSuccess, onFailure) => {
@@ -99,11 +104,7 @@ class ApiClient {
           // Allow silencing errors with a config flag
           const silentError = (error.config as any)?.silentError;
           if (!silentError) {
-            const message =
-              (error.response?.data as any)?.message ||
-              (error.response?.data as any)?.error ||
-              error.message ||
-              'An error occurred';
+            const message = extractApiErrorMessage(error, 'An error occurred');
             toast.error(message);
           }
         }

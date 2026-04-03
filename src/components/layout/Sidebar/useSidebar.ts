@@ -22,7 +22,7 @@ const workerSections: SidebarSection[] = [
     items: [
       { id: 'worker-dashboard', label: 'Dashboard', to: '/worker/dashboard', icon: HomeIcon },
       { id: 'worker-jobs', label: 'Jobs', to: '/worker/jobs', icon: BriefcaseIcon },
-      { id: 'worker-applications', label: 'Applications', to: '/worker/applications', icon: ClipboardDocumentCheckIcon },
+      { id: 'worker-applications', label: 'Work Requests', to: '/worker/applications', icon: ClipboardDocumentCheckIcon },
       { id: 'worker-reviews', label: 'Reviews', to: '/worker/reviews', icon: StarIcon },
     ],
   },
@@ -42,7 +42,7 @@ const employerSections: SidebarSection[] = [
     items: [
       { id: 'employer-dashboard', label: 'Dashboard', to: '/employer/dashboard', icon: HomeIcon },
       { id: 'employer-jobs', label: 'Jobs', to: '/employer/jobs', icon: BriefcaseIcon },
-      { id: 'employer-applications', label: 'Applications', to: '/employer/applications', icon: ClipboardDocumentCheckIcon },
+      { id: 'employer-applications', label: 'Work Requests', to: '/employer/applications', icon: ClipboardDocumentCheckIcon },
       { id: 'employer-workers', label: 'Workers', to: '/employer/workers', icon: UsersIcon },
       { id: 'employer-reviews', label: 'Reviews', to: '/employer/reviews', icon: StarIcon },
     ],

@@ -38,34 +38,34 @@ const About: React.FC = () => {
   // Core values data
   const coreValues = [
     {
-      icon: Shield,
-      title: 'Trust & Verification',
-      description: 'Every worker and employer is verified to ensure a safe, reliable community.'
+      icon: DollarSign,
+      title: 'Fast Payment',
+      description: 'Get paid within 24 hours. No delays. No excuses. Money moves as quickly as the work gets done.'
     },
     {
       icon: Users,
-      title: 'Opportunity for All',
-      description: 'We break down barriers to connect skilled workers with meaningful work.'
+      title: 'Real Jobs for Fundis',
+      description: 'We connect you directly with employers who need your skills. No fake listings. Real work, real pay.'
     },
     {
       icon: Zap,
-      title: 'Speed in Hiring',
-      description: 'Streamlined processes help employers find the right talent in hours, not weeks.'
+      title: 'Work Starts Today',
+      description: 'Find a job this morning, start this afternoon. No weeks of bureaucracy. Speed matters.'
     },
     {
-      icon: DollarSign,
-      title: 'Fair Payments',
-      description: 'Transparent, secure, and timely payments for every completed job.'
+      icon: Shield,
+      title: 'Your Money Is Safe',
+      description: 'Payment held secure until work is done. Then straight to your M-Pesa. No disputes, no delays.'
     },
     {
       icon: Heart,
-      title: 'Community & Growth',
-      description: 'We foster a supportive environment where workers can build skills and thrive.'
+      title: 'Fundis Supporting Fundis',
+      description: 'Real reputation system. Your work speaks for itself. Good work = More jobs = More income.'
     },
     {
       icon: Target,
-      title: 'Quality First',
-      description: 'Ratings and reviews ensure high standards and continuous improvement.'
+      title: 'Earn Local, Stay Local',
+      description: 'Work near your home. No transport cost waste. More availability = More jobs = More income.'
     }
   ];
 
@@ -73,33 +73,33 @@ const About: React.FC = () => {
   const features = [
     {
       icon: CheckCircle,
-      title: 'Verified Workers',
-      description: 'Identity and skill verification for peace of mind.'
+      title: 'Reputation Builder',
+      description: 'Every completed job builds your profile. Real reviews from real employers.'
     },
     {
       icon: Sparkles,
-      title: 'Smart Job Matching',
-      description: 'AI-powered recommendations connect the right worker to the right job.'
+      title: 'Find Jobs in Seconds',
+      description: 'Browse local jobs that match your skills. Send a request in one tap.'
     },
     {
       icon: MessageCircle,
-      title: 'Secure Messaging',
-      description: 'Real‑time chat with built‑in safety and file sharing.'
+      title: 'Talk Direct to Employers',
+      description: 'No waiting. Message opens to jobs. Quick replies = more income.'
     },
     {
       icon: Rocket,
-      title: 'Fast Payments',
-      description: 'Escrow‑protected payments released automatically upon completion.'
+      title: 'Get Paid Same Day',
+      description: 'Complete work, get paid within 24 hours to M-Pesa.'
     },
     {
       icon: Briefcase,
-      title: 'Role Dashboards',
-      description: 'Personalized views for workers, employers, and admins.'
+      title: 'Your Earnings Dashboard',
+      description: 'Track all your work, money earned, ratings, and available gigs.'
     },
     {
       icon: Globe,
-      title: 'Global Reach',
-      description: 'Connect with opportunities and talent from around the world.'
+      title: 'Work Near Home',
+      description: 'Find jobs in your area. Save transport. More time working.'
     }
   ];
 
@@ -112,7 +112,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 md:pt-28 md:pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-grid-slate-100 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
@@ -129,14 +129,14 @@ const About: React.FC = () => {
               variants={fadeInUp}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight mb-6"
             >
-              Building the future of work,
-              <span className="text-blue-600"> together</span>
+              Work happens fast.
+              <span className="text-blue-600"> Get paid faster.</span>
             </motion.h1>
             <motion.p 
               variants={fadeInUp}
               className="text-xl text-slate-600 max-w-3xl mx-auto"
             >
-              WorkForge is the modern workforce platform that connects verified skilled workers with employers who need them — fast, fair, and frictionless.
+              WorkForge connects Kenyan fundis directly with real jobs. No middleman. No delays. Work, get paid, build your reputation.
             </motion.p>
           </motion.div>
         </div>
@@ -154,10 +154,10 @@ const About: React.FC = () => {
             >
               <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Story</h2>
               <p className="text-lg text-slate-600 mb-4">
-                WorkForge was born from a simple observation: the hiring process for skilled trades and freelance work was broken. It was slow, opaque, and often unfair.
+                Fundis in Kenya were getting the short end of the deal. Employers didn't know who to trust. Workers waited weeks for payment. There had to be a better way.
               </p>
               <p className="text-lg text-slate-600">
-                We set out to build a platform that combines the trust of LinkedIn, the efficiency of Upwork, and the reach of Indeed — tailored specifically for the modern workforce. Today, WorkForge empowers thousands of workers and employers to connect, collaborate, and grow together.
+                WorkForge started with one goal: connect skilled workers directly to real jobs, fast payment, and real respect. No LinkedIn-style profile hunting. No weeks of back-and-forth. Just fundis getting work, getting paid quick, and building their reputation.
               </p>
             </motion.div>
 
@@ -173,7 +173,7 @@ const About: React.FC = () => {
                     <Target className="h-8 w-8 text-blue-600 mb-3" />
                     <h3 className="text-xl font-semibold text-slate-900 mb-2">Our Mission</h3>
                     <p className="text-slate-600">
-                      Empower workers with opportunity and simplify hiring so every connection leads to growth and success.
+                      Get fundis paid fast and help employers find trusted workers. No delays. No games. Real work, real pay.
                     </p>
                   </CardBody>
                 </Card>
@@ -191,7 +191,7 @@ const About: React.FC = () => {
                     <Globe className="h-8 w-8 text-purple-600 mb-3" />
                     <h3 className="text-xl font-semibold text-slate-900 mb-2">Our Vision</h3>
                     <p className="text-slate-600">
-                      A world where talent has no boundaries — a truly global, inclusive workforce platform that fuels economic opportunity for everyone.
+                      Every fundi in Kenya finds good work fast. Every employer finds reliable, skilled workers. Same day. No delays.
                     </p>
                   </CardBody>
                 </Card>
@@ -323,7 +323,7 @@ const About: React.FC = () => {
               Ready to join the future of work?
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Whether you're a skilled worker looking for your next opportunity or an employer needing talent fast, WorkForge is here to help.
+              Whether you're a skilled fundi looking for your next job or an employer needing a worker fast, WorkForge is here to help.
             </motion.p>
             <motion.div 
               variants={fadeInUp}

@@ -13,7 +13,7 @@ export const Tabs: React.FC<TabsProps> = ({
   const variants = {
     default: {
       container: 'border-b border-slate-200',
-      tab: 'px-4 py-3 text-sm font-medium text-slate-500 hover:text-slate-700',
+      tab: 'px-4 py-3 text-sm font-medium text-slate-500hover:text-slate-700',
       active: 'border-b-2 border-[#0A2540] text-[#0A2540]',
       disabled: 'opacity-50 cursor-not-allowed',
     },
@@ -25,7 +25,7 @@ export const Tabs: React.FC<TabsProps> = ({
     },
     underline: {
       container: '',
-      tab: 'px-1 py-2 text-sm font-medium text-slate-500 hover:text-slate-700',
+      tab: 'px-1 py-2 text-sm font-medium text-slate-500hover:text-slate-700',
       active: 'border-b-2 border-[#0A2540] text-[#0A2540]',
       disabled: 'opacity-50 cursor-not-allowed',
     },

@@ -177,12 +177,12 @@ export const AdminDashboard: React.FC = () => {
         {/* Workers */}
         <Card className="p-4 lg:p-6" hoverable>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-indigo-100 bg-indigo-900/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center">
               <UsersIcon className="h-5 w-5 text-indigo-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 ">Workers</p>
-              <p className="text-lg font-bold text-gray-900 text-[#1A1A1A]">
+              <p className="text-xs text-slate-500">Workers</p>
+              <p className="text-lg font-bold text-[#1A1A1A]">
                 {kpisLoading ? <Skeleton className="h-6 w-12" /> : kpis?.users.workers || 0}
               </p>
             </div>
@@ -192,12 +192,12 @@ export const AdminDashboard: React.FC = () => {
         {/* Employers */}
         <Card className="p-4 lg:p-6" hoverable>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-pink-100 bg-pink-900/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center">
               <BriefcaseIcon className="h-5 w-5 text-pink-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 ">Employers</p>
-              <p className="text-lg font-bold text-gray-900 text-[#1A1A1A]">
+              <p className="text-xs text-slate-500">Employers</p>
+              <p className="text-lg font-bold text-[#1A1A1A]">
                 {kpisLoading ? <Skeleton className="h-6 w-12" /> : kpis?.users.employers || 0}
               </p>
             </div>
@@ -207,12 +207,12 @@ export const AdminDashboard: React.FC = () => {
         {/* Open Disputes */}
         <Card className="p-4 lg:p-6" hoverable>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-red-100 bg-red-900/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center">
               <ExclamationTriangleIcon className="h-5 w-5 text-red-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 ">Open Disputes</p>
-              <p className="text-lg font-bold text-gray-900 text-[#1A1A1A]">
+              <p className="text-xs text-slate-500">Open Disputes</p>
+              <p className="text-lg font-bold text-[#1A1A1A]">
                 {kpisLoading ? <Skeleton className="h-6 w-12" /> : kpis?.disputes.open || 0}
               </p>
             </div>
@@ -222,12 +222,12 @@ export const AdminDashboard: React.FC = () => {
         {/* Verified Workers */}
         <Card className="p-4 lg:p-6" hoverable>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-green-100 bg-green-900/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
               <ShieldCheckIcon className="h-5 w-5 text-green-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 ">Verified Workers</p>
-              <p className="text-lg font-bold text-gray-900 text-[#1A1A1A]">
+              <p className="text-xs text-slate-500">Verified Workers</p>
+              <p className="text-lg font-bold text-[#1A1A1A]">
                 {kpisLoading ? <Skeleton className="h-6 w-12" /> : kpis?.users.verified_workers || 0}
               </p>
             </div>
@@ -239,7 +239,7 @@ export const AdminDashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Quick Actions */}
         <Card className="p-4 lg:p-6">
-          <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-4">Quick Actions</h3>
+          <h3 className="text-lg font-semibold text-[#1A1A1A] mb-4">Quick Actions</h3>
           <div className="space-y-3">
             <Link to="/admin/users">
               <Button variant="outline" className="w-full justify-start" leftIcon={<UsersIcon className="h-5 w-5" />}>
@@ -270,8 +270,8 @@ export const AdminDashboard: React.FC = () => {
         {/* Recent Activity */}
         <Card className="p-4 lg:p-6 lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A]">Recent Activity</h3>
-            <Link to="/admin/audit-log" className="text-sm text-blue-600 text-blue-400 hover:underline">
+            <h3 className="text-lg font-semibold text-[#1A1A1A]">Recent Activity</h3>
+            <Link to="/admin/audit-log" className="text-sm text-blue-600 hover:underline">
               View All
             </Link>
           </div>
@@ -285,11 +285,11 @@ export const AdminDashboard: React.FC = () => {
               {/* Users */}
               {activity?.users?.slice(0, 3).map((user: any) => (
                 <div key={`user-${user.id}`} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 hover:bg-gray-800/50">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 bg-blue-900/30 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
                     <UsersIcon className="h-4 w-4 text-blue-600" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 text-[#1A1A1A] truncate">
+                    <p className="text-sm font-medium text-[#1A1A1A] truncate">
                       New user: {user.username}
                     </p>
                     <p className="text-xs text-slate-500">{formatDate(user.created_at)}</p>
@@ -301,11 +301,11 @@ export const AdminDashboard: React.FC = () => {
               {/* Jobs */}
               {activity?.jobs?.slice(0, 2).map((job: any) => (
                 <div key={`job-${job.id}`} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 hover:bg-gray-800/50">
-                  <div className="w-8 h-8 rounded-full bg-purple-100 bg-purple-900/30 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
                     <BriefcaseIcon className="h-4 w-4 text-purple-600" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 text-[#1A1A1A] truncate">
+                    <p className="text-sm font-medium text-[#1A1A1A] truncate">
                       {job.title}
                     </p>
                     <p className="text-xs text-slate-500">{job.status} • {formatDate(job.created_at)}</p>
@@ -316,11 +316,11 @@ export const AdminDashboard: React.FC = () => {
               {/* Disputes */}
               {activity?.disputes?.slice(0, 2).map((dispute: any) => (
                 <div key={`dispute-${dispute.id}`} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 hover:bg-gray-800/50">
-                  <div className="w-8 h-8 rounded-full bg-red-100 bg-red-900/30 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
                     <ExclamationTriangleIcon className="h-4 w-4 text-red-600" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 text-[#1A1A1A] truncate">
+                    <p className="text-sm font-medium text-[#1A1A1A] truncate">
                       Dispute #{dispute.id}: {dispute.dispute_type}
                     </p>
                     <p className="text-xs text-slate-500">{dispute.status} • {formatDate(dispute.created_at)}</p>
@@ -330,7 +330,7 @@ export const AdminDashboard: React.FC = () => {
               ))}
               
               {(!activity?.users?.length && !activity?.jobs?.length && !activity?.disputes?.length) && (
-                <p className="text-center text-slate-500  py-8">
+                <p className="text-center text-slate-500 py-8">
                   No recent activity
                 </p>
               )}
@@ -341,19 +341,19 @@ export const AdminDashboard: React.FC = () => {
 
       {/* Platform Health */}
       <Card className="p-4 lg:p-6">
-        <h3 className="text-lg font-semibold text-gray-900 text-[#1A1A1A] mb-4">Platform Health</h3>
+        <h3 className="text-lg font-semibold text-[#1A1A1A] mb-4">Platform Health</h3>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="p-4 rounded-xl bg-green-50 bg-green-900/20">
             <div className="flex items-center gap-2 mb-2">
               <CheckCircleIcon className="h-5 w-5 text-green-600" />
-              <span className="font-medium text-green-800 text-green-400">System Status</span>
+              <span className="font-medium text-green-800">System Status</span>
             </div>
             <p className="text-2xl font-bold text-green-700 text-green-300">Healthy</p>
           </div>
           <div className="p-4 rounded-xl bg-blue-50 bg-blue-900/20">
             <div className="flex items-center gap-2 mb-2">
               <ShieldCheckIcon className="h-5 w-5 text-blue-600" />
-              <span className="font-medium text-blue-800 text-blue-400">Verification Rate</span>
+              <span className="font-medium text-blue-800">Verification Rate</span>
             </div>
             <p className="text-2xl font-bold text-blue-700 text-blue-300">
               {kpisLoading ? <Skeleton className="h-8 w-16" /> : `${kpis?.platform_health.verification_rate || 0}%`}
@@ -371,7 +371,7 @@ export const AdminDashboard: React.FC = () => {
           <div className="p-4 rounded-xl bg-amber-50 bg-amber-900/20">
             <div className="flex items-center gap-2 mb-2">
               <ClockIcon className="h-5 w-5 text-amber-600" />
-              <span className="font-medium text-amber-800 text-amber-400">Pending Payments</span>
+              <span className="font-medium text-amber-800">Pending Payments</span>
             </div>
             <p className="text-2xl font-bold text-amber-700 text-amber-300">
               {kpisLoading ? <Skeleton className="h-8 w-16" /> : kpis?.payments.pending || 0}

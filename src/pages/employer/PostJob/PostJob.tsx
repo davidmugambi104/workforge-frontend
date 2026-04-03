@@ -199,7 +199,7 @@ const DetailsStep: React.FC<{
         onChange={(e) => updateFormData({ requirements: e.target.value })}
         className="min-h-[140px] resize-none"
         placeholder="List the skills, certifications, and experience required..."
-        hint="Separate must-haves from nice-to-haves for better applications."
+        hint="Separate must-haves from nice-to-haves for better work requests."
       />
     </FormField>
 
@@ -279,7 +279,7 @@ const CompensationStep: React.FC<{
             onChange={(e) => updateFormData({ payMax: e.target.value })}
             className="pl-8"
             placeholder="35"
-            hint="A clear range gets more qualified applicants."
+            hint="A clear range gets more qualified fundi requests."
           />
         </div>
       </FormField>

@@ -91,7 +91,7 @@ const ModalHeader: React.FC<ModalHeaderProps> = ({ children, onClose, showCloseB
       {showCloseButton && onClose && (
         <button
           onClick={onClose}
-          className="rounded-xl p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-500 transition-colors bg-hover:bg-slate-800"
+          className="rounded-xl p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-500transition-colors bg-hover:bg-slate-800"
         >
           <XMarkIcon className="h-5 w-5" />
         </button>

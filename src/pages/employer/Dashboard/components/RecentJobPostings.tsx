@@ -75,7 +75,7 @@ export const RecentJobPostings: React.FC = () => {
                       <JobStatusBadge status={job.status} size="sm" />
                     </div>
                     <div className="flex items-center gap-4 mt-2 text-sm employer-text-muted">
-                      <span>{job.application_count || 0} applications</span>
+                      <span>{job.application_count || 0} requests</span>
                       <span>•</span>
                       <span>Posted {formatDistanceToNow(new Date(job.created_at), { addSuffix: true })}</span>
                     </div>

@@ -10,33 +10,33 @@ import {
 
 const features = [
   {
-    name: 'Smart Matching',
-    description: 'AI-powered job recommendations based on your skills and location.',
+    name: 'Find Local Jobs Fast',
+    description: 'AI shows you jobs near you that match your skills. New gigs posted every hour.',
     icon: BarChart3,
   },
   {
-    name: 'Secure Payments',
-    description: 'Safe and transparent payment processing with escrow protection.',
+    name: 'Get Paid Safe',
+    description: 'Your payment is held safe until the job is done. Get paid within 24 hours.',
     icon: ShieldCheck,
   },
   {
-    name: 'Real-time Chat',
-    description: 'Communicate instantly with employers or workers.',
+    name: 'Talk to the Boss',
+    description: 'Message employers directly. No middleman. Quick replies get more jobs.',
     icon: MessageCircle,
   },
   {
-    name: 'Flexible Schedule',
-    description: 'Choose jobs that fit your availability and preferences.',
+    name: 'Work When You Want',
+    description: 'Choose jobs that fit your schedule. Available today? Find urgent work.',
     icon: Clock3,
   },
   {
-    name: 'Competitive Rates',
-    description: 'Fair pay rates with transparent pricing and no hidden fees.',
+    name: 'Keep More Money',
+    description: 'Fair prices with transparent fees. No hidden charges. You know exactly what you earn.',
     icon: DollarSign,
   },
   {
-    name: 'Local Opportunities',
-    description: 'Find work near you with our location-based search.',
+    name: 'Work Where You Are',
+    description: 'Find jobs in your area. See distance before you send a request. Work near home.',
     icon: MapPin,
   },
 ];
@@ -49,10 +49,10 @@ export const Features: React.FC = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">
             Everything You Need
-            <span className="text-[#0F2137]"> to Succeed</span>
+            <span className="text-orange-600"> to Earn More</span>
           </h2>
           <p className="text-lg text-[#525252] max-w-2xl mx-auto">
-            WorkForge provides all the tools you need to find work or hire talent effectively.
+            Find work fast, get paid quick, build your reputation. WorkForge gives you the tools to grow your earning power.
           </p>
         </div>
 
@@ -61,9 +61,9 @@ export const Features: React.FC = () => {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <div key={feature.name} className="solid-card p-6 hover:shadow-xl transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-[#0F2137]/5 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-[#0F2137]" />
+              <div key={feature.name} className="solid-card p-6 hover:shadow-xl transition-all duration-300 border-l-4 border-l-orange-500">
+                <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center mb-4">
+                  <Icon className="w-6 h-6 text-orange-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-[#1A1A1A] mb-2">{feature.name}</h3>
                 <p className="text-[#525252]">{feature.description}</p>

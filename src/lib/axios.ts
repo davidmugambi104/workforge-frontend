@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { authStore } from '@store/auth.store';
+import { normalizeAxiosErrorPayload } from '@utils/error';
 
 const baseURL = import.meta.env.VITE_API_URL || '/api';
 
@@ -29,9 +30,13 @@ axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error) => {
     const originalRequest = error.config;
+    normalizeAxiosErrorPayload(error);
+    const requestUrl = String(originalRequest?.url || '');
+    const isAuthRequest = requestUrl.includes('/auth/login') || requestUrl.includes('/auth/register');
+    const hasSessionTokens = Boolean(authStore.getState().accessToken && authStore.getState().refreshToken);
     
     // Handle 401 errors with token refresh
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry && !isAuthRequest && hasSessionTokens) {
       originalRequest._retry = true;
       
       try {

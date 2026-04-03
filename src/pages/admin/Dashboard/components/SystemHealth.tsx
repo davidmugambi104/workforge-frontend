@@ -72,10 +72,10 @@ export const SystemHealth: React.FC = () => {
             <div className="bg-gray-50 bg-gray-800 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <ClockIcon className="w-5 h-5 text-slate-500  mr-2" />
-                  <span className="text-sm text-gray-600 ">Uptime</span>
+                  <ClockIcon className="w-5 h-5 text-slate-500 mr-2" />
+                  <span className="text-sm text-gray-600">Uptime</span>
                 </div>
-                <span className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                <span className="text-sm font-medium text-[#1A1A1A]">
                   {Math.floor(health?.uptime || 0)} days
                 </span>
               </div>
@@ -83,10 +83,10 @@ export const SystemHealth: React.FC = () => {
             <div className="bg-gray-50 bg-gray-800 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <CpuChipIcon className="w-5 h-5 text-slate-500  mr-2" />
-                  <span className="text-sm text-gray-600 ">Response</span>
+                  <CpuChipIcon className="w-5 h-5 text-slate-500 mr-2" />
+                  <span className="text-sm text-gray-600">Response</span>
                 </div>
-                <span className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                <span className="text-sm font-medium text-[#1A1A1A]">
                   {health?.response_time}ms
                 </span>
               </div>
@@ -97,7 +97,7 @@ export const SystemHealth: React.FC = () => {
           <div className="bg-gray-50 bg-gray-800 rounded-lg p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center">
-                <CircleStackIcon className="w-5 h-5 text-slate-500  mr-2" />
+                <CircleStackIcon className="w-5 h-5 text-slate-500 mr-2" />
                 <span className="text-sm font-medium text-slate-700 ">
                   Database
                 </span>
@@ -106,14 +106,14 @@ export const SystemHealth: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 gap-4 mt-2">
               <div>
-                <p className="text-xs text-slate-500 ">Query Time</p>
-                <p className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                <p className="text-xs text-slate-500">Query Time</p>
+                <p className="text-sm font-medium text-[#1A1A1A]">
                   {health?.database.query_time}ms
                 </p>
               </div>
               <div>
-                <p className="text-xs text-slate-500 ">Connections</p>
-                <p className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                <p className="text-xs text-slate-500">Connections</p>
+                <p className="text-sm font-medium text-[#1A1A1A]">
                   {health?.database.connections}
                 </p>
               </div>
@@ -124,7 +124,7 @@ export const SystemHealth: React.FC = () => {
           <div className="bg-gray-50 bg-gray-800 rounded-lg p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center">
-                <ServerIcon className="w-5 h-5 text-slate-500  mr-2" />
+                <ServerIcon className="w-5 h-5 text-slate-500 mr-2" />
                 <span className="text-sm font-medium text-slate-700 ">
                   Redis Cache
                 </span>
@@ -133,14 +133,14 @@ export const SystemHealth: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 gap-4 mt-2">
               <div>
-                <p className="text-xs text-slate-500 ">Memory Usage</p>
-                <p className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                <p className="text-xs text-slate-500">Memory Usage</p>
+                <p className="text-sm font-medium text-[#1A1A1A]">
                   {health?.redis.memory_usage} MB
                 </p>
               </div>
               <div>
-                <p className="text-xs text-slate-500 ">Hit Rate</p>
-                <p className="text-sm font-medium text-gray-900 text-[#1A1A1A]">
+                <p className="text-xs text-slate-500">Hit Rate</p>
+                <p className="text-sm font-medium text-[#1A1A1A]">
                   {health?.redis.hit_rate}%
                 </p>
               </div>
@@ -154,19 +154,19 @@ export const SystemHealth: React.FC = () => {
             </p>
             <div className="grid grid-cols-3 gap-2">
               <div className="text-center">
-                <p className="text-xs text-slate-500 ">Total</p>
-                <p className="text-sm font-bold text-gray-900 text-[#1A1A1A]">
+                <p className="text-xs text-slate-500">Total</p>
+                <p className="text-sm font-bold text-[#1A1A1A]">
                   {health?.api_requests.total.toLocaleString()}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-slate-500 ">Success</p>
+                <p className="text-xs text-slate-500">Success</p>
                 <p className="text-sm font-bold text-green-600">
                   {((health?.api_requests.successful || 0) / (health?.api_requests.total || 1) * 100).toFixed(1)}%
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-slate-500 ">Failed</p>
+                <p className="text-xs text-slate-500">Failed</p>
                 <p className="text-sm font-bold text-red-600">
                   {((health?.api_requests.failed || 0) / (health?.api_requests.total || 1) * 100).toFixed(1)}%
                 </p>
