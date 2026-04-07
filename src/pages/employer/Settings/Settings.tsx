@@ -500,7 +500,7 @@ const BillingTab: React.FC = () => (
       <div className="flex items-center justify-between p-5 bg-gradient-to-r from-navy-700 to-navy-800 rounded-xl text-white">
         <div>
           <p className="text-sm text-white/70">Current Plan</p>
-          <h4 className="text-xl font-bold mt-1">Professional</h4>
+          <h4 className="text-xl font-bold mt-1">Business</h4>
           <p className="text-sm text-white/70 mt-1">$49/month • Billed monthly</p>
         </div>
         <button type="button" onClick={() => window.location.assign('/payments')} className="btn-secondary">Upgrade Plan</button>
@@ -536,19 +536,19 @@ const BillingTab: React.FC = () => (
           <tbody>
             <tr>
               <td className="text-charcoal">Mar 1, 2026</td>
-              <td className="text-charcoal">Professional Plan</td>
+              <td className="text-charcoal">Business Plan</td>
               <td className="text-charcoal">$49.00</td>
               <td><span className="badge-success">Paid</span></td>
             </tr>
             <tr>
               <td className="text-charcoal">Feb 1, 2026</td>
-              <td className="text-charcoal">Professional Plan</td>
+              <td className="text-charcoal">Business Plan</td>
               <td className="text-charcoal">$49.00</td>
               <td><span className="badge-success">Paid</span></td>
             </tr>
             <tr>
               <td className="text-charcoal">Jan 1, 2026</td>
-              <td className="text-charcoal">Professional Plan</td>
+              <td className="text-charcoal">Business Plan</td>
               <td className="text-charcoal">$49.00</td>
               <td><span className="badge-success">Paid</span></td>
             </tr>

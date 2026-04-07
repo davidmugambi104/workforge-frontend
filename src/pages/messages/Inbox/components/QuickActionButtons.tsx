@@ -10,7 +10,7 @@ const QUICK_RESPONSES = [
   {
     id: 'interested',
     label: 'Interested',
-    message: 'I\'m very interested in this opportunity. Let\'s discuss further!',
+    message: 'I\'m interested in this job. Let\'s talk about the details.',
     icon: CheckIcon,
     color: 'text-green-600',
   },

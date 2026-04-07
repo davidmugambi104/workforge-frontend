@@ -187,7 +187,7 @@ const DetailsStep: React.FC<{
         value={formData.description}
         onChange={(e) => updateFormData({ description: e.target.value })}
         className="min-h-[180px] resize-none"
-        placeholder="Describe the role, responsibilities, and what makes this opportunity great..."
+        placeholder="Describe the role, responsibilities, and what makes this job great..."
         hint="Include daily duties, work conditions, and the expected outcome."
       />
       <p className="text-xs text-muted mt-1">{formData.description.length}/5000 characters</p>

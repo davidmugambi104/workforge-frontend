@@ -80,6 +80,13 @@ const ReviewList = lazy(() => import('@pages/reviews/ReviewList/ReviewList'));
 const CreateReview = lazy(() => import('@pages/reviews/CreateReview/CreateReview'));
 
 /**
+ * LAZY LOADED COMPONENTS - SOCIAL PAGES
+ * Routes: /social/feed, /social/create, /social/search
+ */
+const FeedPage = lazy(() => import('@pages/social/FeedPage'));
+const CreatePostPage = lazy(() => import('@pages/social/CreatePostPage'));
+
+/**
  * PROTECTED DASHBOARD LAYOUT WRAPPER
  * Checks authentication status and user role before rendering UnifiedDashboardLayout
  * @param allowedRoles - Array of roles allowed to access the routes within

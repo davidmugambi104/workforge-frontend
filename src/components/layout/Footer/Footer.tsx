@@ -15,7 +15,7 @@ const navigation = {
   company: [
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Careers', href: '/careers' },
+    { name: 'Work With Us', href: '/careers' },
     { name: 'Press', href: '/press' },
   ],
   support: [

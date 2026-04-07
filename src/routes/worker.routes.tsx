@@ -5,6 +5,7 @@ const WorkerDashboard = lazy(() => import('@pages/worker/Dashboard/Dashboard'));
 const WorkerProfile = lazy(() => import('@pages/worker/Profile/Profile'));
 const WorkerJobs = lazy(() => import('@pages/worker/Jobs/Jobs'));
 const WorkerApplications = lazy(() => import('@pages/worker/Applications/Applications'));
+const WorkerPortfolio = lazy(() => import('@pages/worker/Portfolio/Portfolio'));
 const WorkerReviews = lazy(() => import('@pages/worker/Reviews/Reviews'));
 const WorkerSettings = lazy(() => import('@pages/worker/Settings/Settings'));
 

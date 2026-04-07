@@ -12,9 +12,14 @@
     --wf-gray-500: #6B7280;
     --wf-gray-400: #9CA3AF;
 
-    --wf-font-heading: 'Fjalla One', 'Segoe UI', system-ui, sans-serif;
-    --wf-font-body: 'Merriweather', Georgia, serif;
-    --wf-font-accent: 'Grape Nuts', cursive;
+    --wf-font-heading: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --wf-font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    --wf-font-accent: 'Inter', sans-serif;
+
+    /* Warm Accent Colors - Blue Collar Friendly */
+    --wf-warm-orange: #C85A2C;
+    --wf-warm-terracotta: #D2691E;
+    --wf-warm-gold: #D4A017;
 
     /* Primary Color - Corporate Blue #2563EB */
     --primary: 217 91% 60%;
