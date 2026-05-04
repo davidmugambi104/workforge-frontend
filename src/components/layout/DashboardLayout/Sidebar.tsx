@@ -12,6 +12,8 @@ import {
   ShieldCheckIcon,
   ExclamationTriangleIcon,
   ArrowRightOnRectangleIcon,
+  TrophyIcon,
+  ChartBarIcon,
 } from '@heroicons/react/24/outline';
 import { useAuth } from '@context/AuthContext';
 import { UserRole } from '@types';
@@ -48,6 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
         { name: 'Browse Jobs', path: `${baseRolePath}/jobs`, icon: BriefcaseIcon },
         { name: 'Work Requests', path: `${baseRolePath}/applications`, icon: DocumentTextIcon },
         { name: 'Reviews', path: `${baseRolePath}/reviews`, icon: ClipboardDocumentListIcon },
+        { name: 'Achievements', path: `${baseRolePath}/achievements`, icon: TrophyIcon },
         { name: 'Profile', path: `${baseRolePath}/profile`, icon: UserCircleIcon },
       ],
       [UserRole.EMPLOYER]: [
@@ -57,6 +60,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
         { name: 'Work Requests', path: `${baseRolePath}/applications`, icon: ClipboardDocumentListIcon },
         { name: 'Workers', path: `${baseRolePath}/workers`, icon: UsersIcon },
         { name: 'Reviews', path: `${baseRolePath}/reviews`, icon: ClipboardDocumentListIcon },
+        { name: 'Analytics', path: `${baseRolePath}/analytics`, icon: ChartBarIcon },
         { name: 'Profile', path: `${baseRolePath}/profile`, icon: UserCircleIcon },
       ],
       [UserRole.ADMIN]: [
@@ -125,7 +129,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
               onClick={onClose}
             >
               <Icon className="w-5 h-5 flex-shrink-0" />
-              <span className={`whitespace-nowrap transition-all duration-200 ${isEmployer ? 'opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-48 overflow-hidden' : ''}`}>{item.name}</span>
+              <span className="whitespace-nowrap">{item.name}</span>
             </NavLink>
           );
         })}
@@ -153,7 +157,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
           }
         >
           <Cog6ToothIcon className="w-5 h-5 flex-shrink-0" />
-          <span className={`font-medium whitespace-nowrap transition-all duration-200 ${isEmployer ? 'opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-48 overflow-hidden' : ''}`}>Settings</span>
+          <span className="font-medium whitespace-nowrap">Settings</span>
         </NavLink>
 
         {/* Logout */}
@@ -169,7 +173,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, className }) 
           }`}
         >
           <ArrowRightOnRectangleIcon className="w-5 h-5 flex-shrink-0" />
-          <span className={`font-medium whitespace-nowrap transition-all duration-200 ${isEmployer ? 'opacity-0 max-w-0 group-hover:opacity-100 group-hover:max-w-48 overflow-hidden' : ''}`}>Logout</span>
+          <span className="font-medium whitespace-nowrap">Logout</span>
         </button>
       </div>
       </aside>

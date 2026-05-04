@@ -21,20 +21,20 @@ export const VerificationStatus: React.FC<VerificationStatusProps> = ({
 
   const verificationItems = [
     {
-      id: 'identity',
-      label: 'Identity Verification',
-      status: worker?.verification_score >= 25 ? 'verified' : 'pending',
+      id: 'phone',
+      label: 'Phone Number',
+      status: worker?.is_verified ? 'verified' : 'pending',
       icon: IdentificationIcon,
     },
     {
-      id: 'skills',
-      label: 'Skills Assessment',
-      status: worker?.verification_score >= 50 ? 'verified' : 'pending',
+      id: 'profile',
+      label: 'Profile Complete',
+      status: worker?.profile_completion_percentage >= 50 ? 'verified' : 'pending',
       icon: DocumentCheckIcon,
     },
     {
-      id: 'background',
-      label: 'Background Check',
+      id: 'skills',
+      label: 'Skills Added',
       status: worker?.verification_score >= 75 ? 'verified' : 'pending',
       icon: ShieldCheckIcon,
     },

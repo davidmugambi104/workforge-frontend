@@ -18,6 +18,7 @@ const WorkersPage = lazy(() => import('@pages/public/Workers/Workers'));
 const WorkerProfilePage = lazy(() => import('@pages/public/WorkerProfile/WorkerProfile'));
 const AboutPage = lazy(() => import('@pages/public/About/About'));
 const NotFoundPage = lazy(() => import('@pages/public/NotFound/NotFound'));
+const PublicProfile = lazy(() => import('@pages/public/PublicProfile'));
 
 /**
  * LAZY LOADED COMPONENTS - AUTH PAGES
@@ -35,6 +36,7 @@ const VerifyEmailPage = lazy(() => import('@pages/auth/VerifyEmail/VerifyEmail')
 const EmployerDashboard = lazy(() => import('@pages/employer/Dashboard/Dashboard'));
 const EmployerProfile = lazy(() => import('@pages/employer/Profile/Profile'));
 const EmployerJobs = lazy(() => import('@pages/employer/Jobs/Jobs'));
+const EmployerAnalytics = lazy(() => import('@pages/employer/Analytics/Analytics'));
 const EmployerJobDetail = lazy(() => import('@pages/employer/Applications/EmployerJobDetail'));
 const EmployerJobDetailPreview = lazy(() => import('@pages/employer/JobDetail/JobDetail'));
 const EmployerApplications = lazy(() => import('@pages/employer/Applications/Applications'));
@@ -54,6 +56,7 @@ const WorkerJobs = lazy(() => import('@pages/worker/Jobs/Jobs'));
 const WorkerApplications = lazy(() => import('@pages/worker/Applications/Applications'));
 const WorkerReviews = lazy(() => import('@pages/worker/Reviews/Reviews'));
 const WorkerSettings = lazy(() => import('@pages/worker/Settings/Settings'));
+const WorkerAchievements = lazy(() => import('@pages/worker/Achievements/Achievements'));
 
 /**
  * LAZY LOADED COMPONENTS - ADMIN PAGES
@@ -168,6 +171,9 @@ export const AppRouter = () => {
           {/* Home Page */}
           <Route index element={<HomePage />} />
 
+          {/* Public Profile MVP */}
+          <Route path="profile/:username" element={<PublicProfile />} />
+
           {/* Jobs Section */}
           <Route path="jobs">
             <Route index element={<JobsPage />} />
@@ -236,6 +242,9 @@ export const AppRouter = () => {
           {/* Reviews */}
           <Route path="reviews" element={<EmployerReviews />} />
 
+          {/* Analytics */}
+          <Route path="analytics" element={<EmployerAnalytics />} />
+
           {/* Settings */}
           <Route path="settings" element={<EmployerSettings />} />
         </Route>
@@ -269,6 +278,9 @@ export const AppRouter = () => {
 
           {/* Settings */}
           <Route path="settings" element={<WorkerSettings />} />
+
+          {/* Achievements & Loyalty */}
+          <Route path="achievements" element={<WorkerAchievements />} />
         </Route>
 
         {/* ========================================

@@ -24,6 +24,7 @@ export interface Worker {
   availability_status?: string;
   is_verified: boolean;
   verification_score: number;
+  profile_completion_percentage?: number;
   average_rating: number;
   total_ratings: number;
   rating?: number;

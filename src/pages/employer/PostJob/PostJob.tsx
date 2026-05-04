@@ -169,6 +169,47 @@ const BasicInfoStep: React.FC<{
         ))}
       </div>
     </FormField>
+
+    {/* Urgency - BoomNation style */}
+    <FormField label="How Soon Do You Need Someone?" required error={errors.urgency}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {[
+          { id: 'same_day', label: 'Needed TODAY', desc: 'Same day', color: 'red' },
+          { id: 'urgent', label: 'Urgent', desc: '1-2 days', color: 'orange' },
+          { id: 'standard', label: 'Standard', desc: 'This week', color: 'blue' },
+          { id: 'flexible', label: 'Flexible', desc: 'No rush', color: 'slate' },
+        ].map((option) => (
+          <button
+            key={option.id}
+            type="button"
+            onClick={() => updateFormData({ urgency: option.id })}
+            className={`p-3 rounded-lg border text-sm font-medium transition-all relative ${
+              formData.urgency === option.id
+                ? option.color === 'red'
+                  ? 'border-red-500 bg-red-50 text-red-700'
+                  : option.color === 'orange'
+                    ? 'border-orange-500 bg-orange-50 text-orange-700'
+                    : option.color === 'blue'
+                      ? 'border-blue-500 bg-blue-50 text-blue-700'
+                      : 'border-slate-500 bg-slate-50 text-slate-700'
+                : 'border-charcoal-200 text-charcoal-600 hover:border-navy'
+            }`}
+          >
+            {option.id === 'same_day' && (
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
+              </span>
+            )}
+            <p className="font-semibold">{option.label}</p>
+            <p className="text-xs opacity-70">{option.desc}</p>
+          </button>
+        ))}
+      </div>
+      <p className="text-xs text-muted mt-2">
+        Urgent jobs appear higher in search results and get highlighted
+      </p>
+    </FormField>
   </div>
 );
 
@@ -258,13 +299,13 @@ const CompensationStep: React.FC<{
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       <FormField label="Minimum Pay" required error={errors.payMin}>
         <div className="relative">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">$</span>
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">KES</span>
           <Input
             type="number"
             value={formData.payMin}
             onChange={(e) => updateFormData({ payMin: e.target.value })}
-            className="pl-8"
-            placeholder="25"
+            className="pl-12"
+            placeholder="2500"
             hint="Set the lowest amount you can confidently offer."
           />
         </div>
@@ -272,13 +313,13 @@ const CompensationStep: React.FC<{
 
       <FormField label="Maximum Pay" required error={errors.payMax}>
         <div className="relative">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">$</span>
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">KES</span>
           <Input
             type="number"
             value={formData.payMax}
             onChange={(e) => updateFormData({ payMax: e.target.value })}
-            className="pl-8"
-            placeholder="35"
+            className="pl-12"
+            placeholder="5000"
             hint="A clear range gets more qualified fundi requests."
           />
         </div>
@@ -476,7 +517,7 @@ const PreviewStep: React.FC<{ formData: any }> = ({ formData }) => (
         <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted">
           <span className="flex items-center gap-1">
             <CurrencyDollarIcon className="w-4 h-4" />
-            ${formData.payMin}-{formData.payMax}/{formData.payPeriod?.toLowerCase() || 'hourly'}
+            KES {formData.payMin}-{formData.payMax}/{formData.payPeriod?.toLowerCase() || 'day'}
           </span>
           <span className="flex items-center gap-1">
             <MapPinIcon className="w-4 h-4" />
@@ -528,6 +569,7 @@ const PostJob = () => {
     category: '',
     type: '',
     experience: '',
+    urgency: 'standard',
     description: '',
     requirements: '',
     benefits: [''],
@@ -610,6 +652,7 @@ const PostJob = () => {
           : formData.payPeriod.toLowerCase().includes('week')
             ? 'daily'
             : 'fixed',
+        urgency: formData.urgency || 'standard',
       } as any);
       navigate('/employer/jobs');
     } finally {

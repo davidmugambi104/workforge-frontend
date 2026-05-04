@@ -31,7 +31,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [viewers, setViewers] = useState<{ id: number; viewer?: { id: number; username: string }; created_at: string }[]>([]);
+  const [viewers, setViewers] = useState<{ id: number; viewer?: { id: number; username: string; avatar?: string }; created_at: string }[]>([]);
   const [showViewers, setShowViewers] = useState(false);
   
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -312,7 +312,7 @@ export const StoryViewer: React.FC<StoryViewerProps> = ({
               {viewers.map(v => (
                 <div key={v.id} className="flex items-center gap-3 px-4 py-2 hover:bg-gray-50">
                   <img
-                    src={v.viewer?.avatar || `https://ui-avatars.com/api/?name=${v.viewer?.username}&background=666&color=fff`}
+                    src={(v.viewer as any)?.avatar || `https://ui-avatars.com/api/?name=${(v.viewer as any)?.username}&background=666&color=fff`}
                     alt={v.viewer?.username}
                     className="w-10 h-10 rounded-full"
                   />

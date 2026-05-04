@@ -3,16 +3,16 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { X, Video, Image, FileText, MapPin, ChevronLeft, Send } from 'lucide-react';
 import { postsApi, storiesApi } from '../../services/social.service';
 import { useAuth } from '../../context/AuthContext';
+import { StoryMediaType, PostType, PostVisibility } from '../../types/social.types';
 
 type Tab = 'post' | 'story';
-type PostType = 'video' | 'image' | 'text';
 
 export const CreatePostPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const initialTab = (searchParams.get('tab') as Tab) || 'post';
   
   const [activeTab, setActiveTab] = useState<Tab>(initialTab as Tab);
-  const [postType, setPostType] = useState<PostType>('image');
+  const [postType, setPostType] = useState<PostType>(PostType.IMAGE);
   const [caption, setCaption] = useState('');
   const [mediaFiles, setMediaFiles] = useState<File[]>([]);
   const [mediaPreview, setMediaPreview] = useState<string[]>([]);
@@ -49,11 +49,11 @@ export const CreatePostPage: React.FC = () => {
     const hasVideo = validFiles.some(f => f.type.startsWith('video'));
     const hasImage = validFiles.some(f => f.type.startsWith('image'));
     if (hasVideo && hasImage) {
-      setPostType('video'); // Default to video if mixed
+      setPostType(PostType.VIDEO); // Default to video if mixed
     } else if (hasVideo) {
-      setPostType('video');
+      setPostType(PostType.VIDEO);
     } else {
-      setPostType('image');
+      setPostType(PostType.IMAGE);
     }
 
     setMediaFiles(prev => [...prev, ...validFiles].slice(0, 10)); // Max 10 files
@@ -111,8 +111,9 @@ export const CreatePostPage: React.FC = () => {
         }
 
         const uploadedMedia = await uploadMedia([mediaFiles[0]]);
+        const storyMediaType = uploadedMedia[0].media_type === 'video' ? StoryMediaType.VIDEO : StoryMediaType.IMAGE;
         await storiesApi.create({
-          media_type: uploadedMedia[0].media_type as 'image' | 'video',
+          media_type: storyMediaType,
           media_url: uploadedMedia[0].url,
           caption: caption.trim() || undefined,
           county: county || undefined,
@@ -122,10 +123,16 @@ export const CreatePostPage: React.FC = () => {
         // Create post
         const uploadedMedia = mediaFiles.length > 0 ? await uploadMedia(mediaFiles) : [];
         
+        const isTextPost = caption.trim() && uploadedMedia.length === 0;
+        const isVideo = uploadedMedia.some(m => m.media_type === 'video');
+        const finalPostType = isTextPost ? PostType.TEXT : (isVideo ? PostType.VIDEO : PostType.IMAGE);
+        
+        const finalVisibility = visibility === 'public' ? PostVisibility.PUBLIC : visibility === 'followers' ? PostVisibility.FOLLOWERS : PostVisibility.PRIVATE;
+        
         await postsApi.create({
-          post_type: caption.trim() && uploadedMedia.length === 0 ? 'text' as const : (uploadedMedia.some(m => m.media_type === 'video') ? 'video' as const : 'image' as const),
+          post_type: finalPostType,
           caption: caption.trim() || undefined,
-          visibility: visibility as 'public' | 'followers' | 'private',
+          visibility: finalVisibility,
           media: uploadedMedia.length > 0 ? uploadedMedia : undefined,
           county: county || undefined,
           sub_county: subCounty || undefined,

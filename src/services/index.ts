@@ -22,3 +22,10 @@ export {
   type BulkUserImport, type BulkJobImport, type BulkExportRequest,
   type SkillRecommendation, type MarketTrend, type WorkerPricePrediction
 } from './advanced.services';
+
+// API instance for custom services
+import axios from 'axios';
+import { axiosClient } from '@lib/axios';
+
+// Re-export axiosClient as 'api' for backward compatibility
+export const api = axiosClient;
