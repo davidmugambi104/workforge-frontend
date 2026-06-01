@@ -1,14 +1,10 @@
-// Simple service worker for offline caching
+// Service worker that avoids caching the HTML shell so production deploys
+// always pick up the latest index.html and CSS bundle.
+const CACHE_NAME = 'workforge-cache-v2';
+
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('workforge-cache-v1').then(cache => {
-      return cache.addAll([
-        '/',
-        '/index.html',
-        '/logo.png',
-        // Add more assets as needed
-      ]);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(['/logo.png']))
   );
   self.skipWaiting();
 });
@@ -17,7 +13,7 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => {
       return Promise.all(
-        keys.filter(key => key !== 'workforge-cache-v1').map(key => caches.delete(key))
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
       );
     })
   );
@@ -25,9 +21,12 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });
